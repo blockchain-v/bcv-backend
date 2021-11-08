@@ -1,7 +1,7 @@
 import time
 from web3 import Web3
 from threading import Thread
-from services.registerHandler import register
+from services.userHandler import register, unregister
 
 
 def start_event_listen(contract):
@@ -25,7 +25,7 @@ def _handle_event(event):
     if evt == 'Register':
         register(event.args.user, event.args.signedAddress)
     elif evt == 'Unregister':
-        print('Unregister')
+        unregister()
     elif evt == 'DeployVNF':
         print('DeployVNF')
     elif evt == 'DeleteVNF':
