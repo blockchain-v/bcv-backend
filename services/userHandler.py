@@ -1,4 +1,5 @@
-from globals.db import db
+from models.user import User
+
 
 def register(user, signedAddress):
     """
@@ -7,9 +8,10 @@ def register(user, signedAddress):
     :param signedAddress:
     :return:
     """
-    print('is register', user, signedAddress )
-    db.collection['users'].insert_one({'address':user, 'signedAddress':signedAddress})
-    print(list(db.collection['users'].find({})))
+    print('is register', user, signedAddress)
+    user = User(address=user, signedAddress=signedAddress)
+    user.save()
+
 
 def unregister():
     print('unregister')

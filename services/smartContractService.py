@@ -1,4 +1,4 @@
-from globals.w3 import w3
+from contract.w3 import w3
 
 
 def registerBackend(contract):
