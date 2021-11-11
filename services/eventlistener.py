@@ -25,7 +25,7 @@ def _handle_event(event):
     if evt == 'Register':
         register(event.args.user, event.args.signedAddress)
     elif evt == 'Unregister':
-        unregister()
+        unregister(event.args.user)
     elif evt == 'DeployVNF':
         print('DeployVNF')
     elif evt == 'DeleteVNF':
