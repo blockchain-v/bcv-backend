@@ -1,4 +1,5 @@
 from contract.w3 import w3
+from config import SC_BACKEND_CONFIG
 
 
 def registerBackend(contract):
@@ -8,8 +9,8 @@ def registerBackend(contract):
     :return:
     """
     try:
-        tx_hash = contract.functions.registerBackend('0x6fBa78085BbD09475723F53C7f3895dBb4b17BC9').transact(
-            {"from": "0x474F1243F1Eec4eDfD576425f581Ec1cE3d0A099"})
+        tx_hash = contract.functions.registerBackend(SC_BACKEND_CONFIG['SC_BACKEND_ADDRESS']).transact(
+            {"from": SC_BACKEND_CONFIG['SC_BACKEND_ADDRESS_FROM']})
         tx_receipt = w3.eth.waitForTransactionReceipt(tx_hash)
         print('t', tx_receipt)
     except Exception as e:
