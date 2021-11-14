@@ -25,3 +25,8 @@ TACKER_CONFIG = {
                 'User-Agent': 'python-tackerclient'},
     'baseurl': os.environ.get('TACKER_BASEURL')
 }
+
+SC_BACKEND_CONFIG = {
+    'SC_BACKEND_ADDRESS': os.environ.get('SC_BACKEND_ADDRESS'),
+    'SC_BACKEND_ADDRESS_FROM': os.environ.get('SC_BACKEND_ADDRESS_FROM')
+}

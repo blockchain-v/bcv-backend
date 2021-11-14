@@ -5,7 +5,7 @@ from database.db import init_db
 from mongoengine.connection import get_db
 from flask_restful import Api
 from resources.routes import init_routes
-from services.eventlistener import SmartContractEventListener
+from services.smartContractEventListener import SmartContractEventListener
 from services.smartContractService import registerBackend
 from tacker.tacker import Tacker
 
@@ -24,8 +24,6 @@ eventListener = SmartContractEventListener(contract, tacker)
 def main():
     # register backend in the smart contract
     registerBackend(contract)
-
-
 
     # todo just for debugging purposes, remove this
     db = get_db()
