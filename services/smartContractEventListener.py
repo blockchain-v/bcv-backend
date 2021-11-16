@@ -3,6 +3,7 @@ from web3 import Web3
 from threading import Thread
 from services.userService import register, unregister
 from enum import Enum, auto
+from services.vnfService import VNFService
 
 
 class EventTypes(Enum):
@@ -24,7 +25,7 @@ class SmartContractEventListener:
 
     def __init__(self, contract, tackerClient):
         self.contract = contract
-        self.tacker = tackerClient
+        self.vnfService = VNFService(tackerClient)
         self.start_event_listen(self.contract)
 
     def start_event_listen(self, contract):
@@ -50,17 +51,16 @@ class SmartContractEventListener:
         evt = str(event.event).upper()
         print('evt', evt)
         # dependencies require py=3.8.*, so no match/case possible
-        print(EventTypes.REGISTER)
         if evt == EventTypes.REGISTER.name:
             register(event.args.user, event.args.signedAddress)
         elif evt == EventTypes.UNREGISTER.name:
             unregister(event.args.user)
         elif evt == EventTypes.DEPLOYVNF.name:
-            print('DeployVNF')
+            self.vnfService.deployVNF(event.args.creator, event.args.vnfId, event.args.vnfdId, event.args.parameters)
         elif evt == EventTypes.DELETEVNF.name:
-            print('DeleteVNF')
+            self.vnfService.deleteVNF(event.args.creator, event.args.vnfId)
         elif evt == EventTypes.MODIFYVNF.name:
-            print('ModifyVNF')
+            self.vnfService.modifyVNF(event.args.creator, event.args.vnfId, event.args.parameters)
         else:
             print('???')
 

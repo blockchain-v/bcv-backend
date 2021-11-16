@@ -5,3 +5,4 @@ web3==5.24.0
 mongoengine==0.22.1
 flask-mongoengine==1.0.0
 python-dotenv==0.19.2
+requests~=2.26.0
