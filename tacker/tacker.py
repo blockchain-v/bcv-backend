@@ -3,6 +3,9 @@ import requests
 
 
 class Tacker:
+    """
+    Tacker's responsibility is to communicate with the Tacker VM
+    """
 
     def __init__(self):
         self.token, self.tenant_id = self.__get_token_scoped()
@@ -219,8 +222,9 @@ class Tacker:
                 }
             }
         }
-        response = requests.delete(f"{TACKER_CONFIG['BASEURL']}vnfs",
+        response = requests.delete(f"{TACKER_CONFIG['BASEURL']}vnfs/{vnfId}",
                                    headers=self.headers, data=data)
+        print(response)
 
 
 tackerClient = Tacker()
