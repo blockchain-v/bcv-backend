@@ -6,8 +6,7 @@ class VNFService:
     def deployVNF(self, creator, vnfId, vnfdId, parameters) -> None:
         # TODO call contract with if failed or errored
         print(creator, vnfId, vnfdId, parameters)
-        vimId = 1 #TODO get this from where?
-        self.tackerClient.create_vnf(vnfdId, vimId)
+        self.tackerClient.create_vnf(vnfdId, parameters)
 
     def deleteVNF(self, creator, vnfId) -> None:
         # TODO call contract with if failed or errored
