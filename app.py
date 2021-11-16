@@ -1,22 +1,22 @@
 from flask import Flask
-import config
-from contract.w3 import contract
-from database.db import init_db
-from mongoengine.connection import get_db
 from flask_restful import Api
-from resources.routes import init_routes
-from services.smartContractEventListener import SmartContractEventListener
-from services.smartContractService import registerBackend
-from tacker.tacker import Tacker
+
+import config
+from contract import contract
+from database import init_db
+from mongoengine.connection import get_db
+from resources import init_routes
+from services import SmartContractEventListener, registerBackend
+from tacker import tacker
 
 # init stuff
 app = Flask(__name__)
 app.config['MONGODB_SETTINGS'] = config.MONGODB_SETTINGS
 api = Api(app)
+
 init_db(app)
 init_routes(api)
-# setup tacker connection
-tacker = Tacker()
+
 # Blockchain Smart Contract Event Listening
 eventListener = SmartContractEventListener(contract, tacker)
 
@@ -30,6 +30,7 @@ def main():
     print("Database name: ", db.name)
     tacker.get_vims()
     tacker.get_vnfs()
+    tacker.get_vnfds()
 
     # run http server
     app.run(host='0.0.0.0', port=8080, debug=True, use_reloader=False)

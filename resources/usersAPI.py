@@ -1,5 +1,5 @@
 from flask import Response, request
-from models.user import User
+from models import User
 from flask_restful import Resource
 
 
