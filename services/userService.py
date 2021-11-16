@@ -11,11 +11,15 @@ def register(user, signedAddress):
     """
     try:
         print('is register', user, signedAddress)
-        # TODO check what we actually do with the signature
-        # s = w3.eth.account.recoverHash(signedAddress, signature=user)
-        # print('s: ', s)
-        user = User(address=user, signedAddress=signedAddress)
-        user.save()
+
+        from eth_account.messages import defunct_hash_message
+        t = w3.solidityKeccak(['address'], [user])
+        address = w3.eth.account.recoverHash(t, signature=signedAddress)
+
+        print('address', address, 'user', user)
+        if user == address:
+            user = User(address=user, signedAddress=signedAddress)
+            user.save()
         # TODO call contract with if failed or errored
     except Exception as e:
         print(e)

@@ -10,6 +10,8 @@ class Tacker:
     def __init__(self):
         self.token, self.tenant_id = self.__get_token_scoped()
         self.headers = {'X-Auth-Token': self.token, 'content-type': 'Application/JSON'}
+        self.vimId = self.get_vims()[0]['id']
+        print('vimId', self.vimId)
 
     def __get_token_scoped(self) -> object:
         """
@@ -64,6 +66,8 @@ class Tacker:
         vims = response.json().get('vims')
         print('vims: ', vims)
         return vims
+
+
 
     """
     ------------------------
