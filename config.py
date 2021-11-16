@@ -23,7 +23,7 @@ TACKER_CONFIG = {
     'NOAUTH': 'noauth',
     'headers': {'X-Auth-Token': '',
                 'User-Agent': 'python-tackerclient'},
-    'baseurl': os.environ.get('TACKER_BASEURL')
+    'BASEURL': os.environ.get('TACKER_BASEURL')
 }
 
 SC_BACKEND_CONFIG = {

@@ -16,6 +16,7 @@ def register(user, signedAddress):
         # print('s: ', s)
         user = User(address=user, signedAddress=signedAddress)
         user.save()
+        # TODO call contract with if failed or errored
     except Exception as e:
         print(e)
 
@@ -29,5 +30,7 @@ def unregister(user):
         print('unregister')
         userToDelete = User.objects(address=user)
         userToDelete.delete()
+        # TODO call contract with if failed or errored
+
     except Exception as e:
         print(e)
