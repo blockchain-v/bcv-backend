@@ -1,5 +1,5 @@
 from .tackerAPI import TackerVNFDSAPI
-from .usersAPI import UsersAPI
+from .challengeAPI import ChallengeAPI
 
 def init_routes(api):
     """
@@ -7,5 +7,5 @@ def init_routes(api):
     :param api:
     :return:
     """
-    # api.add_resource(UsersAPI, '/api/users')
     api.add_resource(TackerVNFDSAPI, '/api/tacker/vnfds')
+    api.add_resource(ChallengeAPI, '/api/challenge')
