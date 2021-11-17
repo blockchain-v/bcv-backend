@@ -1,1 +1,1 @@
-from .w3 import contract
+from .w3 import contract, w3
