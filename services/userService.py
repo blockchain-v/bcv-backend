@@ -1,8 +1,9 @@
-from contract.w3 import w3
+from contract import w3, contract
 from models.user import User
+from .smartContractService import reportRegistrationToSC, reportUnregistrationToSC
 
 
-def register(user, signedAddress):
+def register(newUserAddress, signedAddress):
     """
     Registers a user in the db collection 'user'
     :param user: str, a users BC address
@@ -10,23 +11,29 @@ def register(user, signedAddress):
     :return:
     """
     try:
-        print('is register', user, signedAddress)
-
-        t = w3.solidityKeccak(['address'], [user])
+        print('is register', newUserAddress, signedAddress)
+        # use same hashfunction as in contract to hash the userAddress
+        t = w3.solidityKeccak(['address'], [newUserAddress])
+        # using the signature, recover the address from the hash
+        # this is done to check whether the digital signature was issued by the userAddress
+        # if this matches, save the user to the db
         address = w3.eth.account.recoverHash(t, signature=signedAddress)
+        print('address', address, 'user', newUserAddress)
 
-        print('address', address, 'user', user)
-        # TODO call contract with if failed or errored
-        if user == address:
-            user = User(address=user)
+        if newUserAddress == address:
+            user = User(address=newUserAddress)
             user.save()
         else:
-            print('user != address', user, address)
+            print('newUserAddress != address', newUserAddress, address)
+        # SC callback to report status of the registration (successful/unsuccessful)
+        reportRegistrationToSC(contract, newUserAddress, newUserAddress == address)
     except Exception as e:
         print(e)
+        # SC callback called with success as False
+        reportRegistrationToSC(contract, newUserAddress, False)
 
 
-def unregister(user):
+def unregister(newUserAddress):
     """
     Deletes a user from the db collection 'user'
     :param user: str, a users BBC address
@@ -34,9 +41,13 @@ def unregister(user):
     """
     try:
         print('unregister')
-        userToDelete = User.objects(address=user)
+        userToDelete = User.objects(address=newUserAddress)
         userToDelete.delete()
-        # TODO call contract with if failed or errored
+        # SC callback to report status of the registration (successful/unsuccessful)
+        # success is false if no users were found to be deleted (i.e. not yet registered)
+        reportRegistrationToSC(contract, newUserAddress, len(userToDelete) > 0)
 
     except Exception as e:
         print(e)
+        # SC callback called with success as False
+        reportUnregistrationToSC(contract, newUserAddress, False)
