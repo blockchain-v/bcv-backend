@@ -1,3 +1,4 @@
+import json
 from config import TACKER_CONFIG
 import requests
 
@@ -134,6 +135,7 @@ class Tacker:
 
     def create_vnf(self, vnfdId, parameters):
         # TODO update properties
+        parameters = json.loads(parameters)
         data = {
             "vnf": {
                 "tenant_id": self.tenant_id,
