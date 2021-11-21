@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_restful import Api
-
+from flask_cors import CORS
 import config
 from contract import contract
 from database import init_db
@@ -12,6 +12,7 @@ from tacker import tacker
 # init stuff
 app = Flask(__name__)
 app.config['MONGODB_SETTINGS'] = config.MONGODB_SETTINGS
+CORS(app)
 api = Api(app)
 
 init_db(app)
