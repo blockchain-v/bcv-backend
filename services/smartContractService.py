@@ -1,4 +1,4 @@
-from contract.w3 import w3
+from contract.w3 import w3, contract
 from config import SC_BACKEND_CONFIG
 
 
@@ -47,6 +47,15 @@ def reportUnregistrationToSC(contract, user, success):
     """
     try:
         tx_hash = contract.functions.reportUnregistration(user, success).transact(
+            {"from": SC_BACKEND_CONFIG['SC_BACKEND_ADDRESS']})
+        tx_receipt = w3.eth.waitForTransactionReceipt(tx_hash)
+        print('t', tx_receipt)
+    except Exception as e:
+        print('e', e)
+
+def reportVNFDeployment(user, vnfId, success, vnfIdEncrypted):
+    try:
+        tx_hash = contract.functions.reportDeployment(vnfId, user, success, vnfIdEncrypted).transact(
             {"from": SC_BACKEND_CONFIG['SC_BACKEND_ADDRESS']})
         tx_receipt = w3.eth.waitForTransactionReceipt(tx_hash)
         print('t', tx_receipt)
