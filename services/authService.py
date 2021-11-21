@@ -1,6 +1,8 @@
 from contract import w3
 from uuid import uuid4
 from models import Token
+from datetime import datetime
+from flask import request, abort
 
 
 def checkAuth(claim, signedString, isAddress=True) -> bool:
@@ -23,19 +25,42 @@ def checkAuth(claim, signedString, isAddress=True) -> bool:
         return False
 
 
-def verifyToken(address, token):
-    # TODO. get from db token, check its timestamp (<= 24h) and check whether token from db == token that was sent
-    print('verifyToken', address, token)
+def verifyToken(token):
+    try:
+        tokenMatch = Token.objects.get(value=token)
+        if tokenMatch is not None:
+            issueDate = tokenMatch.issueDate
+            now = datetime.now()
+            return abs((now - issueDate).days) <= 1
+        else:
+            return False
+    except Exception as e:
+        return False
 
 
-def createToken(address, value, signedValue):
+def createToken(value, signedValue):
     try:
         if checkAuth(value, signedValue, isAddress=False):
             tokenValue = uuid4().hex
-            newToken = Token(address=address, value=tokenValue)
+            newToken = Token(value=tokenValue)
             newToken.save()
             return tokenValue
         else:
             return False
     except Exception as e:
         return False
+
+
+def auth(func):
+    def wrapper(*args, **kwargs):
+        try:
+            token = request.headers['Authorization']
+            val = verifyToken(token)
+            if val:
+                return func(*args, **kwargs)
+            else:
+                return abort(401)
+        except:
+            abort(401)
+
+    return wrapper

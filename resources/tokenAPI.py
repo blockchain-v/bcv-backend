@@ -9,11 +9,10 @@ class TokenAPI(Resource):
         """
         :return: string: token
         """
-        address = request.get_json().get('address')
         signedValue = request.get_json().get('signedValue')
         value = request.get_json().get('value')
 
-        token = createToken(address, value, signedValue)
+        token = createToken(value, signedValue)
         if token:
             return Response(json.dumps({"token": token}), mimetype='application/json', status=200)
         else:

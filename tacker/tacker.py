@@ -77,9 +77,9 @@ class Tacker:
     def get_vnfds(self):
         response = requests.get(f"{TACKER_CONFIG['BASEURL']}vnfds",
                                 headers=self.headers)
-        vnfs = response.json().get('vnfds')
-        print('vnfds: ', vnfs)
-        return vnfs
+        vnfds = response.json().get('vnfds')
+        print('vnfds: ', vnfds)
+        return vnfds
 
     def get_vnfd(self, vnfdId):
         response = requests.get(f"{TACKER_CONFIG['BASEURL']}vnfds/{vnfdId}",
