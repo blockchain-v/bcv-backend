@@ -53,9 +53,37 @@ def reportUnregistrationToSC(contract, user, success):
     except Exception as e:
         print('e', e)
 
-def reportVNFDeployment(user, vnfId, success, vnfIdEncrypted):
+
+def reportVNFDeployment(deploymentId, creatorAddress, success, tackerVNFId):
+    """
+    Reports whether an attempt to create a VNF has been successful.
+    Calls the SC function reportDeployment.
+    :param deploymentId: int : SC internal identifier for the VNF
+    :param creatorAddress: string: address of the user whom the VNF belongs to
+    :param success: bool: signs whether the VNF has been successfully created
+    :param tackerVNFId: string: id of the newly created VNF, empty string if unsuccessful
+    :return:
+    """
     try:
-        tx_hash = contract.functions.reportDeployment(vnfId, user, success, vnfIdEncrypted).transact(
+        tx_hash = contract.functions.reportDeployment(deploymentId, creatorAddress, success, tackerVNFId).transact(
+            {"from": SC_BACKEND_CONFIG['SC_BACKEND_ADDRESS']})
+        tx_receipt = w3.eth.waitForTransactionReceipt(tx_hash)
+        print('t', tx_receipt)
+    except Exception as e:
+        print('e', e)
+
+
+def reportVNFDeletion(deploymentId, creatorAddress, success):
+    """
+    Reports whether an attempt to delete a VNF has been successful.
+    Calls the SC function reportDeletion.
+    :param deploymentId: int : SC internal identifier for the VNF
+    :param creatorAddress: string: address of the user whom the VNF belonged to
+    :param success: bool: signs whether the VNF has been successfully deleted
+    :return:
+    """
+    try:
+        tx_hash = contract.functions.reportDeletion(deploymentId, creatorAddress, success).transact(
             {"from": SC_BACKEND_CONFIG['SC_BACKEND_ADDRESS']})
         tx_receipt = w3.eth.waitForTransactionReceipt(tx_hash)
         print('t', tx_receipt)
