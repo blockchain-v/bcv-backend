@@ -1,3 +1,4 @@
+import json
 from config import TACKER_CONFIG
 import requests
 
@@ -10,6 +11,8 @@ class Tacker:
     def __init__(self):
         self.token, self.tenant_id = self.__get_token_scoped()
         self.headers = {'X-Auth-Token': self.token, 'content-type': 'Application/JSON'}
+        self.vimId = self.get_vims()[0]['id']
+        print('vimId', self.vimId)
 
     def __get_token_scoped(self) -> object:
         """
@@ -74,9 +77,9 @@ class Tacker:
     def get_vnfds(self):
         response = requests.get(f"{TACKER_CONFIG['BASEURL']}vnfds",
                                 headers=self.headers)
-        vnfs = response.json().get('vnfds')
-        print('vnfds: ', vnfs)
-        return vnfs
+        vnfds = response.json().get('vnfds')
+        print('vnfds: ', vnfds)
+        return vnfds
 
     def get_vnfd(self, vnfdId):
         response = requests.get(f"{TACKER_CONFIG['BASEURL']}vnfds/{vnfdId}",
@@ -86,7 +89,6 @@ class Tacker:
         return vnfd
 
     def create_vnfd(self, attributes):
-        # TODO change
         data = {
             "vnfd": {
                 "tenant_id": self.tenant_id,
@@ -131,46 +133,56 @@ class Tacker:
         print('vnfs: ', vnfs)
         return vnfs
 
-    def create_vnf(self, vnfdId, vimId):
+    def create_vnf(self, vnfdId, parameters):
         # TODO update properties
+        parameters = json.loads(parameters)
         data = {
             "vnf": {
-                "tenant_id": TACKER_CONFIG['TENANT_ID'],
+                "tenant_id": self.tenant_id,
                 "vnfd_id": vnfdId,
-                "vim_id": vimId,
-                "name": "Test VNF 2",
-                "description": "Test VNF 2",
-                "attributes": {
-                    "config": {
-                        "vdus": {
-                            "vdu1": {
-                                "config": {
-                                    "firewall": "package firewall\n"
-                                }
-                            }
-                        }
-                    },
-                    "param_values": {
-                        "vdus": {
-                            "vdu1": {
-                                "param": {
-                                    "vdu-name": "openwrt_vdu1"
-                                }
-                            }
-                        }
-                    }
-                },
+                "vim_id": self.vimId,
+                # "name": "Test VNF 2",
+                # "description": "Test VNF 2",
+                # "attributes": {
+                #     "config": {
+                #         "vdus": {
+                #             "vdu1": {
+                #                 "config": {
+                #                     "firewall": "package firewall\n"
+                #                 }
+                #             }
+                #         }
+                #     },
+                #     "param_values": {
+                #         "vdus": {
+                #             "vdu1": {
+                #                 "param": {
+                #                     "vdu-name": "openwrt_vdu1"
+                #                 }
+                #             }
+                #         }
+                #     }
+                # },
                 "placement_attr": {
                     "region_name": "RegionOne"
                 }
             }
         }
+        data['vnf']['attributes'] = parameters.get('attributes')
+        data['vnf']['name'] = parameters.get('name')
+        data['vnf']['description'] = parameters.get('description')
 
         response = requests.post(f"{TACKER_CONFIG['BASEURL']}vnfs",
-                                 headers=self.headers, data=data)
+                                 headers=self.headers, json=data)
         print(response)
+        return response
 
     def delete_vnf(self, vnfId):
+        """
+        Deleted a VNF with the given vnfId
+        :param vnfId: string
+        :return:
+        """
         data = {
             "vnf": {
                 "attributes": {
@@ -179,8 +191,9 @@ class Tacker:
             }
         }
         response = requests.delete(f"{TACKER_CONFIG['BASEURL']}vnfs/{vnfId}",
-                                   headers=self.headers, data=data)
+                                   headers=self.headers)
         print(response)
+        return response
 
 
 tackerClient = Tacker()

@@ -39,7 +39,10 @@ class SmartContractEventListener:
         deployVNF = contract.events.DeployVNF.createFilter(fromBlock='latest')
         deleteVNF = contract.events.DeleteVNF.createFilter(fromBlock='latest')
         modifyVNF = contract.events.ModifyVNF.createFilter(fromBlock='latest')
-        self._event_listen([register_filter, unregister_filter, deployVNF, deleteVNF, modifyVNF])
+        # TODO remove reg / unreg. Just for testing purposes right now.
+        reg = contract.events.RegistrationStatus.createFilter(fromBlock='latest')
+        unreg = contract.events.UnregistrationStatus.createFilter(fromBlock='latest')
+        self._event_listen([register_filter, unregister_filter, deployVNF, deleteVNF, modifyVNF,reg, unreg])
 
     def _handle_event(self, event) -> None:
         """
@@ -56,9 +59,9 @@ class SmartContractEventListener:
         elif evt == EventTypes.UNREGISTER.name:
             unregister(event.args.user)
         elif evt == EventTypes.DEPLOYVNF.name:
-            self.vnfService.deployVNF(event.args.creator, event.args.vnfId, event.args.vnfdId, event.args.parameters)
+            self.vnfService.deployVNF(event.args.creator, event.args.deploymentId, event.args.vnfdId, event.args.parameters)
         elif evt == EventTypes.DELETEVNF.name:
-            self.vnfService.deleteVNF(event.args.creator, event.args.vnfId)
+            self.vnfService.deleteVNF(event.args.creator, event.args.deploymentId, event.args.vnfId)
         elif evt == EventTypes.MODIFYVNF.name:
             self.vnfService.modifyVNF(event.args.creator, event.args.vnfId, event.args.parameters)
         else:
