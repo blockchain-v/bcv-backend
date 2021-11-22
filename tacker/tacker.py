@@ -178,7 +178,11 @@ class Tacker:
         return response
 
     def delete_vnf(self, vnfId):
-        # TODO check
+        """
+        Deleted a VNF with the given vnfId
+        :param vnfId: string
+        :return:
+        """
         data = {
             "vnf": {
                 "attributes": {
