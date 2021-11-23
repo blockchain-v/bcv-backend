@@ -53,14 +53,13 @@ def createToken(value, signedValue):
 
 def auth(func):
     def wrapper(*args, **kwargs):
-        try:
-            token = request.headers['Authorization']
-            val = verifyToken(token)
-            if val:
-                return func(*args, **kwargs)
-            else:
-                return abort(401)
-        except:
-            abort(401)
+
+        token = request.headers.get('Authentication')
+        val = verifyToken(token)
+        if val:
+            return func(*args, **kwargs)
+        else:
+            return abort(401)
+
 
     return wrapper

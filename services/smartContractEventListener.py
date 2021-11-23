@@ -42,13 +42,14 @@ class SmartContractEventListener:
         # TODO remove reg / unreg. Just for testing purposes right now.
         reg = contract.events.RegistrationStatus.createFilter(fromBlock='latest')
         unreg = contract.events.UnregistrationStatus.createFilter(fromBlock='latest')
-        self._event_listen([register_filter, unregister_filter, deployVNF, deleteVNF, modifyVNF,reg, unreg])
 
-    def _handle_event(self, event) -> None:
+        self.__event_listen([register_filter, unregister_filter, deployVNF, deleteVNF, modifyVNF, reg, unreg])
+
+    def __handle_event(self, event) -> None:
         """
-        Checks
-        :param event:
-        :return:
+        matches and calls function based on event type
+        :param event: event
+        :return: None
         """
         print(Web3.toJSON(event))
         evt = str(event.event).upper()
@@ -59,7 +60,8 @@ class SmartContractEventListener:
         elif evt == EventTypes.UNREGISTER.name:
             unregister(event.args.user)
         elif evt == EventTypes.DEPLOYVNF.name:
-            self.vnfService.deployVNF(event.args.creator, event.args.deploymentId, event.args.vnfdId, event.args.parameters)
+            self.vnfService.deployVNF(event.args.creator, event.args.deploymentId, event.args.vnfdId,
+                                      event.args.parameters)
         elif evt == EventTypes.DELETEVNF.name:
             self.vnfService.deleteVNF(event.args.creator, event.args.deploymentId, event.args.vnfId)
         elif evt == EventTypes.MODIFYVNF.name:
@@ -67,18 +69,25 @@ class SmartContractEventListener:
         else:
             print('???')
 
-    def _log_loop(self, event_filter, poll_interval) -> None:
+    def __event_loop(self, event_filter, poll_interval) -> None:
+        """
+        gets new events based on the type of event this thread is listening to
+        :param event_filter:
+        :param poll_interval: int
+        :return: None
+        """
         while True:
             for event in event_filter.get_new_entries():
-                self._handle_event(event)
+                self.__handle_event(event)
             time.sleep(poll_interval)
 
-    def _event_listen(self, event_filters) -> None:
+    def __event_listen(self, event_filters) -> None:
         """
-        Starts a thread for each of the event filters
+        Starts a thread for each of the event filters to listen
         :param event_filters: list
         :return: None
         """
+        poll_interval = 5
         for event in event_filters:
-            worker = Thread(target=self._log_loop, args=(event, 5), daemon=True)
+            worker = Thread(target=self.__event_loop, args=(event, poll_interval), daemon=True)
             worker.start()
