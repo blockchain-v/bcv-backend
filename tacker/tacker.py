@@ -5,13 +5,14 @@ import requests
 
 class Tacker:
     """
-    Tacker's responsibility is to communicate with the Tacker VM
+    Tacker's responsibility is to communicate with the Tacker instance running on the VM
     """
 
     def __init__(self):
         self.token, self.tenant_id = self.__get_token_scoped()
         self.headers = {'X-Auth-Token': self.token, 'content-type': 'Application/JSON'}
-        self.vimId = self.get_vims()[0]['id']
+        vimIds, _ = self.get_vims()
+        self.vimId = vimIds[0]['id']
         print('vimId', self.vimId)
 
     def __get_token_scoped(self) -> object:
@@ -66,7 +67,7 @@ class Tacker:
                                 headers=self.headers)
         vims = response.json().get('vims')
         print('vims: ', vims)
-        return vims
+        return vims, response.status_code
 
     """
     ------------------------
@@ -78,22 +79,20 @@ class Tacker:
         response = requests.get(f"{TACKER_CONFIG['BASEURL']}vnfds",
                                 headers=self.headers)
         vnfds = response.json().get('vnfds')
-        print('vnfds: ', vnfds)
-        return vnfds
+        return vnfds, response.status_code
 
     def get_vnfd(self, vnfdId):
         response = requests.get(f"{TACKER_CONFIG['BASEURL']}vnfds/{vnfdId}",
                                 headers=self.headers)
         vnfd = response.json().get('vnfd')
-        print('vnfs: ', vnfd)
-        return vnfd
+        return vnfd, response.status_code
 
-    def create_vnfd(self, attributes):
+    def create_vnfd(self, attributes, name, description):
         data = {
             "vnfd": {
                 "tenant_id": self.tenant_id,
-                "name": "vnfd-sample test 3",
-                "description": "Sample",
+                # "name": "vnfd-sample test 3",
+                # "description": "Sample",
                 "service_types": [
                     {
                         "service_type": "vnfd"
@@ -103,18 +102,23 @@ class Tacker:
             }
         }
         data['vnfd']['attributes'] = attributes
-        print('data: ', data)
+        data['vnfd']['name'] = name
+        data['vnfd']['description'] = description
 
         response = requests.post(f"{TACKER_CONFIG['BASEURL']}vnfds",
                                  headers=self.headers, json=data)
-        print('res', response)
-        return response
+        return response.json().get('vnfd'), response.status_code
 
-    def delete_vnfd(self, vnfdId):
+    def delete_vnfd(self, vnfdId) -> int:
+        """
+        Returns status code upon deletion of a vnfd
+        :param vnfdId:
+        :return:
+        """
         response = requests.delete(f"{TACKER_CONFIG['BASEURL']}vnfds/{vnfdId}",
                                    headers=self.headers)
         print('res', response)
-        return response
+        return response.status_code
 
     """
     ------------------------
@@ -131,7 +135,17 @@ class Tacker:
                                 headers=self.headers)
         vnfs = response.json().get('vnfs')
         print('vnfs: ', vnfs)
-        return vnfs
+        return vnfs, response.status_code
+
+    def get_vnf(self, vnfId):
+        """
+        Returns a VNF from tacker
+        :return:
+        """
+        response = requests.get(f"{TACKER_CONFIG['BASEURL']}vnfs/{vnfId}",
+                                headers=self.headers)
+        vnf = response.json().get('vnf')
+        return vnf, response.status_code
 
     def create_vnf(self, vnfdId, parameters):
         # TODO update properties
@@ -175,7 +189,7 @@ class Tacker:
         response = requests.post(f"{TACKER_CONFIG['BASEURL']}vnfs",
                                  headers=self.headers, json=data)
         print(response)
-        return response
+        return response.json().get('vnf'), response.status_code
 
     def delete_vnf(self, vnfId):
         """
@@ -193,7 +207,7 @@ class Tacker:
         response = requests.delete(f"{TACKER_CONFIG['BASEURL']}vnfs/{vnfId}",
                                    headers=self.headers)
         print(response)
-        return response
+        return response.status_code
 
 
 tackerClient = Tacker()
