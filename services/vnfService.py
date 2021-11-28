@@ -1,4 +1,5 @@
-from .smartContractService import reportVNFDeployment, reportVNFDeletion
+from .authService import getAddressFromToken
+from .smartContractService import reportVNFDeployment, reportVNFDeletion, getVnfs
 
 
 class VNFService:
@@ -30,3 +31,18 @@ class VNFService:
     def modifyVNF(self, creator, vnfId, parameters) -> None:
         # TODO: contract function not implemented yet
         print(creator, vnfId, parameters)
+
+    def getUsersVNF(self, token):
+        """
+        Returns all vnf details for a specific user
+        :param token: string
+        :return: array
+        """
+        try:
+            address = getAddressFromToken(token)
+            print('address', address)
+            vnfs = getVnfs(address)
+            return [self.tackerClient.get_vnf(e[2])[0] for e in vnfs if e[2]]
+        except Exception as e:
+            print('e', e)
+            return False

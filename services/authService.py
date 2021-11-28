@@ -105,6 +105,17 @@ def verifyToken(token) -> bool:
     except Exception as e:
         return False
 
+def getAddressFromToken(token) -> str:
+    """
+    Return address from a token
+    :param token: string
+    :return: address : string
+    """
+    try:
+        tokenMatch = Token.objects.get(value=token)
+        return tokenMatch.userAddress
+    except Exception as e:
+        return False
 
 def createToken(nonce, signedNonce, address):
     """
@@ -116,8 +127,11 @@ def createToken(nonce, signedNonce, address):
     """
     try:
         if checkAuth(claim=nonce, signedClaim=signedNonce, address=address):
+            # delete previous tokens from this user
+            Token.objects(userAddress=address).delete()
+            # create new token
             tokenValue = uuid4().hex
-            newToken = Token(value=tokenValue)
+            newToken = Token(value=tokenValue, userAddress=address)
             newToken.save()
             return tokenValue
         else:
