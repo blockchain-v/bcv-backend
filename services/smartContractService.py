@@ -89,3 +89,16 @@ def reportVNFDeletion(deploymentId, creatorAddress, success):
         print('t', tx_receipt)
     except Exception as e:
         print('e', e)
+
+
+def getVnfs(address):
+    """
+    Calls the SC function getVnfs to get all vnf details for a specific user.
+    :param address:
+    :return:
+    """
+    try:
+        return contract.functions.getVnfs(address).call({"from": SC_BACKEND_CONFIG['SC_BACKEND_ADDRESS']})
+    except Exception as e:
+        print('e', e)
+        return False
