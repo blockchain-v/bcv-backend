@@ -1,7 +1,7 @@
 from flask import Response, request, jsonify
 from flask_restful import Resource
 from tacker import tacker
-from services import auth
+from services import auth, VNFService
 
 
 class TackerVNFDSAPI(Resource):
@@ -86,10 +86,11 @@ class TackerVNFSAPI(Resource):
     @auth
     def get(self) -> Response:
         """
-        Gets VNFS from tacker instance
+        Gets VNFS from tacker instance for a specific user.
+        This is done by calling the contract to get the vnfs for this user and then getting each individually.
         :return: 200 if successful
         """
         try:
-            return self.tackerClient.get_vnfs()
+            return VNFService(self.tackerClient).getUsersVNF(token=request.headers.get('Authentication'))
         except Exception as e:
             return Response(status=400)
