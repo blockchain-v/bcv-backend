@@ -14,7 +14,7 @@ def register(newUserAddress, signedAddress):
     try:
         print('is register', newUserAddress, signedAddress)
         authStatus = False
-        if checkAuth(newUserAddress, signedAddress):
+        if checkAuth(claim=newUserAddress, signedClaim=signedAddress):
             print('checkauth passed')
             user = User(address=newUserAddress)
             user.save()
