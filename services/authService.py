@@ -1,8 +1,23 @@
 from contract import w3
 from uuid import uuid4
-from models import Token, Nonce
+from models import Token, Nonce, User
 from datetime import datetime
 from flask import request, abort
+
+
+def userRegistered(address) -> bool:
+    """
+    Checks if a user with the given address has been registered
+    :param address:
+    :return:  boolean
+    """
+    isRegistered = False
+    try:
+        User.objects.get(address=address)
+        isRegistered = True
+    except:
+        pass
+    return isRegistered
 
 
 def checkAuth(*args, **kwargs) -> bool:
@@ -21,6 +36,7 @@ def checkAuth(*args, **kwargs) -> bool:
                                                                                                       signedClaim,
                                                                                                       address)
     except Exception as e:
+        print("failed to verify authentication signature\n")
         return False
 
 
@@ -105,6 +121,7 @@ def verifyToken(token) -> bool:
     except Exception as e:
         return False
 
+
 def getAddressFromToken(token) -> str:
     """
     Return address from a token
@@ -116,6 +133,7 @@ def getAddressFromToken(token) -> str:
         return tokenMatch.userAddress
     except Exception as e:
         return False
+
 
 def createToken(nonce, signedNonce, address):
     """
