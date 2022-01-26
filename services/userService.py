@@ -41,7 +41,7 @@ def unregister(newUserAddress):
         userToDelete.delete()
         # SC callback to report status of the registration (successful/unsuccessful)
         # success is false if no users were found to be deleted (i.e. not yet registered)
-        reportRegistrationToSC(contract, newUserAddress, len(userToDelete) > 0)
+        reportUnregistrationToSC(contract, newUserAddress, len(userToDelete) > 0)
 
     except Exception as e:
         print(e)
