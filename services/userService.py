@@ -38,10 +38,12 @@ def unregister(newUserAddress):
     try:
         print('unregister')
         userToDelete = User.objects(address=newUserAddress)
+        userLen = len(userToDelete)
         userToDelete.delete()
+
         # SC callback to report status of the registration (successful/unsuccessful)
         # success is false if no users were found to be deleted (i.e. not yet registered)
-        reportUnregistrationToSC(contract, newUserAddress, len(userToDelete) > 0)
+        reportUnregistrationToSC(contract, newUserAddress, userLen > 0)
 
     except Exception as e:
         print(e)
