@@ -46,6 +46,7 @@ def reportUnregistrationToSC(contract, user, success):
     :return:
     """
     try:
+        print('user', user, 'success', success)
         tx_hash = contract.functions.reportUnregistration(user, success).transact(
             {"from": SC_BACKEND_CONFIG['SC_BACKEND_ADDRESS']})
         tx_receipt = w3.eth.waitForTransactionReceipt(tx_hash)
