@@ -91,8 +91,6 @@ class Tacker:
         data = {
             "vnfd": {
                 "tenant_id": self.tenant_id,
-                # "name": "vnfd-sample test 3",
-                # "description": "Sample",
                 "service_types": [
                     {
                         "service_type": "vnfd"
@@ -107,6 +105,8 @@ class Tacker:
 
         response = requests.post(f"{TACKER_CONFIG['BASEURL']}vnfds",
                                  headers=self.headers, json=data)
+        if not response.json().get('vnfd'):
+            return response.text, response.status_code
         return response.json().get('vnfd'), response.status_code
 
     def delete_vnfd(self, vnfdId) -> int:
