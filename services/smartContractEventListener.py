@@ -43,9 +43,9 @@ class SmartContractEventListener:
         reg = contract.events.RegistrationStatus.createFilter(fromBlock='latest')
         unreg = contract.events.UnregistrationStatus.createFilter(fromBlock='latest')
 
-        self.__event_listen([register_filter, unregister_filter, deployVNF, deleteVNF, modifyVNF, reg, unreg])
+        self._event_listen([register_filter, unregister_filter, deployVNF, deleteVNF, modifyVNF, reg, unreg])
 
-    def __handle_event(self, event) -> None:
+    def _handle_event(self, event) -> None:
         """
         matches and calls function based on event type
         :param event: event
@@ -69,7 +69,7 @@ class SmartContractEventListener:
         else:
             print('???')
 
-    def __event_loop(self, event_filter, poll_interval) -> None:
+    def _event_loop(self, event_filter, poll_interval) -> None:
         """
         gets new events based on the type of event this thread is listening to
         :param event_filter:
@@ -78,10 +78,10 @@ class SmartContractEventListener:
         """
         while True:
             for event in event_filter.get_new_entries():
-                self.__handle_event(event)
+                self._handle_event(event)
             time.sleep(poll_interval)
 
-    def __event_listen(self, event_filters) -> None:
+    def _event_listen(self, event_filters) -> None:
         """
         Starts a thread for each of the event filters to listen
         :param event_filters: list
@@ -89,5 +89,5 @@ class SmartContractEventListener:
         """
         poll_interval = 5
         for event in event_filters:
-            worker = Thread(target=self.__event_loop, args=(event, poll_interval), daemon=True)
+            worker = Thread(target=self._event_loop, args=(event, poll_interval), daemon=True)
             worker.start()

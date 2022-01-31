@@ -32,7 +32,7 @@ def checkAuth(*args, **kwargs) -> bool:
         address = kwargs.get('address')
         claim = kwargs.get('claim')
         signedClaim = kwargs.get('signedClaim')
-        return __checkAuthForAddress(claim, signedClaim) if address is None else __checkAuthForNonces(claim,
+        return _checkAuthForAddress(claim, signedClaim) if address is None else _checkAuthForNonces(claim,
                                                                                                       signedClaim,
                                                                                                       address)
     except Exception as e:
@@ -40,7 +40,7 @@ def checkAuth(*args, **kwargs) -> bool:
         return False
 
 
-def __checkAuthForAddress(claimedAddress, signedString) -> bool:
+def _checkAuthForAddress(claimedAddress, signedString) -> bool:
     """
     Verifies a claimed address by comparing it to its value that was recovered from a digitally signed string
     :param claimedAddress:
@@ -50,13 +50,13 @@ def __checkAuthForAddress(claimedAddress, signedString) -> bool:
     try:
         # use same hashfunction as in contract to hash the userAddress
         hashedClaim = w3.solidityKeccak(['address'], [claimedAddress])
-        address = __recoverAddress(hashedClaim, signedString)
+        address = _recoverAddress(hashedClaim, signedString)
         return claimedAddress == address
     except Exception as e:
         return False
 
 
-def __checkAuthForNonces(nonce, signedNonce, userAddress) -> bool:
+def _checkAuthForNonces(nonce, signedNonce, userAddress) -> bool:
     """
     Verifies a claimed nonce by comparing it to its value that was recovered from a digitally signed string
     :param nonce:
@@ -70,13 +70,13 @@ def __checkAuthForNonces(nonce, signedNonce, userAddress) -> bool:
             return False
         # use the same hashfunction as in frontend to hash the nonce
         hashedClaim = w3.solidityKeccak(['bytes32'], [nonce])
-        address = __recoverAddress(hashedClaim, signedNonce)
+        address = _recoverAddress(hashedClaim, signedNonce)
         return address == userAddress
     except Exception as e:
         return False
 
 
-def __recoverAddress(hashedClaim, signedString) -> str:
+def _recoverAddress(hashedClaim, signedString) -> str:
     """
     Rcovers the address from the hashedClaim using the signature.
     This is done to check whether the digital signature was issued by the claimed userAddress

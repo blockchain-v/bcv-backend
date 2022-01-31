@@ -9,13 +9,13 @@ class Tacker:
     """
 
     def __init__(self):
-        self.token, self.tenant_id = self.__get_token_scoped()
+        self.token, self.tenant_id = self._get_token_scoped()
         self.headers = {'X-Auth-Token': self.token, 'content-type': 'Application/JSON'}
         vimIds, _ = self.get_vims()
         self.vimId = vimIds[0]['id']
         print('vimId', self.vimId)
 
-    def __get_token_scoped(self) -> object:
+    def _get_token_scoped(self) -> object:
         """
         Gets a scoped authentication token and tenant_id from Tacker
         :return:
