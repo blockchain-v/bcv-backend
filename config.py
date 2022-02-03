@@ -4,6 +4,9 @@ import os
 load_dotenv('.env')
 
 DB_ALIAS = 'bcv-db'
+SC_ABI_PATH = os.environ.get('SC_ABI_PATH')
+
+PORT = os.environ.get('PORT')
 
 MONGODB_SETTINGS = {
     "db": DB_ALIAS,
@@ -18,7 +21,6 @@ TACKER_CONFIG = {
     'TENANT_ID': os.environ.get('TACKER_TENANT_ID'),
     'PASSWORD': os.environ.get('TACKER_PASSWORD'),
     'AUTH_URL': os.environ.get('TACKER_AUTH_URL'),
-    'ENDPOINT_URL': os.environ.get('TACKER_ENDPOINT_URL'),
     'ENDPOINT_OVERRIDE': 'otherurl',
     'NOAUTH': 'noauth',
     'headers': {'X-Auth-Token': '',
@@ -29,4 +31,8 @@ TACKER_CONFIG = {
 SC_BACKEND_CONFIG = {
     'SC_BACKEND_ADDRESS': os.environ.get('SC_BACKEND_ADDRESS'),
     'SC_BACKEND_ADDRESS_FROM': os.environ.get('SC_BACKEND_ADDRESS_FROM')
+}
+
+WEB3_CONFIG = {
+    'URL': os.environ.get('W3_URL'),
 }

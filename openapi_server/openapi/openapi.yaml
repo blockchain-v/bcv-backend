@@ -1,0 +1,313 @@
+openapi: 3.0.3
+info:
+  description: REST API for BCV MAP
+  title: BCV
+  version: 0.9.0
+servers:
+- url: /api/v1/bcv
+tags:
+- description: Endpoints for Token
+  name: token
+- description: Endpoints for VNF Descriptors (VNFD)
+  name: vnfd
+- description: Endpoints for VNF
+  name: vnf
+paths:
+  /token:
+    post:
+      description: Tokens are valid for one day and are used for auth.
+      operationId: create_token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/tokenRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tokenResponse'
+          description: Created a token
+        "204":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tokenResponse'
+          description: User is not yet registered
+        "403":
+          description: Token could not be created. Likely the provided address is
+            incorrect.
+      summary: Creates and returns a new token. Requires a nonce.
+      tags:
+      - token
+      x-swagger-router-controller: server.controller
+      x-openapi-router-controller: openapi_server.controllers.token_controller
+    put:
+      description: Nonces are valid for one day and are used to issue a token.
+      operationId: create_nonce
+      requestBody:
+        $ref: '#/components/requestBodies/addressRequest'
+        content:
+          application/json:
+            example:
+              address: 0x...
+            schema:
+              properties:
+                address:
+                  nullable: true
+                  title: address
+                  type: string
+              title: addressRequest
+              type: object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/nonce'
+          description: Created a nonce
+        "403":
+          description: Nonce could not be created. Likely the provided address is
+            incorrect.
+      summary: Creates and returns a new nonce
+      tags:
+      - token
+      x-swagger-router-controller: server.controller
+      x-openapi-router-controller: openapi_server.controllers.token_controller
+  /vnf:
+    get:
+      description: This is done by calling the contract to get the vnfs for this user
+        and then getting each individually, if auth was successful. The user is identified
+        by the Authorization token.
+      operationId: get_vnfs
+      responses:
+        "400":
+          description: Error
+        "401":
+          description: Not authorized
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/vnf'
+                type: array
+          description: Successfully returned vnfd
+      security:
+      - ApiKeyAuth: []
+      summary: Returns all vnf details for a user
+      tags:
+      - vnf
+      x-swagger-router-controller: server.controller
+      x-openapi-router-controller: openapi_server.controllers.vnf_controller
+  /vnf/<vnfID>:
+    get:
+      description: Returns a VNF from the tacker instance, if auth was successful
+      operationId: get_vnf
+      responses:
+        "400":
+          description: Error
+        "401":
+          description: Not authorized
+        "404":
+          description: Not found
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/vnf'
+          description: Successfully returned vnfd
+      security:
+      - ApiKeyAuth: []
+      summary: Returns vnf details for a specific vnfID
+      tags:
+      - vnf
+      x-swagger-router-controller: server.controller
+      x-openapi-router-controller: openapi_server.controllers.vnf_controller
+  /vnfd:
+    get:
+      description: Returns all VNFD (vnf descriptors) from the tacker instance, if
+        auth was successful
+      operationId: get_vnfds
+      responses:
+        "400":
+          description: Error
+        "401":
+          description: Not authorized
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/vnfd'
+                type: array
+          description: Successfully returned vnfds
+      security:
+      - ApiKeyAuth: []
+      summary: Returns all vnf descriptors
+      tags:
+      - vnfd
+      x-swagger-router-controller: server.controller
+      x-openapi-router-controller: openapi_server.controllers.vnfd_controller
+    post:
+      description: Creates a new vnf descriptor, if auth was successful
+      operationId: create_vnfd
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/newVnfd'
+      responses:
+        "400":
+          description: Error
+        "401":
+          description: Not authorized
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/vnfd'
+          description: Successfully created vnfd
+      security:
+      - ApiKeyAuth: []
+      summary: Creates a new vnf descriptor
+      tags:
+      - vnfd
+      x-swagger-router-controller: server.controller
+      x-openapi-router-controller: openapi_server.controllers.vnfd_controller
+  /vnfd/<vnfdID>:
+    delete:
+      description: Deletes a VNFD (vnf descriptor) from the tacker instance, if auth
+        was successful
+      operationId: delete_vnfd
+      responses:
+        "400":
+          description: Error
+        "401":
+          description: Not authorized
+        "404":
+          description: Not found
+        "204":
+          description: Successfully deleted
+      security:
+      - ApiKeyAuth: []
+      summary: Deletes a vnf descriptor with vnfdID
+      tags:
+      - vnfd
+      x-swagger-router-controller: server.controller
+      x-openapi-router-controller: openapi_server.controllers.vnfd_controller
+    get:
+      description: Returns a VNFD (vnf descriptor) from the tacker instance, if auth
+        was successful
+      operationId: get_vnfd
+      responses:
+        "400":
+          description: Error
+        "401":
+          description: Not authorized
+        "404":
+          description: Not found
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/vnfd'
+          description: Successfully returned vnfds
+      security:
+      - ApiKeyAuth: []
+      summary: Returns a vnf descriptor with vnfdID
+      tags:
+      - vnfd
+      x-swagger-router-controller: server.controller
+      x-openapi-router-controller: openapi_server.controllers.vnfd_controller
+components:
+  requestBodies:
+    addressRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/addressRequest'
+      required: true
+  schemas:
+    nonce:
+      example:
+        nonce: asdf...
+      properties:
+        nonce:
+          type: string
+      title: nonce
+      type: object
+    tokenResponse:
+      example:
+        isRegistered: true
+        token: token
+      properties:
+        token:
+          title: token
+          type: string
+        isRegistered:
+          title: isRegistered
+          type: boolean
+      title: tokenResponse
+      type: object
+    tokenRequest:
+      properties:
+        signedNonce:
+          title: signedNonce
+          type: string
+        nonce:
+          title: nonce
+          type: string
+        address:
+          title: address
+          type: string
+      title: tokenRequest
+      type: object
+    vnfd:
+      example:
+        id: id
+      properties:
+        id:
+          title: id
+          type: string
+      title: vnfd
+      type: object
+    newVnfd:
+      properties:
+        attributes:
+          title: attributes
+          type: object
+        name:
+          title: name
+          type: string
+        description:
+          title: description
+          type: string
+      title: newVnfd
+      type: object
+    vnf:
+      example:
+        id: id
+      properties:
+        id:
+          title: id
+          type: string
+      title: vnf
+      type: object
+    addressRequest:
+      properties:
+        address:
+          nullable: true
+          title: address
+          type: string
+      title: addressRequest
+      type: object
+  securitySchemes:
+    ApiKeyAuth:
+      in: header
+      name: Authorization
+      type: apiKey
+      x-apikeyInfoFunc: openapi_server.controllers.security_controller_.info_from_ApiKeyAuth
