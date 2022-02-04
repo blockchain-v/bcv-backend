@@ -20,7 +20,6 @@ def create_nonce():  # noqa: E501
     return tokenService.service.create_nonce(address_request)
 
 
-
 def create_token():  # noqa: E501
     """Creates and returns a new token. Requires a nonce.
 

@@ -3,6 +3,9 @@ from uuid import uuid4
 from openapi_server.repositories import Token, Nonce, User
 from datetime import datetime
 from flask import request, abort
+import logging
+
+log = logging.getLogger('authService')
 
 
 def checkAuth(*args, **kwargs) -> bool:
@@ -21,7 +24,7 @@ def checkAuth(*args, **kwargs) -> bool:
                                                                                                     signedClaim,
                                                                                                     address)
     except Exception as e:
-        print("failed to verify authentication signature\n")
+        log.info("failed to verify authentication signature\n")
         return False
 
 

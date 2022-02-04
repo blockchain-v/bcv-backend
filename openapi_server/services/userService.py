@@ -2,29 +2,32 @@ from openapi_server.contract import contract
 from openapi_server.repositories import User, Nonce, Token
 from .authService import checkAuth
 from .smartContractService import reportRegistrationToSC, reportUnregistrationToSC
+import logging
+
+log = logging.getLogger('userService')
 
 
 def register(newUserAddress, signedAddress):
     """
     Registers a user in the db collection 'user'
-    :param user: str, a users BC address
+    :param newUserAddress: str, a users BC address
     :param signedAddress: str, a digital signature
     :return:
     """
     try:
-        print('is register', newUserAddress, signedAddress)
+        log.info(f'is register {newUserAddress}, {signedAddress}')
         authStatus = False
         if checkAuth(claim=newUserAddress, signedClaim=signedAddress):
-            print('checkauth passed')
+            log.info('checkauth passed')
             user = User(address=newUserAddress)
             user.save()
             authStatus = True
         else:
-            print('newUserAddress != address')
+            log.info('newUserAddress != address')
         # SC callback to report status of the registration (successful/unsuccessful)
         reportRegistrationToSC(contract, newUserAddress, authStatus)
     except Exception as e:
-        print(e)
+        log.info(f'register error {e}')
         # SC callback called with success as False
         reportRegistrationToSC(contract, newUserAddress, False)
 
@@ -36,7 +39,7 @@ def unregister(userAddress):
     :return:
     """
     try:
-        print('unregister')
+        log.info(f'unregister {userAddress}')
         userToDelete = User.objects(address=userAddress)
         userLen = len(userToDelete)
         userToDelete.delete()
@@ -49,7 +52,7 @@ def unregister(userAddress):
         reportUnregistrationToSC(contract, userAddress, userLen > 0)
 
     except Exception as e:
-        print(e)
+        log.info(f'unregister error {e}')
         # SC callback called with success as False
         reportUnregistrationToSC(contract, userAddress, False)
 
