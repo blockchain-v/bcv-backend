@@ -1,5 +1,7 @@
 from openapi_server.contract.w3 import w3, contract
 from config import SC_BACKEND_CONFIG
+import logging
+log = logging.getLogger('smartContractService')
 
 
 def registerBackend(contract):
@@ -12,9 +14,9 @@ def registerBackend(contract):
         tx_hash = contract.functions.registerBackend(SC_BACKEND_CONFIG['SC_BACKEND_ADDRESS']).transact(
             {"from": SC_BACKEND_CONFIG['SC_BACKEND_ADDRESS_FROM']})
         tx_receipt = w3.eth.waitForTransactionReceipt(tx_hash)
-        print('registerBackend receipt', tx_receipt)
+        log.info(f'registerBackend receipt {tx_receipt}')
     except Exception as e:
-        print('registerBackend error', e)
+        log.info(f'registerBackend error {e}')
 
 
 def reportRegistrationToSC(contract, user, success):
@@ -27,13 +29,13 @@ def reportRegistrationToSC(contract, user, success):
     :return:
     """
     try:
-        print('user', user, 'success', success)
+        log.info(f'user {user}, success: {success}')
         tx_hash = contract.functions.reportRegistration(user, success).transact(
             {"from": SC_BACKEND_CONFIG['SC_BACKEND_ADDRESS']})
         tx_receipt = w3.eth.waitForTransactionReceipt(tx_hash)
-        print('t', tx_receipt)
+        log.info(f' transaction receipt: {tx_receipt}')
     except Exception as e:
-        print('e', e)
+        log.info(f'reportRegistrationToSC error {e}')
 
 
 def reportUnregistrationToSC(contract, user, success):
@@ -46,13 +48,13 @@ def reportUnregistrationToSC(contract, user, success):
     :return:
     """
     try:
-        print('user', user, 'success', success)
+        log.info(f'user {user}, success: {success}')
         tx_hash = contract.functions.reportUnregistration(user, success).transact(
             {"from": SC_BACKEND_CONFIG['SC_BACKEND_ADDRESS']})
         tx_receipt = w3.eth.waitForTransactionReceipt(tx_hash)
-        print('t', tx_receipt)
+        log.info(f' transaction receipt: {tx_receipt}')
     except Exception as e:
-        print('e', e)
+        log.info(f'reportUnregistrationToSC error {e}')
 
 
 def reportVNFDeployment(deploymentId, creatorAddress, success, tackerVNFId):
@@ -69,9 +71,9 @@ def reportVNFDeployment(deploymentId, creatorAddress, success, tackerVNFId):
         tx_hash = contract.functions.reportDeployment(deploymentId, creatorAddress, success, tackerVNFId).transact(
             {"from": SC_BACKEND_CONFIG['SC_BACKEND_ADDRESS']})
         tx_receipt = w3.eth.waitForTransactionReceipt(tx_hash)
-        print('t', tx_receipt)
+        log.info(f' transaction receipt: {tx_receipt}')
     except Exception as e:
-        print('e', e)
+        log.info(f'reportVNFDeployment error {e}')
 
 
 def reportVNFDeletion(deploymentId, creatorAddress, success):
@@ -87,9 +89,9 @@ def reportVNFDeletion(deploymentId, creatorAddress, success):
         tx_hash = contract.functions.reportDeletion(deploymentId, creatorAddress, success).transact(
             {"from": SC_BACKEND_CONFIG['SC_BACKEND_ADDRESS']})
         tx_receipt = w3.eth.waitForTransactionReceipt(tx_hash)
-        print('t', tx_receipt)
+        log.info(f' transaction receipt: {tx_receipt}')
     except Exception as e:
-        print('e', e)
+        log.info(f'reportVNFDeletion error {e}')
 
 
 def getVnfs(address):
@@ -101,5 +103,5 @@ def getVnfs(address):
     try:
         return contract.functions.getVnfs(address).call({"from": SC_BACKEND_CONFIG['SC_BACKEND_ADDRESS']})
     except Exception as e:
-        print('e', e)
+        log.info(f'getVnfs error {e}')
         return False

@@ -2,7 +2,8 @@ import json
 from config import TACKER_CONFIG
 import requests
 import logging
-log = logging.getLogger('werkzeug')
+
+log = logging.getLogger('tacker')
 
 
 class Tacker:
@@ -14,10 +15,10 @@ class Tacker:
         self.token, self.tenant_id = self._get_token_scoped()
         self.headers = {'X-Auth-Token': self.token, 'content-type': 'Application/JSON'}
         vimIds, _ = self.get_vims()
-        print('vims: ', vimIds)
+        log.info(f'vims: {vimIds}')
         # todo reinsert
         self.vimId = vimIds[0]['id']
-        print('vimId', self.vimId)
+        log.info(f'vimId: {self.vimId}')
 
     def _get_token_scoped(self) -> object:
         """
@@ -82,7 +83,7 @@ class Tacker:
         response = requests.get(f"{TACKER_CONFIG['BASEURL']}vnfds",
                                 headers=self.headers)
         vnfds = response.json().get('vnfds')
-        print('vnfds: ', vnfds)
+        log.info(f'vnfds: {vnfds}')
         return vnfds, response.status_code
 
     def get_vnfd(self, vnfdId):
@@ -121,7 +122,7 @@ class Tacker:
         """
         response = requests.delete(f"{TACKER_CONFIG['BASEURL']}vnfds/{vnfdId}",
                                    headers=self.headers)
-        print('res', response)
+        log.info(f'res {response}')
         return response.status_code
 
     """
@@ -138,7 +139,7 @@ class Tacker:
         response = requests.get(f"{TACKER_CONFIG['BASEURL']}vnfs",
                                 headers=self.headers)
         vnfs = response.json().get('vnfs')
-        print('vnfs: ', vnfs)
+        log.info(f'vnfs: {vnfs}')
         return vnfs, response.status_code
 
     def get_vnf(self, vnfId):
@@ -192,7 +193,7 @@ class Tacker:
 
         response = requests.post(f"{TACKER_CONFIG['BASEURL']}vnfs",
                                  headers=self.headers, json=data)
-        print(response)
+        log.info(f'{response}')
         return response.json().get('vnf'), response.status_code
 
     def delete_vnf(self, vnfId):
@@ -210,7 +211,7 @@ class Tacker:
         }
         response = requests.delete(f"{TACKER_CONFIG['BASEURL']}vnfs/{vnfId}",
                                    headers=self.headers)
-        print(response)
+        log.info(f'{response}')
         return response.status_code
 
 

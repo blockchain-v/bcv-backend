@@ -1,12 +1,12 @@
 import time
-from web3 import Web3
 from threading import Thread
 from .userService import register, unregister
 from .vnfService import VNFService
 from openapi_server.tacker import tacker
 from openapi_server.contract import contract, w3
 from enum import Enum, auto
-
+import logging
+log = logging.getLogger('smartContractEventListener')
 
 class EventTypes(Enum):
     """
@@ -53,9 +53,9 @@ class SmartContractEventListener:
         :param event: event
         :return: None
         """
-        print(w3.toJSON(event))
+        log.info(f'{w3.toJSON(event)}')
         evt = str(event.event).upper()
-        print('evt', evt)
+        log.info(f'evt {evt}')
         # dependencies require py=3.8.*, so no match/case possible
         if evt == EventTypes.REGISTER.name:
             register(event.args.user, event.args.signedAddress)
@@ -69,7 +69,7 @@ class SmartContractEventListener:
         elif evt == EventTypes.MODIFYVNF.name:
             self.vnfService.modifyVNF(event.args.creator, event.args.vnfId, event.args.parameters)
         else:
-            print('???')
+            log.info('???')
 
     def _event_loop(self, event_filter, poll_interval) -> None:
         """
