@@ -1,6 +1,7 @@
 from flask_mongoengine import MongoEngine
 from mongoengine.connection import get_db
 import logging
+
 log = logging.getLogger('db')
 db = MongoEngine()
 
