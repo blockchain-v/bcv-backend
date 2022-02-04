@@ -2,7 +2,6 @@ import logging
 
 import connexion
 from flask_testing import TestCase
-
 from openapi_server.utils.encoder import JSONEncoder
 
 

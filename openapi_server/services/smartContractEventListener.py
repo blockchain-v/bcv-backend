@@ -6,7 +6,9 @@ from openapi_server.tacker import tacker
 from openapi_server.contract import contract, w3
 from enum import Enum, auto
 import logging
+
 log = logging.getLogger('smartContractEventListener')
+
 
 class EventTypes(Enum):
     """

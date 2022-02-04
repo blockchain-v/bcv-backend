@@ -26,6 +26,15 @@ assumed folder structure:
 8. start the backend in parent directory: e.g. `python3 -m openapi_server`
 
 
+### Tests
+- `
+pip3 install -r test-requirements.txt
+`
+- run
+`
+pytest --cov=openapi_server
+`
+
 # OpenAPI generated server
 
 ## Overview
