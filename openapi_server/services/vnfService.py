@@ -45,14 +45,25 @@ class VNFService:
         try:
             log.info(f'address {address}')
             vnfIDs = getVnfs(address)
-            vnfDetails = [self.tackerClient.get_vnf(e[2])[0] for e in vnfIDs if e[2]]
+            vnfDetails = [self.getVNFDetails(e[2], e[0]) for e in vnfIDs if e[2]]
             if not vnfID:
                 return vnfDetails
-            return next(x for x in vnfDetails if x["id"] == vnfID)
+            return next(vnf for vnf in vnfDetails if vnf["id"] == vnfID)
 
         except Exception:
             status = 404 if (vnfID and len(vnfDetails) >= 0) else 400
             return Response(mimetype='application/json', status=status)
+
+    def getVNFDetails(self, vnfID, deploymentID):
+        """
+        Gets vnf details and adds the contract internal's deploymentID as an attribute
+        :param vnfID: string
+        :param deploymentID: string
+        """
+        res, status = self.tackerClient.get_vnf(vnfID)
+        if status == 200:
+            return {**res, 'deploymentID': deploymentID}
+        return {}
 
 
 service = VNFService(tackerClient=tacker)
