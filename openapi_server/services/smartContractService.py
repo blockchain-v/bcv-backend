@@ -94,7 +94,7 @@ def reportVNFDeletion(deploymentId, creatorAddress, success):
         log.info(f'reportVNFDeletion error {e}')
 
 
-def getVnfs(address):
+def get_vnf_details_from_contract(address):
     """
     Calls the SC function getVnfs to get all vnf details for a specific user.
     :param address:

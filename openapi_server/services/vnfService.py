@@ -1,6 +1,7 @@
 from flask import Response
-from .smartContractService import reportVNFDeployment, reportVNFDeletion, getVnfs
+from .smartContractService import reportVNFDeployment, reportVNFDeletion, get_vnf_details_from_contract
 from openapi_server.tacker import tacker
+from openapi_server.models import ContractVNF
 import logging
 
 log = logging.getLogger('vnfService')
@@ -32,26 +33,26 @@ class VNFService:
         except Exception:
             reportVNFDeletion(deploymentId, creatorAddress, False)
 
-    # def modifyVNF(self, creator, vnfId, parameters) -> None:
-    #     # TODO: contract function not implemented yet
-
     def getUsersVNF(self, address, vnfID=None):
         """
         Returns all vnf details for a specific user
-        :param token: string
+        :param address: string
         :param vnfID: string
         :return: array | object
         """
         try:
             log.info(f'address {address}')
-            vnfIDs = getVnfs(address)
-            vnfDetails = [self.getVNFDetails(e[2], e[0]) for e in vnfIDs if e[2]]
+            contract_vnf_ids = get_vnf_details_from_contract(address)
+            # map to ContractVNF model
+            contract_vnfs = [ContractVNF.from_dict(vnf) for vnf in contract_vnf_ids]
+            vnf_details = [self.getVNFDetails(vnf.vnfId, vnf.deploymentId) for vnf in contract_vnfs if vnf.vnfId]
             if not vnfID:
-                return vnfDetails
-            return next(vnf for vnf in vnfDetails if vnf["id"] == vnfID)
+                return vnf_details
+            return next(vnf for vnf in vnf_details if vnf.get("id") == vnfID)
 
-        except Exception:
-            status = 404 if (vnfID and len(vnfDetails) >= 0) else 400
+        except Exception as e:
+            status = 404 if (vnfID and len(vnf_details) >= 0) else 400
+            log.warning(e)
             return Response(mimetype='application/json', status=status)
 
     def getVNFDetails(self, vnfID, deploymentID):
