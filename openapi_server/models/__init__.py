@@ -10,3 +10,4 @@ from openapi_server.models.token_request import TokenRequest
 from openapi_server.models.token_response import TokenResponse
 from openapi_server.models.vnf import Vnf
 from openapi_server.models.vnfd import Vnfd
+from openapi_server.models.tacker_config import TackerConfig
