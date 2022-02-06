@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 from mongoengine import DoesNotExist
 
 import config
-from openapi_server.services import userRegistered, checkAuth
+from openapi_server.services import is_user_registered, check_auth
 from openapi_server.repositories import Nonce
 
 log = logging.getLogger('werkzeug')
@@ -33,7 +33,7 @@ class TokenService:
         :param token_request: TokenRequest
         :return: Response
         """
-        is_registered = userRegistered(token_request.address)
+        is_registered = is_user_registered(token_request.address)
         if not is_registered:
             return Response(json.dumps({"token": None, "isRegistered": is_registered}), mimetype='application/json',
                             status=204)
@@ -61,7 +61,7 @@ class TokenService:
         :return: token : string
         """
         try:
-            if checkAuth(claim=nonce, signedClaim=signedNonce, address=address):
+            if check_auth(claim=nonce, signedClaim=signedNonce, address=address):
                 token = jwt.encode({
                     'address': address,
                     'exp': datetime.utcnow() + timedelta(hours=24)
@@ -75,17 +75,17 @@ class TokenService:
     @staticmethod
     def createNonceHandler(address):
         """
-        Creates and returns new nonce for a user and deletes all previously issued nonces that belonged to that user
+        Creates and returns new nonce for a user and deletes the previously issued nonce that belonged to that user
         :param address: string
         :return: nonceVal : string : a new nonce
         """
         try:
             Nonce.objects(address=address).delete()
-            nonceVal = '0x' + uuid4().hex
-            newNonce = Nonce(address=address, value=nonceVal)
-            newNonce.save()
-            return nonceVal
-        except Exception as e:
+            nonce_val = '0x' + uuid4().hex
+            new_nonce = Nonce(address=address, value=nonce_val)
+            new_nonce.save()
+            return nonce_val
+        except Exception:
             return False
 
 

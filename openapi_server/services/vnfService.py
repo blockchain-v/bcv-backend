@@ -1,5 +1,5 @@
 from flask import Response
-from .smartContractService import reportVNFDeployment, reportVNFDeletion, get_vnf_details_from_contract
+from .smartContractService import report_vnf_deployment, report_vnf_deletion, get_vnf_details_from_contract
 from openapi_server.tacker import tacker
 from openapi_server.models import ContractVNF
 import logging
@@ -17,21 +17,21 @@ class VNFService:
             log.info(f'{creatorAddress}, {deploymentId}, {vnfdId}, {parameters}')
             vnf, status_code = self.tackerClient.create_vnf(vnfdId, parameters)
             success = status_code == 201
-            reportVNFDeployment(deploymentId, creatorAddress, success, vnf['id'])
+            report_vnf_deployment(deploymentId, creatorAddress, success, vnf['id'])
 
         except Exception as e:
             log.info(f' deployVNF error {e}')
-            reportVNFDeployment(deploymentId, creatorAddress, False, '')
+            report_vnf_deployment(deploymentId, creatorAddress, False, '')
 
     def deleteVNF(self, creatorAddress, deploymentId, vnfId) -> None:
         log.info(f'{creatorAddress}, {deploymentId}')
         try:
             status_code = self.tackerClient.delete_vnf(vnfId)
             success = status_code == 204
-            reportVNFDeletion(deploymentId, creatorAddress, success)
+            report_vnf_deletion(deploymentId, creatorAddress, success)
 
         except Exception:
-            reportVNFDeletion(deploymentId, creatorAddress, False)
+            report_vnf_deletion(deploymentId, creatorAddress, False)
 
     def getUsersVNF(self, address, vnfID=None):
         """
