@@ -12,15 +12,15 @@ class Tacker:
     Tacker's responsibility is to communicate with the Tacker instance running on the VM
     """
 
-    def __init__(self, tackerConfig):
-        self._tackerConfig = tackerConfig
-        self.token, self.tenant_id = self._get_token_scoped()
+    def __init__(self, tacker_config):
+        self._tacker_config = tacker_config
+        self._token, self._tenant_id = self._get_token_scoped()
         self._headers = None
-        self.vimId = self._get_vimId()
+        self._vim_id = self._get_vim_id()
 
     @property
     def headers(self):
-        return {'X-Auth-Token': self.token, 'content-type': 'Application/JSON'}
+        return {'X-Auth-Token': self._token, 'content-type': 'Application/JSON'}
 
     @headers.setter
     def headers(self, headers):
@@ -41,8 +41,8 @@ class Tacker:
                         ],
                         "password": {
                             "user": {
-                                "id": self._tackerConfig.user_id,
-                                "password": self._tackerConfig.pw
+                                "id": self._tacker_config.user_id,
+                                "password": self._tacker_config.pw
                             }
                         }
                     },
@@ -54,7 +54,7 @@ class Tacker:
                 }
             }
 
-            response = requests.post(f"{self._tackerConfig.auth_url}/tokens", json=data,
+            response = requests.post(f"{self._tacker_config.auth_url}/tokens", json=data,
                                      headers={'content-type': 'Application/JSON'})
             token = response.headers['X-Subject-Token']
             catalog = response.json().get('token').get('catalog')
@@ -63,21 +63,21 @@ class Tacker:
         except Exception as e:
             log.info(f'e: {e}')
 
-    def _get_vimId(self):
-        vimIds, _ = self.get_vims()
-        log.info(f'vims: {vimIds}')
-        return vimIds[0]['id']
+    def _get_vim_id(self):
+        vim_ids, _ = self.get_vims()
+        log.info(f'vims: {vim_ids}')
+        return vim_ids[0]['id']
 
-    def _tackerGET(self, resourceURL):
-        return requests.get(f"{self._tackerConfig.base_url}{resourceURL}",
+    def _tackerGET(self, resource_URL):
+        return requests.get(f"{self._tacker_config.base_url}{resource_URL}",
                             headers=self.headers)
 
-    def _tackerPOST(self, resourceURL, data):
-        return requests.post(f"{self._tackerConfig.base_url}{resourceURL}",
+    def _tackerPOST(self, resource_URL, data):
+        return requests.post(f"{self._tacker_config.base_url}{resource_URL}",
                              headers=self.headers, json=data)
 
-    def _tackerDELETE(self, resourceURL):
-        return requests.delete(f"{self._tackerConfig.base_url}{resourceURL}",
+    def _tackerDELETE(self, resource_URL):
+        return requests.delete(f"{self._tacker_config.base_url}{resource_URL}",
                                headers=self.headers)
 
     """
@@ -107,15 +107,15 @@ class Tacker:
         log.info(f'vnfds: {vnfds}')
         return vnfds, response.status_code
 
-    def get_vnfd(self, vnfdId):
-        response = self._tackerGET(f'vnfds/{vnfdId}')
+    def get_vnfd(self, vnfd_id):
+        response = self._tackerGET(f'vnfds/{vnfd_id}')
         vnfd = response.json().get('vnfd')
         return vnfd, response.status_code
 
     def create_vnfd(self, attributes, name, description):
         data = {
             "vnfd": {
-                "tenant_id": self.tenant_id,
+                "tenant_id": self._tenant_id,
                 # "name": "vnfd-sample test 3",
                 # "description": "Sample",
                 "service_types": [
@@ -133,13 +133,13 @@ class Tacker:
         response = self._tackerPOST('vnfds', data)
         return response.json().get('vnfd'), response.status_code
 
-    def delete_vnfd(self, vnfdId) -> int:
+    def delete_vnfd(self, vnfd_id) -> int:
         """
         Returns status code upon deletion of a vnfd
         :param vnfdId:
         :return:
         """
-        response = self._tackerDELETE(f'vnfds/{vnfdId}')
+        response = self._tackerDELETE(f'vnfds/{vnfd_id}')
         log.info(f'res {response}')
         return response.status_code
 
@@ -159,23 +159,23 @@ class Tacker:
         log.info(f'vnfs: {vnfs}')
         return vnfs, response.status_code
 
-    def get_vnf(self, vnfId):
+    def get_vnf(self, vnf_id):
         """
         Returns a VNF from tacker
         :return:
         """
-        response = self._tackerGET(f'vnfs/{vnfId}')
+        response = self._tackerGET(f'vnfs/{vnf_id}')
         vnf = response.json().get('vnf')
         return vnf, response.status_code
 
-    def create_vnf(self, vnfdId, parameters):
+    def create_vnf(self, vnfd_id, parameters):
         # TODO update properties
         parameters = json.loads(parameters)
         data = {
             "vnf": {
-                "tenant_id": self.tenant_id,
-                "vnfd_id": vnfdId,
-                "vim_id": self.vimId,
+                "tenant_id": self._tenant_id,
+                "vnfd_id": vnfd_id,
+                "vim_id": self._vim_id,
                 # "name": "Test VNF 2",
                 # "description": "Test VNF 2",
                 # "attributes": {
@@ -211,13 +211,13 @@ class Tacker:
         log.info(f'{response}')
         return response.json().get('vnf'), response.status_code
 
-    def delete_vnf(self, vnfId):
+    def delete_vnf(self, vnf_id):
         """
         Deleted a VNF with the given vnfId
-        :param vnfId: string
+        :param vnf_id: string
         :return:
         """
-        response = self._tackerDELETE(f'vnfs/{vnfId}')
+        response = self._tackerDELETE(f'vnfs/{vnf_id}')
         log.info(f'{response}')
         return response.status_code
 

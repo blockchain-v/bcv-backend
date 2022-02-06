@@ -62,10 +62,10 @@ class SmartContractEventListener:
         elif evt == EventTypes.UNREGISTER.name:
             unregister(event.args.user)
         elif evt == EventTypes.DEPLOYVNF.name:
-            self.vnfService.deployVNF(event.args.creator, event.args.deploymentId, event.args.vnfdId,
-                                      event.args.parameters)
+            self.vnfService.deploy_vnf(event.args.creator, event.args.deploymentId, event.args.vnfdId,
+                                       event.args.parameters)
         elif evt == EventTypes.DELETEVNF.name:
-            self.vnfService.deleteVNF(event.args.creator, event.args.deploymentId, event.args.vnfId)
+            self.vnfService.delete_vnf(event.args.creator, event.args.deploymentId, event.args.vnfId)
         elif evt == EventTypes.MODIFYVNF.name:
             self.vnfService.modifyVNF(event.args.creator, event.args.vnfId, event.args.parameters)
         else:

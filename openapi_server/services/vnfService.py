@@ -12,32 +12,32 @@ class VNFService:
     def __init__(self, tackerClient):
         self.tackerClient = tackerClient
 
-    def deployVNF(self, creatorAddress, deploymentId, vnfdId, parameters) -> None:
+    def deploy_vnf(self, creator_address, deployment_id, vnfdId, parameters) -> None:
         try:
-            log.info(f'{creatorAddress}, {deploymentId}, {vnfdId}, {parameters}')
+            log.info(f'{creator_address}, {deployment_id}, {vnfdId}, {parameters}')
             vnf, status_code = self.tackerClient.create_vnf(vnfdId, parameters)
             success = status_code == 201
-            report_vnf_deployment(deploymentId, creatorAddress, success, vnf['id'])
+            report_vnf_deployment(deployment_id, creator_address, success, vnf['id'])
 
         except Exception as e:
             log.info(f' deployVNF error {e}')
-            report_vnf_deployment(deploymentId, creatorAddress, False, '')
+            report_vnf_deployment(deployment_id, creator_address, False, '')
 
-    def deleteVNF(self, creatorAddress, deploymentId, vnfId) -> None:
-        log.info(f'{creatorAddress}, {deploymentId}')
+    def delete_vnf(self, creator_address, deployment_id, vnf_id) -> None:
+        log.info(f'{creator_address}, {deployment_id}')
         try:
-            status_code = self.tackerClient.delete_vnf(vnfId)
+            status_code = self.tackerClient.delete_vnf(vnf_id)
             success = status_code == 204
-            report_vnf_deletion(deploymentId, creatorAddress, success)
+            report_vnf_deletion(deployment_id, creator_address, success)
 
         except Exception:
-            report_vnf_deletion(deploymentId, creatorAddress, False)
+            report_vnf_deletion(deployment_id, creator_address, False)
 
-    def getUsersVNF(self, address, vnfID=None):
+    def get_users_vnf(self, address, vnf_id=None):
         """
         Returns all vnf details for a specific user
         :param address: string
-        :param vnfID: string
+        :param vnf_id: string
         :return: array | object
         """
         try:
@@ -45,25 +45,25 @@ class VNFService:
             contract_vnf_ids = get_vnf_details_from_contract(address)
             # map to ContractVNF model
             contract_vnfs = [ContractVNF.from_dict(vnf) for vnf in contract_vnf_ids]
-            vnf_details = [self.getVNFDetails(vnf.vnfId, vnf.deploymentId) for vnf in contract_vnfs if vnf.vnfId]
-            if not vnfID:
+            vnf_details = [self.get_vnf_details(vnf.vnfId, vnf.deploymentId) for vnf in contract_vnfs if vnf.vnfId]
+            if not vnf_id:
                 return vnf_details
-            return next(vnf for vnf in vnf_details if vnf.get("id") == vnfID)
+            return next(vnf for vnf in vnf_details if vnf.get("id") == vnf_id)
 
         except Exception as e:
-            status = 404 if (vnfID and len(vnf_details) >= 0) else 400
+            status = 404 if (vnf_id and len(vnf_details) >= 0) else 400
             log.warning(e)
             return Response(mimetype='application/json', status=status)
 
-    def getVNFDetails(self, vnfID, deploymentID):
+    def get_vnf_details(self, vnf_id, deployment_id):
         """
         Gets vnf details and adds the contract internal's deploymentID as an attribute
-        :param vnfID: string
-        :param deploymentID: string
+        :param vnf_id: string
+        :param deployment_id: string
         """
-        res, status = self.tackerClient.get_vnf(vnfID)
+        res, status = self.tackerClient.get_vnf(vnf_id)
         if status == 200:
-            return {**res, 'deploymentID': deploymentID}
+            return {**res, 'deploymentID': deployment_id}
         return
 
 
