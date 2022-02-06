@@ -1,9 +1,13 @@
+from jwt import InvalidTokenError, ExpiredSignatureError
+from mongoengine import DoesNotExist
+
+import config
 from openapi_server.contract import w3
-from uuid import uuid4
-from openapi_server.repositories import Token, Nonce, User
+from openapi_server.repositories import Nonce, User
 from datetime import datetime
 from flask import request, abort
 import logging
+import jwt
 
 log = logging.getLogger('authService')
 
@@ -92,39 +96,49 @@ def verifyNonce(nonce, userAddress) -> bool:
         return False
 
 
-def verifyToken(token) -> bool:
+def verifyToken(token_str) -> bool:
     """
     Verifies if a given token exists and is still valid
-    :param token: string
+    :param token_str: string
     :return: bool : is the token valid
     """
     try:
-        tokenMatch = Token.objects.get(value=token)
-        if tokenMatch is not None:
-            issueDate = tokenMatch.issueDate
-            now = datetime.now()
-            return abs((now - issueDate).days) <= 1
-        else:
-            return False
-    except Exception:
+        token_data = decode_token(token_str)
+        user = User.objects.get(address=token_data['address'])
+        return len(user) > 0
+    except InvalidTokenError or ExpiredSignatureError or DoesNotExist:
         return False
 
 
-def getAddressFromToken(token) -> str:
+def get_address_from_token(token):
     """
     Return address from a token
     :param token: string
-    :return: address : string
+    :return: address : string | bool
     """
     try:
-        tokenMatch = Token.objects.get(value=token)
-        return tokenMatch.userAddress
-    except Exception:
+        token_data = decode_token(token)
+        return token_data['address']
+    except InvalidTokenError:
         return False
 
 
 def authorize(token):
+    """
+    Authorizes a user and returns the user address
+    :param token: str
+    :return: dict
+    """
     if not verifyToken(token):
         return abort(401)
-    userAddress = getAddressFromToken(token)
-    return {'userAddress': userAddress}
+    user_address = get_address_from_token(token)
+    return {'userAddress': user_address}
+
+
+def decode_token(token_str):
+    """
+    Decodes JWT token
+    :param token_str: string
+    :return: token : dict
+    """
+    return jwt.decode(token_str, config.JWT_SECRET, algorithms=["HS256"])

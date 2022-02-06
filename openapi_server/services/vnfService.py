@@ -64,7 +64,7 @@ class VNFService:
         res, status = self.tackerClient.get_vnf(vnfID)
         if status == 200:
             return {**res, 'deploymentID': deploymentID}
-        return {}
+        return
 
 
 service = VNFService(tackerClient=tacker)
