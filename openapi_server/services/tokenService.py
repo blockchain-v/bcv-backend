@@ -2,8 +2,13 @@ import logging
 import json
 from flask import Response
 from uuid import uuid4
+import jwt
+from datetime import datetime, timedelta
+from mongoengine import DoesNotExist
+
+import config
 from openapi_server.services import userRegistered, checkAuth
-from openapi_server.repositories import Token, Nonce
+from openapi_server.repositories import Nonce
 
 log = logging.getLogger('werkzeug')
 
@@ -12,6 +17,10 @@ class TokenService:
 
     @staticmethod
     def create_nonce(address_request):
+        """
+        :param address_request: AddressRequest
+        :return: Response
+        """
         nonce = TokenService.createNonceHandler(address_request.address)
         if nonce:
             return Response(json.dumps({"nonce": nonce}), mimetype='application/json', status=200)
@@ -20,16 +29,24 @@ class TokenService:
 
     @staticmethod
     def create_token(token_request):
-        signedNonce = token_request.signed_nonce
-        nonce = token_request.nonce
-        address = token_request.address
-        isRegistered = userRegistered(address)
-        if not isRegistered:
-            return Response(json.dumps({"token": None, "isRegistered": isRegistered}), mimetype='application/json',
+        """
+        :param token_request: TokenRequest
+        :return: Response
+        """
+        is_registered = userRegistered(token_request.address)
+        if not is_registered:
+            return Response(json.dumps({"token": None, "isRegistered": is_registered}), mimetype='application/json',
                             status=204)
-        token = TokenService.createTokenHandler(nonce, signedNonce, address)
+        token = TokenService.createTokenHandler(token_request.nonce, token_request.signed_nonce, token_request.address)
         if token:
-            return Response(json.dumps({"token": token, "isRegistered": isRegistered}), mimetype='application/json',
+            # nonce has been consumed
+            try:
+                nonce_to_delete = Nonce.objects(address=token_request.address)
+                nonce_to_delete.delete()
+            except DoesNotExist:
+                pass
+
+            return Response(json.dumps({"token": token, "isRegistered": is_registered}), mimetype='application/json',
                             status=200)
         else:
             return Response(mimetype='application/json', status=403)
@@ -37,7 +54,7 @@ class TokenService:
     @staticmethod
     def createTokenHandler(nonce, signedNonce, address):
         """
-        Creates and returns new token for a user if the passed nonce is valid
+        Creates and returns new jwt token for a user if the passed nonce is valid
         :param nonce: string
         :param signedNonce: string
         :param address: string
@@ -45,16 +62,14 @@ class TokenService:
         """
         try:
             if checkAuth(claim=nonce, signedClaim=signedNonce, address=address):
-                # delete previous tokens from this user
-                Token.objects(userAddress=address).delete()
-                # create new token
-                tokenValue = uuid4().hex
-                newToken = Token(value=tokenValue, userAddress=address)
-                newToken.save()
-                return tokenValue
+                token = jwt.encode({
+                    'address': address,
+                    'exp': datetime.utcnow() + timedelta(hours=24)
+                }, config.JWT_SECRET)
+                return token
             else:
                 return False
-        except Exception as e:
+        except Exception:
             return False
 
     @staticmethod

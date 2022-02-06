@@ -1,8 +1,9 @@
 from openapi_server.contract import contract
-from openapi_server.repositories import User, Nonce, Token
+from openapi_server.repositories import User, Nonce
 from .authService import checkAuth
 from .smartContractService import reportRegistrationToSC, reportUnregistrationToSC
 import logging
+from mongoengine import DoesNotExist
 
 log = logging.getLogger('userService')
 
@@ -45,8 +46,6 @@ def unregister(userAddress):
         userToDelete.delete()
         nonceToDelete = Nonce.objects(address=userAddress)
         nonceToDelete.delete()
-        tokenToDelete = Token.objects(userAddress=userAddress)
-        tokenToDelete.delete()
         # SC callback to report status of the registration (successful/unsuccessful)
         # success is false if no users were found to be deleted (i.e. not yet registered)
         reportUnregistrationToSC(contract, userAddress, userLen > 0)
@@ -63,10 +62,10 @@ def userRegistered(address) -> bool:
     :param address:
     :return:  boolean
     """
-    isRegistered = False
+    is_registered = False
     try:
         User.objects.get(address=address)
-        isRegistered = True
-    except:
+        is_registered = True
+    except DoesNotExist:
         pass
-    return isRegistered
+    return is_registered
