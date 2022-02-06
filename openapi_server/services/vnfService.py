@@ -9,13 +9,13 @@ log = logging.getLogger('vnfService')
 
 class VNFService:
 
-    def __init__(self, tackerClient):
-        self.tackerClient = tackerClient
+    def __init__(self, tacker_client):
+        self.tackerClient = tacker_client
 
-    def deploy_vnf(self, creator_address, deployment_id, vnfdId, parameters) -> None:
+    def deploy_vnf(self, creator_address, deployment_id, vnfd_id, parameters) -> None:
         try:
-            log.info(f'{creator_address}, {deployment_id}, {vnfdId}, {parameters}')
-            vnf, status_code = self.tackerClient.create_vnf(vnfdId, parameters)
+            log.info(f'{creator_address}, {deployment_id}, {vnfd_id}, {parameters}')
+            vnf, status_code = self.tackerClient.create_vnf(vnfd_id, parameters)
             success = status_code == 201
             report_vnf_deployment(deployment_id, creator_address, success, vnf['id'])
 
@@ -67,4 +67,4 @@ class VNFService:
         return
 
 
-service = VNFService(tackerClient=tacker)
+service = VNFService(tacker_client=tacker)

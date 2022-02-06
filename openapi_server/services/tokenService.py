@@ -52,7 +52,7 @@ class TokenService:
             return Response(mimetype='application/json', status=403)
 
     @staticmethod
-    def createTokenHandler(nonce, signedNonce, address):
+    def createTokenHandler(nonce, signed_nonce, address):
         """
         Creates and returns new jwt token for a user if the passed nonce is valid
         :param nonce: string
@@ -61,7 +61,7 @@ class TokenService:
         :return: token : string
         """
         try:
-            if check_auth(claim=nonce, signedClaim=signedNonce, address=address):
+            if check_auth(claim=nonce, signed_claim=signed_nonce, address=address):
                 token = jwt.encode({
                     'address': address,
                     'exp': datetime.utcnow() + timedelta(hours=24)

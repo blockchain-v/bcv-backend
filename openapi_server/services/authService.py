@@ -19,12 +19,12 @@ def check_auth(*args, **kwargs) -> bool:
     try:
         address = kwargs.get('address')
         claim = kwargs.get('claim')
-        signed_claim = kwargs.get('signedClaim')
+        signed_claim = kwargs.get('signed_claim')
         return _check_auth_for_address(claim, signed_claim) if address is None else _check_auth_for_nonce(claim,
-                                                                                                        signed_claim,
-                                                                                                        address)
-    except Exception as e:
-        log.info("failed to verify authentication signature\n")
+                                                                                                          signed_claim,
+                                                                                                          address)
+    except:
+        log.info("failed to verify authentication signature")
         return False
 
 
@@ -40,7 +40,7 @@ def _check_auth_for_address(claimed_address, signed_string) -> bool:
         hashed_claim = w3.solidityKeccak(['address'], [claimed_address])
         address = _recover_address(hashed_claim, signed_string)
         return claimed_address == address
-    except Exception as e:
+    except:
         return False
 
 
@@ -60,7 +60,7 @@ def _check_auth_for_nonce(nonce, signed_nonce, user_address) -> bool:
         hashed_claim = w3.solidityKeccak(['bytes32'], [nonce])
         address = _recover_address(hashed_claim, signed_nonce)
         return address == user_address
-    except Exception as e:
+    except:
         return False
 
 
@@ -85,9 +85,9 @@ def verify_nonce(nonce, user_address) -> bool:
     try:
         nonce_from_db = Nonce.objects.get(value=nonce, address=user_address)
         if nonce_from_db is not None:
-            issueDate = nonce_from_db.issueDate
-            return abs((datetime.now() - issueDate).days) <= 1
-    except Exception as e:
+            issue_date = nonce_from_db.issueDate
+            return abs((datetime.now() - issue_date).days) <= 1
+    except DoesNotExist:
         return False
 
 

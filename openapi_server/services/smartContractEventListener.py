@@ -6,7 +6,9 @@ from openapi_server.tacker import tacker
 from openapi_server.contract import contract, w3
 from enum import Enum, auto
 import logging
+
 log = logging.getLogger('smartContractEventListener')
+
 
 class EventTypes(Enum):
     """
@@ -25,9 +27,9 @@ class SmartContractEventListener:
     it calls the appropriate functions depending on the event
     """
 
-    def __init__(self, contract, tackerClient):
+    def __init__(self, contract, tacker_client):
         self.contract = contract
-        self.vnfService = VNFService(tackerClient)
+        self.vnfService = VNFService(tacker_client)
         self._start_event_listen(self.contract)
 
     def _start_event_listen(self, contract):
@@ -38,14 +40,15 @@ class SmartContractEventListener:
         """
         register_filter = contract.events.Register.createFilter(fromBlock='latest')
         unregister_filter = contract.events.Unregister.createFilter(fromBlock='latest')
-        deployVNF = contract.events.DeployVNF.createFilter(fromBlock='latest')
-        deleteVNF = contract.events.DeleteVNF.createFilter(fromBlock='latest')
-        modifyVNF = contract.events.ModifyVNF.createFilter(fromBlock='latest')
-        # TODO remove reg / unreg. Just for testing purposes right now.
-        reg = contract.events.RegistrationStatus.createFilter(fromBlock='latest')
-        unreg = contract.events.UnregistrationStatus.createFilter(fromBlock='latest')
+        deploy_vnf_filter = contract.events.DeployVNF.createFilter(fromBlock='latest')
+        delete_vnf_filter = contract.events.DeleteVNF.createFilter(fromBlock='latest')
+        # TODO remove registration / unregistering status. Just for testing purposes right now.
+        registration_status_filter = contract.events.RegistrationStatus.createFilter(fromBlock='latest')
+        unregistering__status_filter = contract.events.UnregistrationStatus.createFilter(fromBlock='latest')
 
-        self._event_listen([register_filter, unregister_filter, deployVNF, deleteVNF, modifyVNF, reg, unreg])
+        self._event_listen(
+            [register_filter, unregister_filter, deploy_vnf_filter, delete_vnf_filter, registration_status_filter,
+             unregistering__status_filter])
 
     def _handle_event(self, event) -> None:
         """
@@ -66,8 +69,6 @@ class SmartContractEventListener:
                                        event.args.parameters)
         elif evt == EventTypes.DELETEVNF.name:
             self.vnfService.delete_vnf(event.args.creator, event.args.deploymentId, event.args.vnfId)
-        elif evt == EventTypes.MODIFYVNF.name:
-            self.vnfService.modifyVNF(event.args.creator, event.args.vnfId, event.args.parameters)
         else:
             log.info('???')
 

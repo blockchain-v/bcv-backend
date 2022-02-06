@@ -76,17 +76,17 @@ def report_vnf_deployment(deployment_id, creator_address, success, tacker_vnf_id
         log.info(f'report_vnf_deployment error {e}')
 
 
-def report_vnf_deletion(deploymentId, creatorAddress, success):
+def report_vnf_deletion(deployment_id, creator_address, success):
     """
     Reports whether an attempt to delete a VNF has been successful.
     Calls the SC function reportDeletion.
-    :param deploymentId: int : SC internal identifier for the VNF
-    :param creatorAddress: string: address of the user whom the VNF belonged to
+    :param deployment_id: int : SC internal identifier for the VNF
+    :param creator_address: string: address of the user whom the VNF belonged to
     :param success: bool: signs whether the VNF has been successfully deleted
     :return:
     """
     try:
-        tx_hash = contract.functions.reportDeletion(deploymentId, creatorAddress, success).transact(
+        tx_hash = contract.functions.reportDeletion(deployment_id, creator_address, success).transact(
             {"from": SC_BACKEND_CONFIG['SC_BACKEND_ADDRESS']})
         tx_receipt = w3.eth.waitForTransactionReceipt(tx_hash)
         log.info(f' transaction receipt: {tx_receipt}')
