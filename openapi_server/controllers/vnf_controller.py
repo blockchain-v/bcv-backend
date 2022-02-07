@@ -11,7 +11,7 @@ def get_vnf(vnf_id, token_info):  # noqa: E501
     :param token_info: dict
     :rtype: Vnf
     """
-    return vnfService.service.get_users_vnf(address=token_info.get('userAddress'), vnfID=vnf_id)
+    return vnfService.service.get_users_vnf(address=token_info.get('userAddress'), vnf_id=vnf_id)
 
 
 def get_vnfs(token_info):  # noqa: E501
