@@ -4,18 +4,19 @@ from .authService import check_auth
 from .smartContractService import report_registration_to_sc, report_unregistration_to_sc
 import logging
 from mongoengine import DoesNotExist
+from operator import itemgetter
 
 log = logging.getLogger('userService')
 
 
-def register(new_user_address, signed_address):
+def register(event_args_dict):
     """
     Registers a user in the db collection 'user'
-    :param new_user_address: str, a users BC address
-    :param signed_address: str, a digital signature
+    :param event_args_dict:
     :return:
     """
     try:
+        new_user_address, signed_address = itemgetter('user', 'signedAddress')(event_args_dict)
         log.info(f'is register {new_user_address}, {signed_address}')
         auth_status = False
         if check_auth(claim=new_user_address, signed_claim=signed_address):
@@ -33,13 +34,14 @@ def register(new_user_address, signed_address):
         report_registration_to_sc(contract, new_user_address, False)
 
 
-def unregister(user_address):
+def unregister(event_args_dict):
     """
-    Deletes a user from the db collection 'user'
-    :param user_address: str, a users BC address
+    Deletes a user from the db collection 'user' and the associated nonce, if exists
+    :param event_args_dict:
     :return:
     """
     try:
+        user_address = itemgetter('user')(event_args_dict)
         log.info(f'unregister {user_address}')
         user_to_delete = User.objects(address=user_address)
         user_len = len(user_to_delete)

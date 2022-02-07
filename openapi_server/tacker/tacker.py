@@ -169,35 +169,12 @@ class Tacker:
         return vnf, response.status_code
 
     def create_vnf(self, vnfd_id, parameters):
-        # TODO update properties
         parameters = json.loads(parameters)
         data = {
             "vnf": {
                 "tenant_id": self._tenant_id,
                 "vnfd_id": vnfd_id,
                 "vim_id": self._vim_id,
-                # "name": "Test VNF 2",
-                # "description": "Test VNF 2",
-                # "attributes": {
-                #     "config": {
-                #         "vdus": {
-                #             "vdu1": {
-                #                 "config": {
-                #                     "firewall": "package firewall\n"
-                #                 }
-                #             }
-                #         }
-                #     },
-                #     "param_values": {
-                #         "vdus": {
-                #             "vdu1": {
-                #                 "param": {
-                #                     "vdu-name": "openwrt_vdu1"
-                #                 }
-                #             }
-                #         }
-                #     }
-                # },
                 "placement_attr": {
                     "region_name": "RegionOne"
                 }

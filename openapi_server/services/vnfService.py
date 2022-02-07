@@ -2,6 +2,7 @@ from .smartContractService import report_vnf_deployment, report_vnf_deletion, ge
 from openapi_server.tacker import tacker
 from openapi_server.models import ContractVNF
 import logging
+from operator import itemgetter
 
 from ..utils.util import remove_none_entries_from_list
 
@@ -13,8 +14,11 @@ class VNFService:
     def __init__(self, tacker_client):
         self.tackerClient = tacker_client
 
-    def deploy_vnf(self, creator_address, deployment_id, vnfd_id, parameters) -> None:
+    def deploy_vnf(self, event_args_dict) -> None:
         try:
+            creator_address, deployment_id, vnfd_id, parameters = \
+                itemgetter('creator', 'deploymentId', 'vnfdId', 'parameters') \
+                    (event_args_dict)
             log.info(f'{creator_address}, {deployment_id}, {vnfd_id}, {parameters}')
             vnf, status_code = self.tackerClient.create_vnf(vnfd_id, parameters)
             success = status_code == 201
@@ -24,7 +28,8 @@ class VNFService:
             log.info(f' deployVNF error {e}')
             report_vnf_deployment(deployment_id, creator_address, False, '')
 
-    def delete_vnf(self, creator_address, deployment_id, vnf_id) -> None:
+    def delete_vnf(self, event_args_dict) -> None:
+        creator_address, deployment_id, vnf_id = itemgetter('creator', 'deploymentId', 'vnfId')(event_args_dict)
         log.info(f'{creator_address}, {deployment_id}')
         try:
             status_code = self.tackerClient.delete_vnf(vnf_id)
