@@ -16,3 +16,4 @@ six~=1.16.0
 requests~=2.26.0
 web3~=5.24.0
 mongoengine~=0.22.1
+pyjwt~=2.3.0

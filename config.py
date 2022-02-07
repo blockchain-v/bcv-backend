@@ -8,6 +8,8 @@ SC_ABI_PATH = os.environ.get('SC_ABI_PATH')
 
 PORT = os.environ.get('PORT')
 
+JWT_SECRET = os.environ.get('JWT_SECRET')
+
 MONGODB_SETTINGS = {
     "db": DB_ALIAS,
     'host': 'localhost:27017',
