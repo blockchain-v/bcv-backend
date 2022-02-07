@@ -2,7 +2,7 @@ import time
 from threading import Thread
 from openapi_server.services.userService import register, unregister
 from openapi_server.services.vnfService import VNFService
-from openapi_server.tacker import tacker
+from openapi_server.nvf_framework import tacker
 from openapi_server.contract import contract, w3
 from enum import Enum, auto
 import logging

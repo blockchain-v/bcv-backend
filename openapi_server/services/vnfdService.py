@@ -1,4 +1,4 @@
-from openapi_server.tacker import tacker
+from openapi_server.nvf_framework import tacker
 
 
 class VNFDService:

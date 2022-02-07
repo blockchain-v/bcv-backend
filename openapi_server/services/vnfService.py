@@ -1,5 +1,5 @@
 from .smartContractService import report_vnf_deployment, report_vnf_deletion, get_vnf_details_from_contract
-from openapi_server.tacker import tacker
+from openapi_server.nvf_framework import tacker
 from openapi_server.models import ContractVNF
 import logging
 from operator import itemgetter
