@@ -21,7 +21,7 @@ def create_vnfd(new_vnfd=None):  # noqa: E501
 
 
 def delete_vnfd(vnfd_id):  # noqa: E501
-    """Deletes a vnf descriptor with vnfdID
+    """Deletes a vnf descriptor with vnfd_id
 
     Deletes a VNFD (vnf descriptor) from the tacker instance, if auth was successful # noqa: E501
 
@@ -32,7 +32,7 @@ def delete_vnfd(vnfd_id):  # noqa: E501
 
 
 def get_vnfd(vnfd_id):  # noqa: E501
-    """Returns a vnf descriptor with vnfdID
+    """Returns a vnf descriptor with vnfd_id
 
     Returns a VNFD (vnf descriptor) from the tacker instance, if auth was successful # noqa: E501
 

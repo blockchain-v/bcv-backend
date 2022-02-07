@@ -11,40 +11,40 @@ from openapi_server.utils import util
 
 class ContractVNF(Model):
 
-    def __init__(self, deploymentId=None, vnfdId=None, vnfId=None, owner=None, parameters=None, isDeployed=None,
-                 isDeleted=None):  # noqa: E501
+    def __init__(self, deployment_id=None, vnfd_id=None, vnf_id=None, owner=None, parameters=None, is_deployed=None,
+                 is_deleted=None):  # noqa: E501
         """Vnf - a model defined in OpenAPI
 
         :param id: The id of this Vnf.  # noqa: E501
         :type id: str
         """
         self.openapi_types = {
-            'deploymentId': int,
-            'vnfdId': str,
-            'vnfId': str,
+            'deployment_id': int,
+            'vnfd_id': str,
+            'vnf_id': str,
             'owner': str,
             'parameters': str,
-            'isDeployed': bool,
-            'isDeleted': bool
+            'is_deployed': bool,
+            'is_deleted': bool
         }
 
         self.attribute_map = {
-            'deploymentId': 0,
-            'vnfdId': 1,
-            'vnfId': 2,
+            'deployment_id': 0,
+            'vnfd_id': 1,
+            'vnf_id': 2,
             'owner': 3,
             'parameters': 4,
-            'isDeployed': 5,
-            'isDeleted': 6
+            'is_deployed': 5,
+            'is_deleted': 6
         }
 
-        self._deploymentId = deploymentId
-        self._vnfdId = vnfdId
-        self._vnfId = vnfId
+        self._deployment_id = deployment_id
+        self._vnfd_id = vnfd_id
+        self._vnf_id = vnf_id
         self._owner = owner
         self._parameters = parameters
-        self._isDeployed = isDeployed
-        self._isDeleted = isDeleted
+        self._is_deployed = is_deployed
+        self._is_deleted = is_deleted
 
     @classmethod
     def from_dict(cls, dikt) -> 'Vnf':
@@ -55,70 +55,70 @@ class ContractVNF(Model):
         :return: The vnf of this Vnf.  # noqa: E501
         :rtype: Vnf
         """
-        return util.deserialize_model({i:e for i,e in enumerate(dikt)}, cls)
+        return util.deserialize_model({i: e for i, e in enumerate(dikt)}, cls)
 
     @property
-    def deploymentId(self):
-        """Gets the deploymentId of this Vnf.
+    def deployment_id(self):
+        """Gets the deployment_id of this Vnf.
 
 
-        :return: The deploymentId of this Vnf.
+        :return: The deployment_id of this Vnf.
         :rtype: int
         """
-        return self._deploymentId
+        return self._deployment_id
 
-    @deploymentId.setter
-    def deploymentId(self, deploymentId):
-        """Sets the deploymentId of this Vnf.
+    @deployment_id.setter
+    def deployment_id(self, deployment_id):
+        """Sets the deployment_id of this Vnf.
 
 
-        :param deploymentId: The deploymentId of this Vnf.
-        :type deploymentId: int
+        :param deployment_id: The deployment_id of this Vnf.
+        :type deployment_id: int
         """
 
-        self._deploymentId = deploymentId
+        self._deployment_id = deployment_id
 
     @property
-    def vnfdId(self):
-        """Gets the vnfdId of this Vnf.
+    def vnfd_id(self):
+        """Gets the vnfd_id of this Vnf.
 
 
-        :return: The vnfdId of this Vnf.
+        :return: The vnfd_id of this Vnf.
         :rtype: str
         """
-        return self._vnfdId
+        return self._vnfd_id
 
-    @vnfdId.setter
-    def vnfdId(self, vnfdId):
-        """Sets the vnfdId of this Vnf.
+    @vnfd_id.setter
+    def vnfd_id(self, vnfd_id):
+        """Sets the vnfd_id of this Vnf.
 
 
-        :param vnfdId: The vnfdId of this Vnf.
-        :type vnfdId: str
+        :param vnfd_id: The vnfd_id of this Vnf.
+        :type vnfd_id: str
         """
 
-        self._vnfdId = vnfdId
+        self._vnfd_id = vnfd_id
 
     @property
-    def vnfId(self):
-        """Gets the vnfId of this Vnf.
+    def vnf_id(self):
+        """Gets the vnf_id of this Vnf.
 
 
-        :return: The vnfId of this Vnf.
+        :return: The vnf_id of this Vnf.
         :rtype: str
         """
-        return self._vnfId
+        return self._vnf_id
 
-    @vnfId.setter
-    def vnfId(self, vnfId):
-        """Sets the vnfId of this Vnf.
+    @vnf_id.setter
+    def vnf_id(self, vnf_id):
+        """Sets the vnf_id of this Vnf.
 
 
-        :param vnfId: The vnfId of this Vnf.
-        :type vnfId: str
+        :param vnf_id: The vnf_id of this Vnf.
+        :type vnf_id: str
         """
 
-        self._vnfId = vnfId
+        self._vnf_id = vnf_id
 
     @property
     def owner(self):
@@ -163,44 +163,43 @@ class ContractVNF(Model):
         self._parameters = parameters
 
     @property
-    def isDeployed(self):
-        """Gets the isDeployed of this Vnf.
+    def is_deployed(self):
+        """Gets the is_deployed of this Vnf.
 
 
-        :return: The isDeployed of this Vnf.
+        :return: The is_deployed of this Vnf.
         :rtype: str
         """
-        return self._isDeployed
+        return self._is_deployed
 
-    @isDeployed.setter
-    def isDeployed(self, isDeployed):
-        """Sets the isDeployed of this Vnf.
+    @is_deployed.setter
+    def is_deployed(self, is_deployed):
+        """Sets the is_deployed of this Vnf.
 
 
-        :param isDeployed: The isDeployed of this Vnf.
-        :type isDeployed: str
+        :param is_deployed: The is_deployed of this Vnf.
+        :type is_deployed: str
         """
 
-        self._isDeployed = isDeployed
-
+        self._is_deployed = is_deployed
 
     @property
-    def isDeleted(self):
-        """Gets the isDeleted of this Vnf.
+    def is_deleted(self):
+        """Gets the is_deleted of this Vnf.
 
 
-        :return: The isDeleted of this Vnf.
+        :return: The is_deleted of this Vnf.
         :rtype: bool
         """
-        return self._isDeleted
+        return self._is_deleted
 
-    @isDeleted.setter
-    def isDeleted(self, isDeleted):
-        """Sets the isDeleted of this Vnf.
+    @is_deleted.setter
+    def is_deleted(self, is_deleted):
+        """Sets the is_deleted of this Vnf.
 
 
-        :param isDeleted: The isDeleted of this Vnf.
-        :type isDeleted: bool
+        :param is_deleted: The is_deleted of this Vnf.
+        :type is_deleted: bool
         """
 
-        self._isDeleted = isDeleted
+        self._is_deleted = is_deleted

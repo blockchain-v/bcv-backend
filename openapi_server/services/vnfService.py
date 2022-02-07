@@ -1,5 +1,5 @@
 from flask import Response
-from .smartContractService import reportVNFDeployment, reportVNFDeletion, get_vnf_details_from_contract
+from .smartContractService import report_vnf_deployment, report_vnf_deletion, get_vnf_details_from_contract
 from openapi_server.tacker import tacker
 from openapi_server.models import ContractVNF
 import logging
@@ -9,62 +9,62 @@ log = logging.getLogger('vnfService')
 
 class VNFService:
 
-    def __init__(self, tackerClient):
-        self.tackerClient = tackerClient
+    def __init__(self, tacker_client):
+        self.tackerClient = tacker_client
 
-    def deployVNF(self, creatorAddress, deploymentId, vnfdId, parameters) -> None:
+    def deploy_vnf(self, creator_address, deployment_id, vnfd_id, parameters) -> None:
         try:
-            log.info(f'{creatorAddress}, {deploymentId}, {vnfdId}, {parameters}')
-            vnf, status_code = self.tackerClient.create_vnf(vnfdId, parameters)
+            log.info(f'{creator_address}, {deployment_id}, {vnfd_id}, {parameters}')
+            vnf, status_code = self.tackerClient.create_vnf(vnfd_id, parameters)
             success = status_code == 201
-            reportVNFDeployment(deploymentId, creatorAddress, success, vnf['id'])
+            report_vnf_deployment(deployment_id, creator_address, success, vnf['id'])
 
         except Exception as e:
             log.info(f' deployVNF error {e}')
-            reportVNFDeployment(deploymentId, creatorAddress, False, '')
+            report_vnf_deployment(deployment_id, creator_address, False, '')
 
-    def deleteVNF(self, creatorAddress, deploymentId, vnfId) -> None:
-        log.info(f'{creatorAddress}, {deploymentId}')
+    def delete_vnf(self, creator_address, deployment_id, vnf_id) -> None:
+        log.info(f'{creator_address}, {deployment_id}')
         try:
-            status_code = self.tackerClient.delete_vnf(vnfId)
+            status_code = self.tackerClient.delete_vnf(vnf_id)
             success = status_code == 204
-            reportVNFDeletion(deploymentId, creatorAddress, success)
+            report_vnf_deletion(deployment_id, creator_address, success)
 
         except Exception:
-            reportVNFDeletion(deploymentId, creatorAddress, False)
+            report_vnf_deletion(deployment_id, creator_address, False)
 
-    def getUsersVNF(self, address, vnfID=None):
+    def get_users_vnf(self, address, vnf_id=None):
         """
         Returns all vnf details for a specific user
         :param address: string
-        :param vnfID: string
+        :param vnf_id: string
         :return: array | object
         """
         try:
             log.info(f'address {address}')
-            contract_vnf_ids = get_vnf_details_from_contract(address)
+            # contract_vnf_details = get_vnf_details_from_contract(address)
             # map to ContractVNF model
-            contract_vnfs = [ContractVNF.from_dict(vnf) for vnf in contract_vnf_ids]
-            vnf_details = [self.getVNFDetails(vnf.vnfId, vnf.deploymentId) for vnf in contract_vnfs if vnf.vnfId]
-            if not vnfID:
+            contract_vnfs = [ContractVNF.from_dict(vnf) for vnf in get_vnf_details_from_contract(address)]
+            vnf_details = [self.get_vnf_details(vnf) for vnf in contract_vnfs if
+                           vnf.vnf_id and not vnf.is_deleted]
+            if not vnf_id:
                 return vnf_details
-            return next(vnf for vnf in vnf_details if vnf.get("id") == vnfID)
+            return next(vnf for vnf in vnf_details if vnf.get("id") == vnf_id)
 
         except Exception as e:
-            status = 404 if (vnfID and len(vnf_details) >= 0) else 400
+            status = 404 if (vnf_id and len(vnf_details) >= 0) else 400
             log.warning(e)
             return Response(mimetype='application/json', status=status)
 
-    def getVNFDetails(self, vnfID, deploymentID):
+    def get_vnf_details(self, contract_vnf):
         """
         Gets vnf details and adds the contract internal's deploymentID as an attribute
-        :param vnfID: string
-        :param deploymentID: string
+        :param contract_vnf: ContractVNF
         """
-        res, status = self.tackerClient.get_vnf(vnfID)
+        res, status = self.tackerClient.get_vnf(contract_vnf.vnf_id)
         if status == 200:
-            return {**res, 'deploymentID': deploymentID}
+            return {**res, 'deploymentID': contract_vnf.deployment_id}
         return
 
 
-service = VNFService(tackerClient=tacker)
+service = VNFService(tacker_client=tacker)
