@@ -136,7 +136,7 @@ class Tacker:
     def delete_vnfd(self, vnfd_id) -> int:
         """
         Returns status code upon deletion of a vnfd
-        :param vnfdId:
+        :param vnfd_id: str
         :return:
         """
         response = self._tackerDELETE(f'vnfds/{vnfd_id}')
@@ -213,7 +213,7 @@ class Tacker:
 
     def delete_vnf(self, vnf_id):
         """
-        Deleted a VNF with the given vnfId
+        Deleted a VNF with the given vnf_id
         :param vnf_id: string
         :return:
         """

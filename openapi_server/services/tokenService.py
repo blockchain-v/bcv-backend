@@ -21,7 +21,7 @@ class TokenService:
         :param address_request: AddressRequest
         :return: Response
         """
-        nonce = TokenService.createNonceHandler(address_request.address)
+        nonce = TokenService.create_nonce_handler(address_request.address)
         if nonce:
             return Response(json.dumps({"nonce": nonce}), mimetype='application/json', status=200)
         else:
@@ -37,7 +37,7 @@ class TokenService:
         if not is_registered:
             return Response(json.dumps({"token": None, "isRegistered": is_registered}), mimetype='application/json',
                             status=204)
-        token = TokenService.createTokenHandler(token_request.nonce, token_request.signed_nonce, token_request.address)
+        token = TokenService.create_token_handler(token_request.nonce, token_request.signed_nonce, token_request.address)
         if token:
             # nonce has been consumed
             try:
@@ -52,7 +52,7 @@ class TokenService:
             return Response(mimetype='application/json', status=403)
 
     @staticmethod
-    def createTokenHandler(nonce, signed_nonce, address):
+    def create_token_handler(nonce, signed_nonce, address):
         """
         Creates and returns new jwt token for a user if the passed nonce is valid
         :param nonce: string
@@ -73,7 +73,7 @@ class TokenService:
             return False
 
     @staticmethod
-    def createNonceHandler(address):
+    def create_nonce_handler(address):
         """
         Creates and returns new nonce for a user and deletes the previously issued nonce that belonged to that user
         :param address: string

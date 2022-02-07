@@ -3,7 +3,7 @@ from openapi_server.services import vnfService
 
 
 def get_vnf(vnf_id, token_info):  # noqa: E501
-    """Returns vnf details for a specific vnfID
+    """Returns vnf details for a specific vnf_id
 
     Returns a VNF from the tacker instance, if auth was successful # noqa: E501
 

@@ -103,7 +103,7 @@ paths:
       - vnf
       x-swagger-router-controller: server.controller
       x-openapi-router-controller: openapi_server.controllers.vnf_controller
-  /vnf/<vnfID>:
+  /vnf/<vnf_id>:
     get:
       description: Returns a VNF from the tacker instance, if auth was successful
       operationId: get_vnf
@@ -122,7 +122,7 @@ paths:
           description: Successfully returned vnfd
       security:
       - ApiKeyAuth: []
-      summary: Returns vnf details for a specific vnfID
+      summary: Returns vnf details for a specific vnf_id
       tags:
       - vnf
       x-swagger-router-controller: server.controller
@@ -178,7 +178,7 @@ paths:
       - vnfd
       x-swagger-router-controller: server.controller
       x-openapi-router-controller: openapi_server.controllers.vnfd_controller
-  /vnfd/<vnfdID>:
+  /vnfd/<vnfd_id>:
     delete:
       description: Deletes a VNFD (vnf descriptor) from the tacker instance, if auth
         was successful
@@ -194,7 +194,7 @@ paths:
           description: Successfully deleted
       security:
       - ApiKeyAuth: []
-      summary: Deletes a vnf descriptor with vnfdID
+      summary: Deletes a vnf descriptor with vnfd_id
       tags:
       - vnfd
       x-swagger-router-controller: server.controller
@@ -218,7 +218,7 @@ paths:
           description: Successfully returned vnfds
       security:
       - ApiKeyAuth: []
-      summary: Returns a vnf descriptor with vnfdID
+      summary: Returns a vnf descriptor with vnfd_id
       tags:
       - vnfd
       x-swagger-router-controller: server.controller

@@ -42,10 +42,11 @@ class VNFService:
         """
         try:
             log.info(f'address {address}')
-            contract_vnf_ids = get_vnf_details_from_contract(address)
+            # contract_vnf_details = get_vnf_details_from_contract(address)
             # map to ContractVNF model
-            contract_vnfs = [ContractVNF.from_dict(vnf) for vnf in contract_vnf_ids]
-            vnf_details = [self.get_vnf_details(vnf.vnfId, vnf.deploymentId) for vnf in contract_vnfs if vnf.vnfId]
+            contract_vnfs = [ContractVNF.from_dict(vnf) for vnf in get_vnf_details_from_contract(address)]
+            vnf_details = [self.get_vnf_details(vnf) for vnf in contract_vnfs if
+                           vnf.vnf_id and not vnf.is_deleted]
             if not vnf_id:
                 return vnf_details
             return next(vnf for vnf in vnf_details if vnf.get("id") == vnf_id)
@@ -55,15 +56,14 @@ class VNFService:
             log.warning(e)
             return Response(mimetype='application/json', status=status)
 
-    def get_vnf_details(self, vnf_id, deployment_id):
+    def get_vnf_details(self, contract_vnf):
         """
         Gets vnf details and adds the contract internal's deploymentID as an attribute
-        :param vnf_id: string
-        :param deployment_id: string
+        :param contract_vnf: ContractVNF
         """
-        res, status = self.tackerClient.get_vnf(vnf_id)
+        res, status = self.tackerClient.get_vnf(contract_vnf.vnf_id)
         if status == 200:
-            return {**res, 'deploymentID': deployment_id}
+            return {**res, 'deploymentID': contract_vnf.deployment_id}
         return
 
 

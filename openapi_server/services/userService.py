@@ -18,7 +18,7 @@ def register(new_user_address, signed_address):
     try:
         log.info(f'is register {new_user_address}, {signed_address}')
         auth_status = False
-        if check_auth(claim=new_user_address, signedClaim=signed_address):
+        if check_auth(claim=new_user_address, signed_claim=signed_address):
             log.info('checkauth passed')
             user = User(address=new_user_address)
             user.save()
