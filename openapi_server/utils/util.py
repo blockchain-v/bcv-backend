@@ -67,8 +67,8 @@ def deserialize_date(string):
     :rtype: date
     """
     if string is None:
-      return None
-    
+        return None
+
     try:
         from dateutil.parser import parse
         return parse(string).date()
@@ -87,8 +87,8 @@ def deserialize_datetime(string):
     :rtype: datetime
     """
     if string is None:
-      return None
-    
+        return None
+
     try:
         from dateutil.parser import parse
         return parse(string)
@@ -145,3 +145,13 @@ def _deserialize_dict(data, boxed_type):
     """
     return {k: _deserialize(v, boxed_type)
             for k, v in six.iteritems(data)}
+
+
+def remove_none_entries_from_list(my_list):
+    """Removes none values from a given list
+
+    :param my_list: list to remove None from
+    :return: list without None entries
+    :rtype: list
+    """
+    return list(filter(None, my_list))

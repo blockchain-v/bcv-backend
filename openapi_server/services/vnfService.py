@@ -3,6 +3,8 @@ from openapi_server.tacker import tacker
 from openapi_server.models import ContractVNF
 import logging
 
+from ..utils.util import remove_none_entries_from_list
+
 log = logging.getLogger('vnfService')
 
 
@@ -29,7 +31,8 @@ class VNFService:
             success = status_code == 204
             report_vnf_deletion(deployment_id, creator_address, success)
 
-        except Exception:
+        except Exception as e:
+            log.info(f' deleteVNF error {e}')
             report_vnf_deletion(deployment_id, creator_address, False)
 
     def get_users_vnf(self, address, vnf_id=None):
@@ -47,8 +50,8 @@ class VNFService:
             vnf_details = [self.get_vnf_details(vnf) for vnf in contract_vnfs if
                            vnf.vnf_id and not vnf.is_deleted]
             if not vnf_id:
-                return vnf_details
-            return next(vnf for vnf in vnf_details if vnf.get("id") == vnf_id)
+                return remove_none_entries_from_list(vnf_details)
+            return next(vnf for vnf in remove_none_entries_from_list(vnf_details) if vnf.get("id") == vnf_id)
 
         except Exception as e:
             status = 404 if (vnf_id and len(vnf_details) >= 0) else 400
