@@ -24,13 +24,13 @@ paths:
               $ref: '#/components/schemas/tokenRequest'
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/tokenResponse'
           description: Created a token
-        "204":
+        "200":
           content:
             application/json:
               schema:
@@ -63,7 +63,7 @@ paths:
               type: object
         required: true
       responses:
-        "200":
+        "201":
           content:
             application/json:
               schema:
