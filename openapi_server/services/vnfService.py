@@ -1,4 +1,3 @@
-from flask import Response
 from .smartContractService import report_vnf_deployment, report_vnf_deletion, get_vnf_details_from_contract
 from openapi_server.tacker import tacker
 from openapi_server.models import ContractVNF
@@ -54,7 +53,7 @@ class VNFService:
         except Exception as e:
             status = 404 if (vnf_id and len(vnf_details) >= 0) else 400
             log.warning(e)
-            return Response(mimetype='application/json', status=status)
+            return "Error", status
 
     def get_vnf_details(self, contract_vnf):
         """

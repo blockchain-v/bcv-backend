@@ -1,6 +1,4 @@
 import logging
-import json
-from flask import Response
 from uuid import uuid4
 import jwt
 from datetime import datetime, timedelta
@@ -23,9 +21,9 @@ class TokenService:
         """
         nonce = TokenService.create_nonce_handler(address_request.address)
         if nonce:
-            return Response(json.dumps({"nonce": nonce}), mimetype='application/json', status=200)
+            return {"nonce": nonce}, 201
         else:
-            return Response(mimetype='application/json', status=403)
+            return "Error", 403
 
     @staticmethod
     def create_token(token_request):
@@ -35,9 +33,9 @@ class TokenService:
         """
         is_registered = is_user_registered(token_request.address)
         if not is_registered:
-            return Response(json.dumps({"token": None, "isRegistered": is_registered}), mimetype='application/json',
-                            status=204)
-        token = TokenService.create_token_handler(token_request.nonce, token_request.signed_nonce, token_request.address)
+            return {"isRegistered": False}, 200
+        token = TokenService.create_token_handler(token_request.nonce, token_request.signed_nonce,
+                                                  token_request.address)
         if token:
             # nonce has been consumed
             try:
@@ -45,11 +43,9 @@ class TokenService:
                 nonce_to_delete.delete()
             except DoesNotExist:
                 pass
-
-            return Response(json.dumps({"token": token, "isRegistered": is_registered}), mimetype='application/json',
-                            status=200)
+            return {"token": token, "isRegistered": is_registered}, 201
         else:
-            return Response(mimetype='application/json', status=403)
+            return "Error", 403
 
     @staticmethod
     def create_token_handler(nonce, signed_nonce, address):
@@ -69,7 +65,7 @@ class TokenService:
                 return token
             else:
                 return False
-        except Exception:
+        except:
             return False
 
     @staticmethod
@@ -85,7 +81,7 @@ class TokenService:
             new_nonce = Nonce(address=address, value=nonce_val)
             new_nonce.save()
             return nonce_val
-        except Exception:
+        except:
             return False
 
 
