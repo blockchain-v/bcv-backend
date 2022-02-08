@@ -3,10 +3,10 @@
 import connexion
 from flask_cors import CORS
 from openapi_server.utils import encoder
-import config
+from openapi_server import config
 import logging
 
-from openapi_server.services import register_backend_in_sc
+from openapi_server.services import smartContractService
 from openapi_server.contract import contract
 from openapi_server.database import init_db
 
@@ -23,7 +23,7 @@ def main():
 
     CORS(app.app)
     init_db(app.app)
-    register_backend_in_sc(contract)
+    smartContractService.service.register_backend_in_sc()
     app.run(port=8080, debug=True, use_reloader=False)
 
 

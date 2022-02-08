@@ -105,7 +105,7 @@ paths:
       x-openapi-router-controller: openapi_server.controllers.vnf_controller
   /vnf/<vnf_id>:
     get:
-      description: Returns a VNF from the tacker instance, if auth was successful
+      description: Returns a VNF from the nvf_framework instance, if auth was successful
       operationId: get_vnf
       responses:
         "400":
@@ -129,7 +129,7 @@ paths:
       x-openapi-router-controller: openapi_server.controllers.vnf_controller
   /vnfd:
     get:
-      description: Returns all VNFD (vnf descriptors) from the tacker instance, if
+      description: Returns all VNFD (vnf descriptors) from the nvf_framework instance, if
         auth was successful
       operationId: get_vnfds
       responses:
@@ -180,7 +180,7 @@ paths:
       x-openapi-router-controller: openapi_server.controllers.vnfd_controller
   /vnfd/<vnfd_id>:
     delete:
-      description: Deletes a VNFD (vnf descriptor) from the tacker instance, if auth
+      description: Deletes a VNFD (vnf descriptor) from the nvf_framework instance, if auth
         was successful
       operationId: delete_vnfd
       responses:
@@ -200,7 +200,7 @@ paths:
       x-swagger-router-controller: server.controller
       x-openapi-router-controller: openapi_server.controllers.vnfd_controller
     get:
-      description: Returns a VNFD (vnf descriptor) from the tacker instance, if auth
+      description: Returns a VNFD (vnf descriptor) from the nvf_framework instance, if auth
         was successful
       operationId: get_vnfd
       responses:

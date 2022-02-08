@@ -1,30 +1,27 @@
 import json
-from config import TACKER_CONFIG
+from openapi_server.config import TACKER_CONFIG
 import requests
 import logging
 from openapi_server.models import TackerConfig
+from openapi_server.nvf_framework.nfv_framework import AbstractNFVFramework
 
 log = logging.getLogger('tacker')
 
 
-class Tacker:
+class Tacker(AbstractNFVFramework):
     """
     Tacker's responsibility is to communicate with the Tacker instance running on the VM
     """
 
     def __init__(self, tacker_config):
         self._tacker_config = tacker_config
-        self._token, self._tenant_id = self._get_token_scoped()
-        self._headers = None
+        token, self._tenant_id = self._get_token()
+        super().__init__(token=token, base_url=tacker_config.base_url)
+
         self._vim_id = self._get_vim_id()
 
-    @property
-    def headers(self):
-        return {'X-Auth-Token': self._token, 'content-type': 'Application/JSON'}
-
-    @headers.setter
-    def headers(self, headers):
-        self._headers = headers
+    def _get_token(self):
+        return self._get_token_scoped()
 
     def _get_token_scoped(self):
         """
@@ -68,18 +65,6 @@ class Tacker:
         log.info(f'vims: {vim_ids}')
         return vim_ids[0]['id']
 
-    def _tackerGET(self, resource_URL):
-        return requests.get(f"{self._tacker_config.base_url}{resource_URL}",
-                            headers=self.headers)
-
-    def _tackerPOST(self, resource_URL, data):
-        return requests.post(f"{self._tacker_config.base_url}{resource_URL}",
-                             headers=self.headers, json=data)
-
-    def _tackerDELETE(self, resource_URL):
-        return requests.delete(f"{self._tacker_config.base_url}{resource_URL}",
-                               headers=self.headers)
-
     """
     ------------------------
     VIMS
@@ -91,7 +76,7 @@ class Tacker:
         Returns VIMS from tacker
         :return:
         """
-        response = self._tackerGET('vims')
+        response = self._reqGET('vims')
         vims = response.json().get('vims')
         return vims, response.status_code
 
@@ -102,13 +87,13 @@ class Tacker:
     """
 
     def get_vnfds(self):
-        response = self._tackerGET('vnfds')
+        response = self._reqGET('vnfds')
         vnfds = response.json().get('vnfds')
         log.info(f'vnfds: {vnfds}')
         return vnfds, response.status_code
 
     def get_vnfd(self, vnfd_id):
-        response = self._tackerGET(f'vnfds/{vnfd_id}')
+        response = self._reqGET(f'vnfds/{vnfd_id}')
         vnfd = response.json().get('vnfd')
         return vnfd, response.status_code
 
@@ -116,8 +101,6 @@ class Tacker:
         data = {
             "vnfd": {
                 "tenant_id": self._tenant_id,
-                # "name": "vnfd-sample test 3",
-                # "description": "Sample",
                 "service_types": [
                     {
                         "service_type": "vnfd"
@@ -130,7 +113,7 @@ class Tacker:
         data['vnfd']['name'] = name
         data['vnfd']['description'] = description
 
-        response = self._tackerPOST('vnfds', data)
+        response = self._reqPOST('vnfds', data)
         return response.json().get('vnfd'), response.status_code
 
     def delete_vnfd(self, vnfd_id) -> int:
@@ -139,7 +122,7 @@ class Tacker:
         :param vnfd_id: str
         :return:
         """
-        response = self._tackerDELETE(f'vnfds/{vnfd_id}')
+        response = self._reqDELETE(f'vnfds/{vnfd_id}')
         log.info(f'res {response}')
         return response.status_code
 
@@ -154,7 +137,7 @@ class Tacker:
         Returns VNFS from tacker
         :return:
         """
-        response = self._tackerGET('vnfs')
+        response = self._reqGET('vnfs')
         vnfs = response.json().get('vnfs')
         log.info(f'vnfs: {vnfs}')
         return vnfs, response.status_code
@@ -164,40 +147,17 @@ class Tacker:
         Returns a VNF from tacker
         :return:
         """
-        response = self._tackerGET(f'vnfs/{vnf_id}')
+        response = self._reqGET(f'vnfs/{vnf_id}')
         vnf = response.json().get('vnf')
         return vnf, response.status_code
 
-    def create_vnf(self, vnfd_id, parameters):
-        # TODO update properties
+    def create_vnf(self, parameters, vnfd_id, *args, **kwargs):
         parameters = json.loads(parameters)
         data = {
             "vnf": {
                 "tenant_id": self._tenant_id,
                 "vnfd_id": vnfd_id,
                 "vim_id": self._vim_id,
-                # "name": "Test VNF 2",
-                # "description": "Test VNF 2",
-                # "attributes": {
-                #     "config": {
-                #         "vdus": {
-                #             "vdu1": {
-                #                 "config": {
-                #                     "firewall": "package firewall\n"
-                #                 }
-                #             }
-                #         }
-                #     },
-                #     "param_values": {
-                #         "vdus": {
-                #             "vdu1": {
-                #                 "param": {
-                #                     "vdu-name": "openwrt_vdu1"
-                #                 }
-                #             }
-                #         }
-                #     }
-                # },
                 "placement_attr": {
                     "region_name": "RegionOne"
                 }
@@ -207,7 +167,7 @@ class Tacker:
         data['vnf']['name'] = parameters.get('name')
         data['vnf']['description'] = parameters.get('description')
 
-        response = self._tackerPOST('vnfs', data)
+        response = self._reqPOST('vnfs', data)
         log.info(f'{response}')
         return response.json().get('vnf'), response.status_code
 
@@ -217,7 +177,7 @@ class Tacker:
         :param vnf_id: string
         :return:
         """
-        response = self._tackerDELETE(f'vnfs/{vnf_id}')
+        response = self._reqDELETE(f'vnfs/{vnf_id}')
         log.info(f'{response}')
         return response.status_code
 

@@ -23,7 +23,7 @@ def create_vnfd(new_vnfd=None):  # noqa: E501
 def delete_vnfd(vnfd_id):  # noqa: E501
     """Deletes a vnf descriptor with vnfd_id
 
-    Deletes a VNFD (vnf descriptor) from the tacker instance, if auth was successful # noqa: E501
+    Deletes a VNFD (vnf descriptor) from the nvf_framework instance, if auth was successful # noqa: E501
 
     :param vnfd_id: string
     :rtype: None
@@ -34,7 +34,7 @@ def delete_vnfd(vnfd_id):  # noqa: E501
 def get_vnfd(vnfd_id):  # noqa: E501
     """Returns a vnf descriptor with vnfd_id
 
-    Returns a VNFD (vnf descriptor) from the tacker instance, if auth was successful # noqa: E501
+    Returns a VNFD (vnf descriptor) from the nvf_framework instance, if auth was successful # noqa: E501
 
     :param vnfd_id: string
     :rtype: Vnfd
@@ -45,7 +45,7 @@ def get_vnfd(vnfd_id):  # noqa: E501
 def get_vnfds():  # noqa: E501
     """Returns all vnf descriptors
 
-    Returns all VNFD (vnf descriptors) from the tacker instance, if auth was successful # noqa: E501
+    Returns all VNFD (vnf descriptors) from the nvf_framework instance, if auth was successful # noqa: E501
 
 
     :rtype: List[Vnfd]
