@@ -4,11 +4,11 @@ import jwt
 from datetime import datetime, timedelta
 from mongoengine import DoesNotExist
 
-import config
+from openapi_server import config
 from openapi_server.services import is_user_registered, check_auth
 from openapi_server.repositories import Nonce
 
-log = logging.getLogger('werkzeug')
+log = logging.getLogger('TokenService')
 
 
 class TokenService:

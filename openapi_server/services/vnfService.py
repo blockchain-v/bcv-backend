@@ -20,7 +20,7 @@ class VNFService:
                 itemgetter('creator', 'deploymentId', 'vnfdId', 'parameters') \
                     (event_args_dict)
             log.info(f'{creator_address}, {deployment_id}, {vnfd_id}, {parameters}')
-            vnf, status_code = self.tackerClient.create_vnf(vnfd_id, parameters)
+            vnf, status_code = self.tackerClient.create_vnf(parameters=parameters, vnfd_id=vnfd_id)
             success = status_code == 201
             report_vnf_deployment(deployment_id, creator_address, success, vnf['id'])
 

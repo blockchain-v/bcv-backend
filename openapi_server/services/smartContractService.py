@@ -1,5 +1,5 @@
 from openapi_server.contract.w3 import w3, contract
-from config import SC_BACKEND_CONFIG
+from openapi_server.config import SC_BACKEND_CONFIG
 import logging
 log = logging.getLogger('smartContractService')
 

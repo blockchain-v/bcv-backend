@@ -3,7 +3,7 @@
 import connexion
 from flask_cors import CORS
 from openapi_server.utils import encoder
-import config
+from openapi_server import config
 import logging
 
 from openapi_server.services import register_backend_in_sc

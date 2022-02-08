@@ -1,5 +1,5 @@
 import json
-from config import TACKER_CONFIG
+from openapi_server.config import TACKER_CONFIG
 import requests
 import logging
 from openapi_server.models import TackerConfig
