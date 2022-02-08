@@ -1,8 +1,6 @@
 import time
 from threading import Thread
-from openapi_server.services.userService import register, unregister
-from openapi_server.services.vnfService import VNFService
-from openapi_server.nvf_framework import tacker
+from openapi_server.services import userService, vnfService
 from openapi_server.contract import contract, w3
 from enum import Enum, auto
 import logging
@@ -27,30 +25,29 @@ class SmartContractEventListener:
     it calls the appropriate functions depending on the event
     """
 
-    def __init__(self, contract, tacker_client, filters):
-        self.contract = contract
-        self.vnfService = VNFService(tacker_client)
-        self.filters = filters
-        self._start_event_listen()
+    def __init__(self, sc_contract, filters, vnf_service, user_service):
+        self.contract = sc_contract
+        self.vnfService = vnf_service
+        self.userService = user_service
+        self._start_event_listen(filters)
 
-    def _start_event_listen(self):
+    def _start_event_listen(self, filters):
         """
         Starts smart contract event listening service
-        :param contract: object
         :return:
         """
 
-        cfilters = [self.contract.events[event].createFilter(fromBlock='latest') for event in self.filters]
-        self._event_listen(cfilters)
+        sc_filters = [self.contract.events[event].createFilter(fromBlock='latest') for event in filters]
+        self._event_listen(sc_filters)
 
-    def _event_listen(self, event_filters) -> None:
+    def _event_listen(self, event_filters_list) -> None:
         """
         Starts a thread for each of the event filters to listen
-        :param event_filters: list
+        :param event_filters_list: list
         :return: None
         """
         poll_interval = 5
-        for event in event_filters:
+        for event in event_filters_list:
             worker = Thread(target=self._event_loop, args=(event, poll_interval), daemon=True)
             worker.start()
 
@@ -77,9 +74,9 @@ class SmartContractEventListener:
         log.info(f'evt {evt}')
         # dependencies require py=3.8.*, so no match/case possible
         if evt == EventTypes.REGISTER.name:
-            register(event.args)
+            self.userService.register(event.args)
         elif evt == EventTypes.UNREGISTER.name:
-            unregister(event.args)
+            self.userService.unregister(event.args)
         elif evt == EventTypes.DEPLOYVNF.name:
             self.vnfService.deploy_vnf(event.args)
         elif evt == EventTypes.DELETEVNF.name:
@@ -90,4 +87,5 @@ class SmartContractEventListener:
 
 # TODO remove registration / unregistering status. Just for testing purposes right now.
 event_filters = ['Register', 'Unregister', 'DeployVNF', 'DeleteVNF', 'RegistrationStatus', 'UnregistrationStatus']
-eventListener = SmartContractEventListener(contract, tacker, event_filters)
+eventListener = SmartContractEventListener(sc_contract=contract, filters=event_filters, vnf_service=vnfService.service,
+                                           user_service=userService.service)

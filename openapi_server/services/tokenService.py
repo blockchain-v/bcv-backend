@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 from mongoengine import DoesNotExist
 
 from openapi_server import config
-from openapi_server.services import is_user_registered, check_auth
+from openapi_server.services import userService, check_auth
 from openapi_server.repositories import Nonce
 
 log = logging.getLogger('TokenService')
@@ -31,7 +31,7 @@ class TokenService:
         :param token_request: TokenRequest
         :return: Response
         """
-        is_registered = is_user_registered(token_request.address)
+        is_registered = userService.service.is_user_registered(token_request.address)
         if not is_registered:
             return {"isRegistered": False}, 200
         token = TokenService.create_token_handler(token_request.nonce, token_request.signed_nonce,
