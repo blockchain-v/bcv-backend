@@ -1,6 +1,6 @@
 from jwt import InvalidTokenError, ExpiredSignatureError
 from mongoengine import DoesNotExist
-import config
+from openapi_server import config
 from openapi_server.contract import w3
 from openapi_server.repositories import Nonce, User
 from datetime import datetime
