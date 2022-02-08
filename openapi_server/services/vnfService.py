@@ -1,9 +1,9 @@
-from .smartContractService import report_vnf_deployment, report_vnf_deletion, get_vnf_details_from_contract
+from openapi_server.services import smartContractService
+
 from openapi_server.nvf_framework import tacker
 from openapi_server.models import ContractVNF
 import logging
 from operator import itemgetter
-
 from ..utils.util import remove_none_entries_from_list
 
 log = logging.getLogger('vnfService')
@@ -22,11 +22,11 @@ class VNFService:
             log.info(f'{creator_address}, {deployment_id}, {vnfd_id}, {parameters}')
             vnf, status_code = self.tackerClient.create_vnf(parameters=parameters, vnfd_id=vnfd_id)
             success = status_code == 201
-            report_vnf_deployment(deployment_id, creator_address, success, vnf['id'])
+            smartContractService.service.report_vnf_deployment(deployment_id, creator_address, success, vnf['id'])
 
         except Exception as e:
             log.info(f' deployVNF error {e}')
-            report_vnf_deployment(deployment_id, creator_address, False, '')
+            smartContractService.service.report_vnf_deployment(deployment_id, creator_address, False, '')
 
     def delete_vnf(self, event_args_dict) -> None:
         creator_address, deployment_id, vnf_id = itemgetter('creator', 'deploymentId', 'vnfId')(event_args_dict)
@@ -34,11 +34,11 @@ class VNFService:
         try:
             status_code = self.tackerClient.delete_vnf(vnf_id)
             success = status_code == 204
-            report_vnf_deletion(deployment_id, creator_address, success)
+            smartContractService.service.report_vnf_deletion(deployment_id, creator_address, success)
 
         except Exception as e:
             log.info(f' deleteVNF error {e}')
-            report_vnf_deletion(deployment_id, creator_address, False)
+            smartContractService.service.report_vnf_deletion(deployment_id, creator_address, False)
 
     def get_users_vnf(self, address, vnf_id=None):
         """
@@ -51,7 +51,8 @@ class VNFService:
             log.info(f'address {address}')
             # contract_vnf_details = get_vnf_details_from_contract(address)
             # map to ContractVNF model
-            contract_vnfs = [ContractVNF.from_dict(vnf) for vnf in get_vnf_details_from_contract(address)]
+            contract_vnfs = [ContractVNF.from_dict(vnf) for vnf in
+                             smartContractService.service.get_vnf_details_from_contract(address)]
             vnf_details = [self.get_vnf_details(vnf) for vnf in contract_vnfs if
                            vnf.vnf_id and not vnf.is_deleted]
             if not vnf_id:

@@ -1,7 +1,8 @@
 from openapi_server.contract import contract
 from openapi_server.repositories import User, Nonce
 from .authService import check_auth
-from .smartContractService import report_registration_to_sc, report_unregistration_to_sc
+from openapi_server.services import smartContractService
+
 import logging
 from mongoengine import DoesNotExist
 from operator import itemgetter
@@ -27,11 +28,11 @@ def register(event_args_dict):
         else:
             log.info('newUserAddress != address')
         # SC callback to report status of the registration (successful/unsuccessful)
-        report_registration_to_sc(contract, new_user_address, auth_status)
+        smartContractService.service.report_registration_to_sc(new_user_address, auth_status)
     except Exception as e:
         log.info(f'register error {e}')
         # SC callback called with success as False
-        report_registration_to_sc(contract, new_user_address, False)
+        smartContractService.service.report_registration_to_sc(new_user_address, False)
 
 
 def unregister(event_args_dict):
@@ -50,12 +51,12 @@ def unregister(event_args_dict):
         nonce_to_delete.delete()
         # SC callback to report status of the registration (successful/unsuccessful)
         # success is false if no users were found to be deleted (i.e. not yet registered)
-        report_unregistration_to_sc(contract, user_address, user_len > 0)
+        smartContractService.service.report_unregistration_to_sc(user_address, user_len > 0)
 
     except Exception as e:
         log.info(f'unregister error {e}')
         # SC callback called with success as False
-        report_unregistration_to_sc(contract, user_address, False)
+        smartContractService.service.report_unregistration_to_sc(contract, user_address, False)
 
 
 def is_user_registered(address) -> bool:
