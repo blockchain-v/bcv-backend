@@ -1,7 +1,6 @@
 from openapi_server.models.vnf import Vnf  # noqa: E501
 from openapi_server.services import vnfService
 
-
 def get_vnf(vnf_id, token_info):  # noqa: E501
     """Returns vnf details for a specific vnf_id
 
