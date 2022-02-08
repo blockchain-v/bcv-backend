@@ -2,6 +2,7 @@
 
 # flake8: noqa
 from __future__ import absolute_import
+
 # import models into model package
 from openapi_server.models.address_request import AddressRequest
 from openapi_server.models.new_vnfd import NewVnfd

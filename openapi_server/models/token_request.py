@@ -25,16 +25,12 @@ class TokenRequest(Model):
         :param address: The address of this TokenRequest.  # noqa: E501
         :type address: str
         """
-        self.openapi_types = {
-            'signed_nonce': str,
-            'nonce': str,
-            'address': str
-        }
+        self.openapi_types = {"signed_nonce": str, "nonce": str, "address": str}
 
         self.attribute_map = {
-            'signed_nonce': 'signedNonce',
-            'nonce': 'nonce',
-            'address': 'address'
+            "signed_nonce": "signedNonce",
+            "nonce": "nonce",
+            "address": "address",
         }
 
         self._signed_nonce = signed_nonce
@@ -42,7 +38,7 @@ class TokenRequest(Model):
         self._address = address
 
     @classmethod
-    def from_dict(cls, dikt) -> 'TokenRequest':
+    def from_dict(cls, dikt) -> "TokenRequest":
         """Returns the dict as a model
 
         :param dikt: A dict.

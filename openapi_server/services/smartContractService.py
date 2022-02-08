@@ -2,7 +2,7 @@ from openapi_server.contract.w3 import w3, contract
 from openapi_server.config import SC_BACKEND_CONFIG
 import logging
 
-log = logging.getLogger('smartContractService')
+log = logging.getLogger("smartContractService")
 
 
 class SmartContractService:
@@ -23,12 +23,13 @@ class SmartContractService:
         :return:
         """
         try:
-            tx_hash = self.contract.functions.registerBackend(SC_BACKEND_CONFIG['SC_BACKEND_ADDRESS']).transact(
-                {"from": SC_BACKEND_CONFIG['SC_BACKEND_ADDRESS_FROM']})
+            tx_hash = self.contract.functions.registerBackend(
+                SC_BACKEND_CONFIG["SC_BACKEND_ADDRESS"]
+            ).transact({"from": SC_BACKEND_CONFIG["SC_BACKEND_ADDRESS_FROM"]})
             tx_receipt = w3.eth.waitForTransactionReceipt(tx_hash)
-            log.info(f'registerBackend receipt {tx_receipt}')
+            log.info(f"registerBackend receipt {tx_receipt}")
         except Exception as e:
-            log.info(f'register_backend error {e}')
+            log.info(f"register_backend error {e}")
 
     def report_registration_to_sc(self, user, success):
         """
@@ -39,13 +40,14 @@ class SmartContractService:
         :return:
         """
         try:
-            log.info(f'user {user}, success: {success}')
-            tx_hash = self.contract.functions.reportRegistration(user, success).transact(
-                {"from": SC_BACKEND_CONFIG['SC_BACKEND_ADDRESS']})
+            log.info(f"user {user}, success: {success}")
+            tx_hash = self.contract.functions.reportRegistration(
+                user, success
+            ).transact({"from": SC_BACKEND_CONFIG["SC_BACKEND_ADDRESS"]})
             tx_receipt = w3.eth.waitForTransactionReceipt(tx_hash)
-            log.info(f' transaction receipt: {tx_receipt}')
+            log.info(f" transaction receipt: {tx_receipt}")
         except Exception as e:
-            log.info(f'report_registration_to_sc error {e}')
+            log.info(f"report_registration_to_sc error {e}")
 
     def report_unregistration_to_sc(self, user, success):
         """
@@ -56,15 +58,18 @@ class SmartContractService:
         :return:
         """
         try:
-            log.info(f'user {user}, success: {success}')
-            tx_hash = self.contract.functions.reportUnregistration(user, success).transact(
-                {"from": SC_BACKEND_CONFIG['SC_BACKEND_ADDRESS']})
+            log.info(f"user {user}, success: {success}")
+            tx_hash = self.contract.functions.reportUnregistration(
+                user, success
+            ).transact({"from": SC_BACKEND_CONFIG["SC_BACKEND_ADDRESS"]})
             tx_receipt = w3.eth.waitForTransactionReceipt(tx_hash)
-            log.info(f' transaction receipt: {tx_receipt}')
+            log.info(f" transaction receipt: {tx_receipt}")
         except Exception as e:
-            log.info(f'report_unregistration_to_sc error {e}')
+            log.info(f"report_unregistration_to_sc error {e}")
 
-    def report_vnf_deployment(self, deployment_id, creator_address, success, tacker_vnf_id):
+    def report_vnf_deployment(
+        self, deployment_id, creator_address, success, tacker_vnf_id
+    ):
         """
         Reports whether an attempt to create a VNF has been successful.
         Calls the SC function reportDeployment.
@@ -75,13 +80,13 @@ class SmartContractService:
         :return:
         """
         try:
-            tx_hash = self.contract.functions.reportDeployment(deployment_id, creator_address, success,
-                                                               tacker_vnf_id).transact(
-                {"from": SC_BACKEND_CONFIG['SC_BACKEND_ADDRESS']})
+            tx_hash = self.contract.functions.reportDeployment(
+                deployment_id, creator_address, success, tacker_vnf_id
+            ).transact({"from": SC_BACKEND_CONFIG["SC_BACKEND_ADDRESS"]})
             tx_receipt = w3.eth.waitForTransactionReceipt(tx_hash)
-            log.info(f' transaction receipt: {tx_receipt}')
+            log.info(f" transaction receipt: {tx_receipt}")
         except Exception as e:
-            log.info(f'report_vnf_deployment error {e}')
+            log.info(f"report_vnf_deployment error {e}")
 
     def report_vnf_deletion(self, deployment_id, creator_address, success):
         """
@@ -93,12 +98,13 @@ class SmartContractService:
         :return:
         """
         try:
-            tx_hash = self.contract.functions.reportDeletion(deployment_id, creator_address, success).transact(
-                {"from": SC_BACKEND_CONFIG['SC_BACKEND_ADDRESS']})
+            tx_hash = self.contract.functions.reportDeletion(
+                deployment_id, creator_address, success
+            ).transact({"from": SC_BACKEND_CONFIG["SC_BACKEND_ADDRESS"]})
             tx_receipt = w3.eth.waitForTransactionReceipt(tx_hash)
-            log.info(f' transaction receipt: {tx_receipt}')
+            log.info(f" transaction receipt: {tx_receipt}")
         except Exception as e:
-            log.info(f'report_vnf_deletion error {e}')
+            log.info(f"report_vnf_deletion error {e}")
 
     def get_vnf_details_from_contract(self, user_address):
         """
@@ -107,9 +113,11 @@ class SmartContractService:
         :return:
         """
         try:
-            return self.contract.functions.getVnfs(user_address).call({"from": SC_BACKEND_CONFIG['SC_BACKEND_ADDRESS']})
+            return self.contract.functions.getVnfs(user_address).call(
+                {"from": SC_BACKEND_CONFIG["SC_BACKEND_ADDRESS"]}
+            )
         except Exception as e:
-            log.info(f'get_vnf_details_from_contract error {e}')
+            log.info(f"get_vnf_details_from_contract error {e}")
             return False
 
 

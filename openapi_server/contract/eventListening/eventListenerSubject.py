@@ -4,7 +4,7 @@ from openapi_server.contract.eventListening.abstractSubject import AbstractSubje
 from openapi_server.contract import contract
 import logging
 
-log = logging.getLogger('scListener')
+log = logging.getLogger("scListener")
 
 
 class SmartContractEventListener(AbstractSubject):
@@ -44,8 +44,10 @@ class SmartContractEventListener(AbstractSubject):
 
     def _evt_listen(self, observer):
         event = observer.event
-        event_filter = self.contract.events[event].createFilter(fromBlock='latest')
-        worker = Thread(target=self._event_loop, args=(event_filter, observer), daemon=True)
+        event_filter = self.contract.events[event].createFilter(fromBlock="latest")
+        worker = Thread(
+            target=self._event_loop, args=(event_filter, observer), daemon=True
+        )
         # store to join later
         observer.worker = worker
         worker.start()

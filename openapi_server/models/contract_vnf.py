@@ -10,32 +10,39 @@ from openapi_server.utils import util
 
 
 class ContractVNF(Model):
-
-    def __init__(self, deployment_id=None, vnfd_id=None, vnf_id=None, owner=None, parameters=None, is_deployed=None,
-                 is_deleted=None):  # noqa: E501
+    def __init__(
+        self,
+        deployment_id=None,
+        vnfd_id=None,
+        vnf_id=None,
+        owner=None,
+        parameters=None,
+        is_deployed=None,
+        is_deleted=None,
+    ):  # noqa: E501
         """Vnf - a model defined in OpenAPI
 
         :param id: The id of this Vnf.  # noqa: E501
         :type id: str
         """
         self.openapi_types = {
-            'deployment_id': int,
-            'vnfd_id': str,
-            'vnf_id': str,
-            'owner': str,
-            'parameters': str,
-            'is_deployed': bool,
-            'is_deleted': bool
+            "deployment_id": int,
+            "vnfd_id": str,
+            "vnf_id": str,
+            "owner": str,
+            "parameters": str,
+            "is_deployed": bool,
+            "is_deleted": bool,
         }
 
         self.attribute_map = {
-            'deployment_id': 0,
-            'vnfd_id': 1,
-            'vnf_id': 2,
-            'owner': 3,
-            'parameters': 4,
-            'is_deployed': 5,
-            'is_deleted': 6
+            "deployment_id": 0,
+            "vnfd_id": 1,
+            "vnf_id": 2,
+            "owner": 3,
+            "parameters": 4,
+            "is_deployed": 5,
+            "is_deleted": 6,
         }
 
         self._deployment_id = deployment_id
@@ -47,7 +54,7 @@ class ContractVNF(Model):
         self._is_deleted = is_deleted
 
     @classmethod
-    def from_dict(cls, dikt) -> 'Vnf':
+    def from_dict(cls, dikt) -> "Vnf":
         """Returns the dict as a model
 
         :param dikt: A dict.
