@@ -1,6 +1,14 @@
 openapi\_server.contract package
 ================================
 
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   openapi_server.contract.eventListening
+
 Submodules
 ----------
 

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>openapi_server.contract.eventListening package &mdash; BCV-Backend 1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> BCV-Backend
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">openapi_server.contract.eventListening package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-openapi_server.contract.eventListening.abstractObserver">openapi_server.contract.eventListening.abstractObserver module</a></li>
+<li><a class="reference internal" href="#module-openapi_server.contract.eventListening.abstractSubject">openapi_server.contract.eventListening.abstractSubject module</a></li>
+<li><a class="reference internal" href="#module-openapi_server.contract.eventListening.eventListenerSubject">openapi_server.contract.eventListening.eventListenerSubject module</a></li>
+<li><a class="reference internal" href="#module-openapi_server.contract.eventListening.observers">openapi_server.contract.eventListening.observers module</a></li>
+<li><a class="reference internal" href="#module-openapi_server.contract.eventListening">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">BCV-Backend</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>openapi_server.contract.eventListening package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/openapi_server.contract.eventListening.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="openapi-server-contract-eventlistening-package">
+<h1>openapi_server.contract.eventListening package<a class="headerlink" href="#openapi-server-contract-eventlistening-package" title="Permalink to this headline"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+</section>
+<section id="module-openapi_server.contract.eventListening.abstractObserver">
+<span id="openapi-server-contract-eventlistening-abstractobserver-module"></span><h2>openapi_server.contract.eventListening.abstractObserver module<a class="headerlink" href="#module-openapi_server.contract.eventListening.abstractObserver" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="openapi_server.contract.eventListening.abstractObserver.AbstractObserver">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openapi_server.contract.eventListening.abstractObserver.</span></span><span class="sig-name descname"><span class="pre">AbstractObserver</span></span><a class="headerlink" href="#openapi_server.contract.eventListening.abstractObserver.AbstractObserver" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Abstract observer meta class. This class should be used an interface/ template for the observers.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="openapi_server.contract.eventListening.abstractObserver.AbstractObserver.update">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">observable</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.contract.eventListening.abstractObserver.AbstractObserver.update" title="Permalink to this definition"></a></dt>
+<dd><p>observer should do something here</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-openapi_server.contract.eventListening.abstractSubject">
+<span id="openapi-server-contract-eventlistening-abstractsubject-module"></span><h2>openapi_server.contract.eventListening.abstractSubject module<a class="headerlink" href="#module-openapi_server.contract.eventListening.abstractSubject" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="openapi_server.contract.eventListening.abstractSubject.AbstractSubject">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openapi_server.contract.eventListening.abstractSubject.</span></span><span class="sig-name descname"><span class="pre">AbstractSubject</span></span><a class="headerlink" href="#openapi_server.contract.eventListening.abstractSubject.AbstractSubject" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>AbstractSubject meta class.
+This class should be used as an interface / template for the observer pattern</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="openapi_server.contract.eventListening.abstractSubject.AbstractSubject.attach">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">attach</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">observer</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.contract.eventListening.abstractSubject.AbstractSubject.attach" title="Permalink to this definition"></a></dt>
+<dd><p>attach observer</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openapi_server.contract.eventListening.abstractSubject.AbstractSubject.detach">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">detach</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">observer</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.contract.eventListening.abstractSubject.AbstractSubject.detach" title="Permalink to this definition"></a></dt>
+<dd><p>detach observer</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openapi_server.contract.eventListening.abstractSubject.AbstractSubject.notifyObservers">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">notifyObservers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">observer</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.contract.eventListening.abstractSubject.AbstractSubject.notifyObservers" title="Permalink to this definition"></a></dt>
+<dd><p>notify all observers</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-openapi_server.contract.eventListening.eventListenerSubject">
+<span id="openapi-server-contract-eventlistening-eventlistenersubject-module"></span><h2>openapi_server.contract.eventListening.eventListenerSubject module<a class="headerlink" href="#module-openapi_server.contract.eventListening.eventListenerSubject" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="openapi_server.contract.eventListening.eventListenerSubject.SmartContractEventListener">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openapi_server.contract.eventListening.eventListenerSubject.</span></span><span class="sig-name descname"><span class="pre">SmartContractEventListener</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sc_contract</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.contract.eventListening.eventListenerSubject.SmartContractEventListener" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#openapi_server.contract.eventListening.abstractSubject.AbstractSubject" title="openapi_server.contract.eventListening.abstractSubject.AbstractSubject"><code class="xref py py-class docutils literal notranslate"><span class="pre">openapi_server.contract.eventListening.abstractSubject.AbstractSubject</span></code></a></p>
+<p>This class is responsible for Event listening of smart contract events.</p>
+<p>Observers attach themselves to this event listener, which creates a thread each for the filtering of events.
+the update function of the affected observer is then called.</p>
+<p>It only follows the observer pattern as a guideline, since notifyObserver is not used,
+as attaching an observer starts event listening immediately, and only a single event is to be updated.</p>
+<p>The Smart Contract Event Listening using threads is based on the example of
+<a class="reference external" href="https://web3py.readthedocs.io/en/stable/filters.html#asynchronous-filter-polling">https://web3py.readthedocs.io/en/stable/filters.html#asynchronous-filter-polling</a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="openapi_server.contract.eventListening.eventListenerSubject.SmartContractEventListener.attach">
+<span class="sig-name descname"><span class="pre">attach</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">observer</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.contract.eventListening.eventListenerSubject.SmartContractEventListener.attach" title="Permalink to this definition"></a></dt>
+<dd><p>attach observer</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openapi_server.contract.eventListening.eventListenerSubject.SmartContractEventListener.detach">
+<span class="sig-name descname"><span class="pre">detach</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">observer</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.contract.eventListening.eventListenerSubject.SmartContractEventListener.detach" title="Permalink to this definition"></a></dt>
+<dd><p>detach observer</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openapi_server.contract.eventListening.eventListenerSubject.SmartContractEventListener.notifyObservers">
+<span class="sig-name descname"><span class="pre">notifyObservers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.contract.eventListening.eventListenerSubject.SmartContractEventListener.notifyObservers" title="Permalink to this definition"></a></dt>
+<dd><p>notify all observers</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-openapi_server.contract.eventListening.observers">
+<span id="openapi-server-contract-eventlistening-observers-module"></span><h2>openapi_server.contract.eventListening.observers module<a class="headerlink" href="#module-openapi_server.contract.eventListening.observers" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="openapi_server.contract.eventListening.observers.DeleteVNFObserver">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openapi_server.contract.eventListening.observers.</span></span><span class="sig-name descname"><span class="pre">DeleteVNFObserver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">observable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vnf_service</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">poll_interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.contract.eventListening.observers.DeleteVNFObserver" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#openapi_server.contract.eventListening.abstractObserver.AbstractObserver" title="openapi_server.contract.eventListening.abstractObserver.AbstractObserver"><code class="xref py py-class docutils literal notranslate"><span class="pre">openapi_server.contract.eventListening.abstractObserver.AbstractObserver</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="openapi_server.contract.eventListening.observers.DeleteVNFObserver.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.contract.eventListening.observers.DeleteVNFObserver.update" title="Permalink to this definition"></a></dt>
+<dd><p>observer should do something here</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="openapi_server.contract.eventListening.observers.DeployVNFObserver">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openapi_server.contract.eventListening.observers.</span></span><span class="sig-name descname"><span class="pre">DeployVNFObserver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">observable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vnf_service</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">poll_interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.contract.eventListening.observers.DeployVNFObserver" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#openapi_server.contract.eventListening.abstractObserver.AbstractObserver" title="openapi_server.contract.eventListening.abstractObserver.AbstractObserver"><code class="xref py py-class docutils literal notranslate"><span class="pre">openapi_server.contract.eventListening.abstractObserver.AbstractObserver</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="openapi_server.contract.eventListening.observers.DeployVNFObserver.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.contract.eventListening.observers.DeployVNFObserver.update" title="Permalink to this definition"></a></dt>
+<dd><p>observer should do something here</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="openapi_server.contract.eventListening.observers.RegisterObserver">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openapi_server.contract.eventListening.observers.</span></span><span class="sig-name descname"><span class="pre">RegisterObserver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">observable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_service</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">poll_interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.contract.eventListening.observers.RegisterObserver" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#openapi_server.contract.eventListening.abstractObserver.AbstractObserver" title="openapi_server.contract.eventListening.abstractObserver.AbstractObserver"><code class="xref py py-class docutils literal notranslate"><span class="pre">openapi_server.contract.eventListening.abstractObserver.AbstractObserver</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="openapi_server.contract.eventListening.observers.RegisterObserver.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.contract.eventListening.observers.RegisterObserver.update" title="Permalink to this definition"></a></dt>
+<dd><p>observer should do something here</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="openapi_server.contract.eventListening.observers.RegistrationStatusObserver">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openapi_server.contract.eventListening.observers.</span></span><span class="sig-name descname"><span class="pre">RegistrationStatusObserver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">observable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">poll_interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.contract.eventListening.observers.RegistrationStatusObserver" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#openapi_server.contract.eventListening.abstractObserver.AbstractObserver" title="openapi_server.contract.eventListening.abstractObserver.AbstractObserver"><code class="xref py py-class docutils literal notranslate"><span class="pre">openapi_server.contract.eventListening.abstractObserver.AbstractObserver</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="openapi_server.contract.eventListening.observers.RegistrationStatusObserver.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.contract.eventListening.observers.RegistrationStatusObserver.update" title="Permalink to this definition"></a></dt>
+<dd><p>observer should do something here</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="openapi_server.contract.eventListening.observers.UnregisterObserver">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openapi_server.contract.eventListening.observers.</span></span><span class="sig-name descname"><span class="pre">UnregisterObserver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">observable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_service</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">poll_interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.contract.eventListening.observers.UnregisterObserver" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#openapi_server.contract.eventListening.abstractObserver.AbstractObserver" title="openapi_server.contract.eventListening.abstractObserver.AbstractObserver"><code class="xref py py-class docutils literal notranslate"><span class="pre">openapi_server.contract.eventListening.abstractObserver.AbstractObserver</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="openapi_server.contract.eventListening.observers.UnregisterObserver.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.contract.eventListening.observers.UnregisterObserver.update" title="Permalink to this definition"></a></dt>
+<dd><p>observer should do something here</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="openapi_server.contract.eventListening.observers.UnregistrationStatusObserver">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openapi_server.contract.eventListening.observers.</span></span><span class="sig-name descname"><span class="pre">UnregistrationStatusObserver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">observable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">poll_interval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.contract.eventListening.observers.UnregistrationStatusObserver" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#openapi_server.contract.eventListening.abstractObserver.AbstractObserver" title="openapi_server.contract.eventListening.abstractObserver.AbstractObserver"><code class="xref py py-class docutils literal notranslate"><span class="pre">openapi_server.contract.eventListening.abstractObserver.AbstractObserver</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="openapi_server.contract.eventListening.observers.UnregistrationStatusObserver.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.contract.eventListening.observers.UnregistrationStatusObserver.update" title="Permalink to this definition"></a></dt>
+<dd><p>observer should do something here</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="openapi_server.contract.eventListening.observers.start_sc_event_listening">
+<span class="sig-prename descclassname"><span class="pre">openapi_server.contract.eventListening.observers.</span></span><span class="sig-name descname"><span class="pre">start_sc_event_listening</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_service</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vnf_service</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.contract.eventListening.observers.start_sc_event_listening" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-openapi_server.contract.eventListening">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-openapi_server.contract.eventListening" title="Permalink to this headline"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, BCV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
