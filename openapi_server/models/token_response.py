@@ -23,21 +23,15 @@ class TokenResponse(Model):
         :param is_registered: The is_registered of this TokenResponse.  # noqa: E501
         :type is_registered: bool
         """
-        self.openapi_types = {
-            'token': str,
-            'is_registered': bool
-        }
+        self.openapi_types = {"token": str, "is_registered": bool}
 
-        self.attribute_map = {
-            'token': 'token',
-            'is_registered': 'isRegistered'
-        }
+        self.attribute_map = {"token": "token", "is_registered": "isRegistered"}
 
         self._token = token
         self._is_registered = is_registered
 
     @classmethod
-    def from_dict(cls, dikt) -> 'TokenResponse':
+    def from_dict(cls, dikt) -> "TokenResponse":
         """Returns the dict as a model
 
         :param dikt: A dict.

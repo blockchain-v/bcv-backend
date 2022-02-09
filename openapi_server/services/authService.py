@@ -8,7 +8,7 @@ from flask import abort
 import logging
 import jwt
 
-log = logging.getLogger('authService')
+log = logging.getLogger("authService")
 
 
 def check_auth(*args, **kwargs) -> bool:
@@ -17,12 +17,14 @@ def check_auth(*args, **kwargs) -> bool:
     :return: boolean
     """
     try:
-        address = kwargs.get('address')
-        claim = kwargs.get('claim')
-        signed_claim = kwargs.get('signed_claim')
-        return _check_auth_for_address(claim, signed_claim) if address is None else _check_auth_for_nonce(claim,
-                                                                                                          signed_claim,
-                                                                                                          address)
+        address = kwargs.get("address")
+        claim = kwargs.get("claim")
+        signed_claim = kwargs.get("signed_claim")
+        return (
+            _check_auth_for_address(claim, signed_claim)
+            if address is None
+            else _check_auth_for_nonce(claim, signed_claim, address)
+        )
     except:
         log.info("failed to verify authentication signature")
         return False
@@ -37,7 +39,7 @@ def _check_auth_for_address(claimed_address, signed_string) -> bool:
     """
     try:
         # use same hash function as in contract to hash the userAddress
-        hashed_claim = w3.solidityKeccak(['address'], [claimed_address])
+        hashed_claim = w3.solidityKeccak(["address"], [claimed_address])
         address = _recover_address(hashed_claim, signed_string)
         return claimed_address == address
     except:
@@ -57,7 +59,7 @@ def _check_auth_for_nonce(nonce, signed_nonce, user_address) -> bool:
         if not verify_nonce(nonce, user_address):
             return False
         # use the same hash function as in frontend to hash the nonce
-        hashed_claim = w3.solidityKeccak(['bytes32'], [nonce])
+        hashed_claim = w3.solidityKeccak(["bytes32"], [nonce])
         address = _recover_address(hashed_claim, signed_nonce)
         return address == user_address
     except:
@@ -99,7 +101,7 @@ def verify_token(token_str) -> bool:
     """
     try:
         token_data = decode_token(token_str)
-        user = User.objects.get(address=token_data['address'])
+        user = User.objects.get(address=token_data["address"])
         return len(user) > 0
     except InvalidTokenError or ExpiredSignatureError or DoesNotExist:
         return False
@@ -113,7 +115,7 @@ def get_address_from_token(token):
     """
     try:
         token_data = decode_token(token)
-        return token_data['address']
+        return token_data["address"]
     except InvalidTokenError:
         return False
 
@@ -127,7 +129,7 @@ def authorize(token):
     if not verify_token(token):
         return abort(401)
     user_address = get_address_from_token(token)
-    return {'userAddress': user_address}
+    return {"userAddress": user_address}
 
 
 def decode_token(token_str):

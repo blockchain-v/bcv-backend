@@ -9,4 +9,4 @@ class AbstractObserver(metaclass=ABCMeta):
     @staticmethod
     @abstractmethod
     def update(observable, *args, **kwargs):
-        """ observer should do something here """
+        """observer should do something here"""

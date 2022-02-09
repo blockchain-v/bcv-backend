@@ -20,67 +20,59 @@ class TestVnfdController(BaseTestCase):
         Creates a new vnf descriptor
         """
         new_vnfd = openapi_server.NewVnfd()
-        headers = { 
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'ApiKeyAuth': 'special-key',
+        headers = {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "ApiKeyAuth": "special-key",
         }
         response = self.client.open(
-            '/api/v1/bcv/vnfd',
-            method='POST',
+            "/api/v1/bcv/vnfd",
+            method="POST",
             headers=headers,
             data=json.dumps(new_vnfd),
-            content_type='application/json')
-        self.assert200(response,
-                       'Response body is : ' + response.data.decode('utf-8'))
+            content_type="application/json",
+        )
+        self.assert200(response, "Response body is : " + response.data.decode("utf-8"))
 
     def test_delete_vnfd(self):
         """Test case for delete_vnfd
 
         Deletes a vnf descriptor with vnfdID
         """
-        headers = { 
-            'ApiKeyAuth': 'special-key',
+        headers = {
+            "ApiKeyAuth": "special-key",
         }
         response = self.client.open(
-            '/api/v1/bcv/vnfd/<vnfdID>',
-            method='DELETE',
-            headers=headers)
-        self.assert200(response,
-                       'Response body is : ' + response.data.decode('utf-8'))
+            "/api/v1/bcv/vnfd/<vnfdID>", method="DELETE", headers=headers
+        )
+        self.assert200(response, "Response body is : " + response.data.decode("utf-8"))
 
     def test_get_vnfd(self):
         """Test case for get_vnfd
 
         Returns a vnf descriptor with vnfdID
         """
-        headers = { 
-            'Accept': 'application/json',
-            'ApiKeyAuth': 'special-key',
+        headers = {
+            "Accept": "application/json",
+            "ApiKeyAuth": "special-key",
         }
         response = self.client.open(
-            '/api/v1/bcv/vnfd/<vnfdID>',
-            method='GET',
-            headers=headers)
-        self.assert200(response,
-                       'Response body is : ' + response.data.decode('utf-8'))
+            "/api/v1/bcv/vnfd/<vnfdID>", method="GET", headers=headers
+        )
+        self.assert200(response, "Response body is : " + response.data.decode("utf-8"))
 
     def test_get_vnfds(self):
         """Test case for get_vnfds
 
         Returns all vnf descriptors
         """
-        headers = { 
-            'Accept': 'application/json',
-            'ApiKeyAuth': 'special-key',
+        headers = {
+            "Accept": "application/json",
+            "ApiKeyAuth": "special-key",
         }
-        response = self.client.open(
-            '/api/v1/bcv/vnfd',
-            method='GET',
-            headers=headers)
-        self.assert200(response,
-                       'Response body is : ' + response.data.decode('utf-8'))
+        response = self.client.open("/api/v1/bcv/vnfd", method="GET", headers=headers)
+        self.assert200(response, "Response body is : " + response.data.decode("utf-8"))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

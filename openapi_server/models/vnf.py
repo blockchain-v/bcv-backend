@@ -21,18 +21,14 @@ class Vnf(Model):
         :param id: The id of this Vnf.  # noqa: E501
         :type id: str
         """
-        self.openapi_types = {
-            'id': str
-        }
+        self.openapi_types = {"id": str}
 
-        self.attribute_map = {
-            'id': 'id'
-        }
+        self.attribute_map = {"id": "id"}
 
         self._id = id
 
     @classmethod
-    def from_dict(cls, dikt) -> 'Vnf':
+    def from_dict(cls, dikt) -> "Vnf":
         """Returns the dict as a model
 
         :param dikt: A dict.

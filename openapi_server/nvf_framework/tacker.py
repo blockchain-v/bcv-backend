@@ -5,7 +5,7 @@ import logging
 from openapi_server.models import TackerConfig
 from openapi_server.nvf_framework.nfv_framework import AbstractNFVFramework
 
-log = logging.getLogger('tacker')
+log = logging.getLogger("tacker")
 
 
 class Tacker(AbstractNFVFramework):
@@ -33,37 +33,34 @@ class Tacker(AbstractNFVFramework):
             data = {
                 "auth": {
                     "identity": {
-                        "methods": [
-                            "password"
-                        ],
+                        "methods": ["password"],
                         "password": {
                             "user": {
                                 "id": self._tacker_config.user_id,
-                                "password": self._tacker_config.pw
+                                "password": self._tacker_config.pw,
                             }
-                        }
+                        },
                     },
-                    "scope": {
-                        "system": {
-                            "all": True
-                        }
-                    }
+                    "scope": {"system": {"all": True}},
                 }
             }
 
-            response = requests.post(f"{self._tacker_config.auth_url}/tokens", json=data,
-                                     headers={'content-type': 'Application/JSON'})
-            token = response.headers['X-Subject-Token']
-            catalog = response.json().get('token').get('catalog')
-            tenant_id = next(x for x in catalog if x['name'] == 'keystone').get('id')
+            response = requests.post(
+                f"{self._tacker_config.auth_url}/tokens",
+                json=data,
+                headers={"content-type": "Application/JSON"},
+            )
+            token = response.headers["X-Subject-Token"]
+            catalog = response.json().get("token").get("catalog")
+            tenant_id = next(x for x in catalog if x["name"] == "keystone").get("id")
             return token, tenant_id
         except Exception as e:
-            log.info(f'e: {e}')
+            log.info(f"e: {e}")
 
     def _get_vim_id(self):
         vim_ids, _ = self.get_vims()
-        log.info(f'vims: {vim_ids}')
-        return vim_ids[0]['id']
+        log.info(f"vims: {vim_ids}")
+        return vim_ids[0]["id"]
 
     """
     ------------------------
@@ -76,8 +73,8 @@ class Tacker(AbstractNFVFramework):
         Returns VIMS from tacker
         :return:
         """
-        response = self._reqGET('vims')
-        vims = response.json().get('vims')
+        response = self._reqGET("vims")
+        vims = response.json().get("vims")
         return vims, response.status_code
 
     """
@@ -87,34 +84,31 @@ class Tacker(AbstractNFVFramework):
     """
 
     def get_vnfds(self):
-        response = self._reqGET('vnfds')
-        vnfds = response.json().get('vnfds')
-        log.info(f'vnfds: {vnfds}')
+        response = self._reqGET("vnfds")
+        vnfds = response.json().get("vnfds")
         return vnfds, response.status_code
 
     def get_vnfd(self, vnfd_id):
-        response = self._reqGET(f'vnfds/{vnfd_id}')
-        vnfd = response.json().get('vnfd')
+        response = self._reqGET(f"vnfds/{vnfd_id}")
+        vnfd = response.json().get("vnfd")
         return vnfd, response.status_code
 
     def create_vnfd(self, attributes, name, description):
         data = {
             "vnfd": {
                 "tenant_id": self._tenant_id,
-                "service_types": [
-                    {
-                        "service_type": "vnfd"
-                    }
-                ],
-                "attributes": {}
+                "service_types": [{"service_type": "vnfd"}],
+                "attributes": {},
             }
         }
-        data['vnfd']['attributes'] = attributes
-        data['vnfd']['name'] = name
-        data['vnfd']['description'] = description
+        data["vnfd"]["attributes"] = attributes
+        data["vnfd"]["name"] = name
+        data["vnfd"]["description"] = description
 
-        response = self._reqPOST('vnfds', data)
-        return response.json().get('vnfd'), response.status_code
+        response = self._reqPOST("vnfds", data)
+        if not response.json().get("vnfd"):
+            return {"Error": response.text}, response.status_code
+        return response.json().get("vnfd"), response.status_code
 
     def delete_vnfd(self, vnfd_id) -> int:
         """
@@ -122,8 +116,8 @@ class Tacker(AbstractNFVFramework):
         :param vnfd_id: str
         :return:
         """
-        response = self._reqDELETE(f'vnfds/{vnfd_id}')
-        log.info(f'res {response}')
+        response = self._reqDELETE(f"vnfds/{vnfd_id}")
+        log.info(f"res {response}")
         return response.status_code
 
     """
@@ -137,9 +131,8 @@ class Tacker(AbstractNFVFramework):
         Returns VNFS from tacker
         :return:
         """
-        response = self._reqGET('vnfs')
-        vnfs = response.json().get('vnfs')
-        log.info(f'vnfs: {vnfs}')
+        response = self._reqGET("vnfs")
+        vnfs = response.json().get("vnfs")
         return vnfs, response.status_code
 
     def get_vnf(self, vnf_id):
@@ -147,8 +140,8 @@ class Tacker(AbstractNFVFramework):
         Returns a VNF from tacker
         :return:
         """
-        response = self._reqGET(f'vnfs/{vnf_id}')
-        vnf = response.json().get('vnf')
+        response = self._reqGET(f"vnfs/{vnf_id}")
+        vnf = response.json().get("vnf")
         return vnf, response.status_code
 
     def create_vnf(self, parameters, vnfd_id, *args, **kwargs):
@@ -158,18 +151,16 @@ class Tacker(AbstractNFVFramework):
                 "tenant_id": self._tenant_id,
                 "vnfd_id": vnfd_id,
                 "vim_id": self._vim_id,
-                "placement_attr": {
-                    "region_name": "RegionOne"
-                }
+                "placement_attr": {"region_name": "RegionOne"},
             }
         }
-        data['vnf']['attributes'] = parameters.get('attributes')
-        data['vnf']['name'] = parameters.get('name')
-        data['vnf']['description'] = parameters.get('description')
+        data["vnf"]["attributes"] = parameters.get("attributes")
+        data["vnf"]["name"] = parameters.get("name")
+        data["vnf"]["description"] = parameters.get("description")
 
-        response = self._reqPOST('vnfs', data)
-        log.info(f'{response}')
-        return response.json().get('vnf'), response.status_code
+        response = self._reqPOST("vnfs", data)
+        log.info(f"{response}")
+        return response.json().get("vnf"), response.status_code
 
     def delete_vnf(self, vnf_id):
         """
@@ -177,13 +168,9 @@ class Tacker(AbstractNFVFramework):
         :param vnf_id: string
         :return:
         """
-        response = self._reqDELETE(f'vnfs/{vnf_id}')
-        log.info(f'{response}')
+        response = self._reqDELETE(f"vnfs/{vnf_id}")
+        log.info(f"{response}")
         return response.status_code
 
 
 tackerClient = Tacker(TackerConfig.from_dict(TACKER_CONFIG))
-# todo remove
-tackerClient.get_vims()
-tackerClient.get_vnfs()
-tackerClient.get_vnfds()

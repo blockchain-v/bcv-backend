@@ -18,33 +18,27 @@ class TestVnfController(BaseTestCase):
 
         Returns vnf details for a specific vnfID
         """
-        headers = { 
-            'Accept': 'application/json',
-            'ApiKeyAuth': 'special-key',
+        headers = {
+            "Accept": "application/json",
+            "ApiKeyAuth": "special-key",
         }
         response = self.client.open(
-            '/api/v1/bcv/vnf/<vnfID>',
-            method='GET',
-            headers=headers)
-        self.assert200(response,
-                       'Response body is : ' + response.data.decode('utf-8'))
+            "/api/v1/bcv/vnf/<vnfID>", method="GET", headers=headers
+        )
+        self.assert200(response, "Response body is : " + response.data.decode("utf-8"))
 
     def test_get_vnfs(self):
         """Test case for get_vnfs
 
         Returns all vnf details for a user
         """
-        headers = { 
-            'Accept': 'application/json',
-            'ApiKeyAuth': 'special-key',
+        headers = {
+            "Accept": "application/json",
+            "ApiKeyAuth": "special-key",
         }
-        response = self.client.open(
-            '/api/v1/bcv/vnf',
-            method='GET',
-            headers=headers)
-        self.assert200(response,
-                       'Response body is : ' + response.data.decode('utf-8'))
+        response = self.client.open("/api/v1/bcv/vnf", method="GET", headers=headers)
+        self.assert200(response, "Response body is : " + response.data.decode("utf-8"))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

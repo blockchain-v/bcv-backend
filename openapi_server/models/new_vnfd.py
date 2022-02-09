@@ -25,16 +25,12 @@ class NewVnfd(Model):
         :param description: The description of this NewVnfd.  # noqa: E501
         :type description: str
         """
-        self.openapi_types = {
-            'attributes': object,
-            'name': str,
-            'description': str
-        }
+        self.openapi_types = {"attributes": object, "name": str, "description": str}
 
         self.attribute_map = {
-            'attributes': 'attributes',
-            'name': 'name',
-            'description': 'description'
+            "attributes": "attributes",
+            "name": "name",
+            "description": "description",
         }
 
         self._attributes = attributes
@@ -42,7 +38,7 @@ class NewVnfd(Model):
         self._description = description
 
     @classmethod
-    def from_dict(cls, dikt) -> 'NewVnfd':
+    def from_dict(cls, dikt) -> "NewVnfd":
         """Returns the dict as a model
 
         :param dikt: A dict.

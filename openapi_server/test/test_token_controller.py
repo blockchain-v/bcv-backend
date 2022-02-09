@@ -22,18 +22,18 @@ class TestTokenController(BaseTestCase):
         Creates and returns a new nonce
         """
         address_request = openapi_server.AddressRequest()
-        headers = { 
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
+        headers = {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
         }
         response = self.client.open(
-            '/api/v1/bcv/token',
-            method='PUT',
+            "/api/v1/bcv/token",
+            method="PUT",
             headers=headers,
             data=json.dumps(address_request),
-            content_type='application/json')
-        self.assert200(response,
-                       'Response body is : ' + response.data.decode('utf-8'))
+            content_type="application/json",
+        )
+        self.assert200(response, "Response body is : " + response.data.decode("utf-8"))
 
     def test_create_token(self):
         """Test case for create_token
@@ -41,19 +41,19 @@ class TestTokenController(BaseTestCase):
         Creates and returns a new token. Requires a nonce.
         """
         token_request = openapi_server.TokenRequest()
-        headers = { 
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
+        headers = {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
         }
         response = self.client.open(
-            '/api/v1/bcv/token',
-            method='POST',
+            "/api/v1/bcv/token",
+            method="POST",
             headers=headers,
             data=json.dumps(token_request),
-            content_type='application/json')
-        self.assert200(response,
-                       'Response body is : ' + response.data.decode('utf-8'))
+            content_type="application/json",
+        )
+        self.assert200(response, "Response body is : " + response.data.decode("utf-8"))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

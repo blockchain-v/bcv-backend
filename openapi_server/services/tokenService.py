@@ -8,11 +8,10 @@ from openapi_server import config
 from openapi_server.services import userService, check_auth
 from openapi_server.repositories import Nonce
 
-log = logging.getLogger('TokenService')
+log = logging.getLogger("TokenService")
 
 
 class TokenService:
-
     @staticmethod
     def create_nonce(address_request):
         """
@@ -34,8 +33,9 @@ class TokenService:
         is_registered = userService.service.is_user_registered(token_request.address)
         if not is_registered:
             return {"isRegistered": False}, 200
-        token = TokenService.create_token_handler(token_request.nonce, token_request.signed_nonce,
-                                                  token_request.address)
+        token = TokenService.create_token_handler(
+            token_request.nonce, token_request.signed_nonce, token_request.address
+        )
         if token:
             # nonce has been consumed
             try:
@@ -58,10 +58,13 @@ class TokenService:
         """
         try:
             if check_auth(claim=nonce, signed_claim=signed_nonce, address=address):
-                token = jwt.encode({
-                    'address': address,
-                    'exp': datetime.utcnow() + timedelta(hours=24)
-                }, config.JWT_SECRET)
+                token = jwt.encode(
+                    {
+                        "address": address,
+                        "exp": datetime.utcnow() + timedelta(hours=24),
+                    },
+                    config.JWT_SECRET,
+                )
                 return token
             else:
                 return False
@@ -77,7 +80,7 @@ class TokenService:
         """
         try:
             Nonce.objects(address=address).delete()
-            nonce_val = '0x' + uuid4().hex
+            nonce_val = "0x" + uuid4().hex
             new_nonce = Nonce(address=address, value=nonce_val)
             new_nonce.save()
             return nonce_val
