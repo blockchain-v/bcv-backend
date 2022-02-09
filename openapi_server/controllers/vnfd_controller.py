@@ -10,7 +10,7 @@ def create_vnfd(new_vnfd=None):  # noqa: E501
 
     Creates a new vnf descriptor, if auth was successful # noqa: E501
 
-    :param new_vnfd: 
+    :param new_vnfd:
     :type new_vnfd: dict | bytes
 
     :rtype: Vnfd

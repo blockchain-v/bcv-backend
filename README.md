@@ -1,5 +1,8 @@
 # backend
 
+- API documentation can be found at: `http://localhost:8080/api/v1/bcv/ui/`
+- Code documentation can be found at Github-page (todo)
+
 # how to run this:
 - until contract setup is decided we can't run this in docker yet. backend reads contract from the `bcv-contract` directory.
 - dependencies are in requirements.txt, python 3.8 works (3.10 not supported)
@@ -25,6 +28,11 @@ assumed folder structure:
    2. the SC addresses to ones from your local ganache setup (will be used to register the backend)
 8. start the backend in parent directory: e.g. `python3 -m openapi_server`
 
+
+### Contributing
+This project uses [Black](https://github.com/psf/black) for code formatting in a pre-commit hook.
+
+C.f. [pre-commit installation](https://pre-commit.com/)
 
 # OpenAPI generated server
 

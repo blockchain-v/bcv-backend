@@ -14,7 +14,7 @@ class AbstractNFVFramework(ABC):
 
     @property
     def headers(self):
-        return {'X-Auth-Token': self.token, 'content-type': 'Application/JSON'}
+        return {"X-Auth-Token": self.token, "content-type": "Application/JSON"}
 
     @headers.setter
     def headers(self, headers):
@@ -60,13 +60,12 @@ class AbstractNFVFramework(ABC):
         pass
 
     def _reqGET(self, resource_URL):
-        return requests.get(f"{self.base_url}{resource_URL}",
-                            headers=self.headers)
+        return requests.get(f"{self.base_url}{resource_URL}", headers=self.headers)
 
     def _reqPOST(self, resource_URL, data):
-        return requests.post(f"{self.base_url}{resource_URL}",
-                             headers=self.headers, json=data)
+        return requests.post(
+            f"{self.base_url}{resource_URL}", headers=self.headers, json=data
+        )
 
     def _reqDELETE(self, resource_URL):
-        return requests.delete(f"{self.base_url}{resource_URL}",
-                               headers=self.headers)
+        return requests.delete(f"{self.base_url}{resource_URL}", headers=self.headers)

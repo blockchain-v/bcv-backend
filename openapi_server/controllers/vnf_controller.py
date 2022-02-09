@@ -1,6 +1,7 @@
 from openapi_server.models.vnf import Vnf  # noqa: E501
 from openapi_server.services import vnfService
 
+
 def get_vnf(vnf_id, token_info):  # noqa: E501
     """Returns vnf details for a specific vnf_id
 
@@ -10,7 +11,9 @@ def get_vnf(vnf_id, token_info):  # noqa: E501
     :param token_info: dict
     :rtype: Vnf
     """
-    return vnfService.service.get_users_vnf(address=token_info.get('userAddress'), vnf_id=vnf_id)
+    return vnfService.service.get_users_vnf(
+        address=token_info.get("userAddress"), vnf_id=vnf_id
+    )
 
 
 def get_vnfs(token_info):  # noqa: E501
@@ -21,4 +24,4 @@ def get_vnfs(token_info):  # noqa: E501
     :param token_info: dict
     :rtype: List[Vnf]
     """
-    return vnfService.service.get_users_vnf(address=token_info.get('userAddress'))
+    return vnfService.service.get_users_vnf(address=token_info.get("userAddress"))

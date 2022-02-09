@@ -21,18 +21,14 @@ class Nonce(Model):
         :param nonce: The nonce of this Nonce.  # noqa: E501
         :type nonce: str
         """
-        self.openapi_types = {
-            'nonce': str
-        }
+        self.openapi_types = {"nonce": str}
 
-        self.attribute_map = {
-            'nonce': 'nonce'
-        }
+        self.attribute_map = {"nonce": "nonce"}
 
         self._nonce = nonce
 
     @classmethod
-    def from_dict(cls, dikt) -> 'Nonce':
+    def from_dict(cls, dikt) -> "Nonce":
         """Returns the dict as a model
 
         :param dikt: A dict.

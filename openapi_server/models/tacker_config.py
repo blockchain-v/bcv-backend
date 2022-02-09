@@ -14,8 +14,10 @@ class TackerConfig(Model):
     Own model for the tackerConfig, following the OpenAPI template
     """
 
-    def __init__(self, user_id=None, pw=None, auth_url=None, base_url=None):  # noqa: E501
-        """ TackerConfig
+    def __init__(
+        self, user_id=None, pw=None, auth_url=None, base_url=None
+    ):  # noqa: E501
+        """TackerConfig
         :param user_id: The user_id of this TackerConfig.  # noqa: E501
         :type user_id: str
         :param pw: The pw of this TackerConfig.  # noqa: E501
@@ -27,18 +29,18 @@ class TackerConfig(Model):
         """
 
         self.openapi_types = {
-            'user_id': str,
-            'base_url': str,
-            'auth_url': str,
-            'pw': str,
+            "user_id": str,
+            "base_url": str,
+            "auth_url": str,
+            "pw": str,
         }
 
         # map from config file to internal attr
         self.attribute_map = {
-            'user_id': 'USER_ID',
-            'base_url': 'BASEURL',
-            'auth_url': 'AUTH_URL',
-            'pw': 'PASSWORD'
+            "user_id": "USER_ID",
+            "base_url": "BASEURL",
+            "auth_url": "AUTH_URL",
+            "pw": "PASSWORD",
         }
 
         self._user_id = user_id
@@ -47,7 +49,7 @@ class TackerConfig(Model):
         self._base_url = base_url
 
     @classmethod
-    def from_dict(cls, dikt) -> 'TackerConfig':
+    def from_dict(cls, dikt) -> "TackerConfig":
         """Returns the dict as a model
 
         :param dikt: A dict.

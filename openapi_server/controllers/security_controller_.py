@@ -3,7 +3,7 @@ import logging
 
 from openapi_server.services.authService import authorize
 
-log = logging.getLogger('werkzeug')
+log = logging.getLogger("werkzeug")
 
 
 def info_from_ApiKeyAuth(api_key, required_scopes):
@@ -20,5 +20,5 @@ def info_from_ApiKeyAuth(api_key, required_scopes):
     :rtype: dict | None
     """
 
-    log.info(f'token: {api_key}')
+    log.info(f"token: {api_key}")
     return authorize(api_key)

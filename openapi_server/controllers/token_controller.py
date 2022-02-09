@@ -16,7 +16,9 @@ def create_nonce():  # noqa: E501
     :rtype: Nonce
     """
     if connexion.request.is_json:
-        address_request = AddressRequest.from_dict(connexion.request.get_json())  # noqa: E501
+        address_request = AddressRequest.from_dict(
+            connexion.request.get_json()
+        )  # noqa: E501
     return tokenService.service.create_nonce(address_request)
 
 
@@ -29,5 +31,7 @@ def create_token():  # noqa: E501
     :rtype: TokenResponse
     """
     if connexion.request.is_json:
-        token_request = TokenRequest.from_dict(connexion.request.get_json())  # noqa: E501
+        token_request = TokenRequest.from_dict(
+            connexion.request.get_json()
+        )  # noqa: E501
     return tokenService.service.create_token(token_request)

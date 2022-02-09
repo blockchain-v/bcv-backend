@@ -21,18 +21,14 @@ class AddressRequest(Model):
         :param address: The address of this AddressRequest.  # noqa: E501
         :type address: str
         """
-        self.openapi_types = {
-            'address': str
-        }
+        self.openapi_types = {"address": str}
 
-        self.attribute_map = {
-            'address': 'address'
-        }
+        self.attribute_map = {"address": "address"}
 
         self._address = address
 
     @classmethod
-    def from_dict(cls, dikt) -> 'AddressRequest':
+    def from_dict(cls, dikt) -> "AddressRequest":
         """Returns the dict as a model
 
         :param dikt: A dict.
