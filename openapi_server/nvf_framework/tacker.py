@@ -86,7 +86,6 @@ class Tacker(AbstractNFVFramework):
     def get_vnfds(self):
         response = self._reqGET("vnfds")
         vnfds = response.json().get("vnfds")
-        log.info(f"vnfds: {vnfds}")
         return vnfds, response.status_code
 
     def get_vnfd(self, vnfd_id):
@@ -107,6 +106,8 @@ class Tacker(AbstractNFVFramework):
         data["vnfd"]["description"] = description
 
         response = self._reqPOST("vnfds", data)
+        if not response.json().get("vnfd"):
+            return {"Error": response.text}, response.status_code
         return response.json().get("vnfd"), response.status_code
 
     def delete_vnfd(self, vnfd_id) -> int:
@@ -132,7 +133,6 @@ class Tacker(AbstractNFVFramework):
         """
         response = self._reqGET("vnfs")
         vnfs = response.json().get("vnfs")
-        log.info(f"vnfs: {vnfs}")
         return vnfs, response.status_code
 
     def get_vnf(self, vnf_id):
@@ -174,7 +174,3 @@ class Tacker(AbstractNFVFramework):
 
 
 tackerClient = Tacker(TackerConfig.from_dict(TACKER_CONFIG))
-# todo remove
-tackerClient.get_vims()
-tackerClient.get_vnfs()
-tackerClient.get_vnfds()
