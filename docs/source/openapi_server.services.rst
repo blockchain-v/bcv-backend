@@ -12,14 +12,6 @@ openapi\_server.services.authService module
    :undoc-members:
    :show-inheritance:
 
-openapi\_server.services.smartContractEventListener module
-----------------------------------------------------------
-
-.. automodule:: openapi_server.services.smartContractEventListener
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 openapi\_server.services.smartContractService module
 ----------------------------------------------------
 

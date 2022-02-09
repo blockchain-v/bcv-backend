@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>openapi_server.nvf_framework package &mdash; BCV-Backend 1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> BCV-Backend
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">openapi_server.nvf_framework package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-openapi_server.nvf_framework.nfv_framework">openapi_server.nvf_framework.nfv_framework module</a></li>
+<li><a class="reference internal" href="#module-openapi_server.nvf_framework.tacker">openapi_server.nvf_framework.tacker module</a></li>
+<li><a class="reference internal" href="#module-openapi_server.nvf_framework">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">BCV-Backend</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>openapi_server.nvf_framework package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/openapi_server.nvf_framework.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="openapi-server-nvf-framework-package">
+<h1>openapi_server.nvf_framework package<a class="headerlink" href="#openapi-server-nvf-framework-package" title="Permalink to this headline"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+</section>
+<section id="module-openapi_server.nvf_framework.nfv_framework">
+<span id="openapi-server-nvf-framework-nfv-framework-module"></span><h2>openapi_server.nvf_framework.nfv_framework module<a class="headerlink" href="#module-openapi_server.nvf_framework.nfv_framework" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="openapi_server.nvf_framework.nfv_framework.AbstractNFVFramework">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openapi_server.nvf_framework.nfv_framework.</span></span><span class="sig-name descname"><span class="pre">AbstractNFVFramework</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_url</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.nvf_framework.nfv_framework.AbstractNFVFramework" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<p>Abstract baseclass for a nfv framework with default implementation for header and requests</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="openapi_server.nvf_framework.nfv_framework.AbstractNFVFramework.base_url">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">base_url</span></span><a class="headerlink" href="#openapi_server.nvf_framework.nfv_framework.AbstractNFVFramework.base_url" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openapi_server.nvf_framework.nfv_framework.AbstractNFVFramework.create_vnf">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_vnf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.nvf_framework.nfv_framework.AbstractNFVFramework.create_vnf" title="Permalink to this definition"></a></dt>
+<dd><p>args and kwargs for liskov</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openapi_server.nvf_framework.nfv_framework.AbstractNFVFramework.delete_vnf">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">delete_vnf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vnf_id</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.nvf_framework.nfv_framework.AbstractNFVFramework.delete_vnf" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openapi_server.nvf_framework.nfv_framework.AbstractNFVFramework.get_vnf">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_vnf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vnf_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.nvf_framework.nfv_framework.AbstractNFVFramework.get_vnf" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openapi_server.nvf_framework.nfv_framework.AbstractNFVFramework.get_vnfs">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_vnfs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.nvf_framework.nfv_framework.AbstractNFVFramework.get_vnfs" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openapi_server.nvf_framework.nfv_framework.AbstractNFVFramework.headers">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">headers</span></span><a class="headerlink" href="#openapi_server.nvf_framework.nfv_framework.AbstractNFVFramework.headers" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openapi_server.nvf_framework.nfv_framework.AbstractNFVFramework.token">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">token</span></span><a class="headerlink" href="#openapi_server.nvf_framework.nfv_framework.AbstractNFVFramework.token" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-openapi_server.nvf_framework.tacker">
+<span id="openapi-server-nvf-framework-tacker-module"></span><h2>openapi_server.nvf_framework.tacker module<a class="headerlink" href="#module-openapi_server.nvf_framework.tacker" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="openapi_server.nvf_framework.tacker.Tacker">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openapi_server.nvf_framework.tacker.</span></span><span class="sig-name descname"><span class="pre">Tacker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tacker_config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.nvf_framework.tacker.Tacker" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#openapi_server.nvf_framework.nfv_framework.AbstractNFVFramework" title="openapi_server.nvf_framework.nfv_framework.AbstractNFVFramework"><code class="xref py py-class docutils literal notranslate"><span class="pre">openapi_server.nvf_framework.nfv_framework.AbstractNFVFramework</span></code></a></p>
+<p>Tacker’s responsibility is to communicate with the Tacker instance running on the VM</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="openapi_server.nvf_framework.tacker.Tacker.create_vnf">
+<span class="sig-name descname"><span class="pre">create_vnf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vnfd_id</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.nvf_framework.tacker.Tacker.create_vnf" title="Permalink to this definition"></a></dt>
+<dd><p>args and kwargs for liskov</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openapi_server.nvf_framework.tacker.Tacker.create_vnfd">
+<span class="sig-name descname"><span class="pre">create_vnfd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attributes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.nvf_framework.tacker.Tacker.create_vnfd" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openapi_server.nvf_framework.tacker.Tacker.delete_vnf">
+<span class="sig-name descname"><span class="pre">delete_vnf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vnf_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.nvf_framework.tacker.Tacker.delete_vnf" title="Permalink to this definition"></a></dt>
+<dd><p>Deleted a VNF with the given vnf_id
+:param vnf_id: string
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openapi_server.nvf_framework.tacker.Tacker.delete_vnfd">
+<span class="sig-name descname"><span class="pre">delete_vnfd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vnfd_id</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#openapi_server.nvf_framework.tacker.Tacker.delete_vnfd" title="Permalink to this definition"></a></dt>
+<dd><p>Returns status code upon deletion of a vnfd
+:param vnfd_id: str
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openapi_server.nvf_framework.tacker.Tacker.get_vims">
+<span class="sig-name descname"><span class="pre">get_vims</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.nvf_framework.tacker.Tacker.get_vims" title="Permalink to this definition"></a></dt>
+<dd><p>Returns VIMS from tacker
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openapi_server.nvf_framework.tacker.Tacker.get_vnf">
+<span class="sig-name descname"><span class="pre">get_vnf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vnf_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.nvf_framework.tacker.Tacker.get_vnf" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a VNF from tacker
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openapi_server.nvf_framework.tacker.Tacker.get_vnfd">
+<span class="sig-name descname"><span class="pre">get_vnfd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vnfd_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.nvf_framework.tacker.Tacker.get_vnfd" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openapi_server.nvf_framework.tacker.Tacker.get_vnfds">
+<span class="sig-name descname"><span class="pre">get_vnfds</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.nvf_framework.tacker.Tacker.get_vnfds" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openapi_server.nvf_framework.tacker.Tacker.get_vnfs">
+<span class="sig-name descname"><span class="pre">get_vnfs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.nvf_framework.tacker.Tacker.get_vnfs" title="Permalink to this definition"></a></dt>
+<dd><p>Returns VNFS from tacker
+:return:</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-openapi_server.nvf_framework">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-openapi_server.nvf_framework" title="Permalink to this headline"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, BCV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
