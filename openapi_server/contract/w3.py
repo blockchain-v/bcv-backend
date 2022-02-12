@@ -21,5 +21,5 @@ else:
 with open(sc_path) as f:
     contractJSON = json.load(f)
 contract = w3.eth.contract(
-    address=contractJSON["networks"]["5777"]["address"], abi=contractJSON["abi"]
+    address=config.WEB3_CONFIG["W3_CONTRACT_ADDRESS"], abi=contractJSON["abi"]
 )
