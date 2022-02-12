@@ -13,6 +13,41 @@ tags:
 - description: Endpoints for VNF
   name: vnf
 paths:
+  /errormsg:
+    get:
+      description: Returns errors for a user, if auth was successful
+      operationId: get_errormsg
+      parameters:
+      - description: Filter error message by vnfId
+        in: query
+        name: vnfId
+        required: false
+        schema:
+          type: string
+      - description: Filter error message by deploymentId
+        in: query
+        name: deploymentId
+        required: false
+        schema:
+          type: integer
+      responses:
+        "401":
+          description: Not authorized
+        "404":
+          description: Not found
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tackerErrorMsg'
+          description: Successfully returned errormsg
+      security:
+      - ApiKeyAuth: []
+      summary: Returns errormsg for a vnf deploymentId or vnfId
+      tags:
+      - errormsg
+      x-swagger-router-controller: server.controller
+      x-openapi-router-controller: openapi_server.controllers.errormsg_controller
   /token:
     post:
       description: Tokens are valid for one day and are used for auth.
@@ -129,8 +164,8 @@ paths:
       x-openapi-router-controller: openapi_server.controllers.vnf_controller
   /vnfd:
     get:
-      description: Returns all VNFD (vnf descriptors) from the nvf_framework instance, if
-        auth was successful
+      description: Returns all VNFD (vnf descriptors) from the nvf_framework instance,
+        if auth was successful
       operationId: get_vnfds
       responses:
         "400":
@@ -180,8 +215,8 @@ paths:
       x-openapi-router-controller: openapi_server.controllers.vnfd_controller
   /vnfd/<vnfd_id>:
     delete:
-      description: Deletes a VNFD (vnf descriptor) from the nvf_framework instance, if auth
-        was successful
+      description: Deletes a VNFD (vnf descriptor) from the nvf_framework instance,
+        if auth was successful
       operationId: delete_vnfd
       responses:
         "400":
@@ -200,8 +235,8 @@ paths:
       x-swagger-router-controller: server.controller
       x-openapi-router-controller: openapi_server.controllers.vnfd_controller
     get:
-      description: Returns a VNFD (vnf descriptor) from the nvf_framework instance, if auth
-        was successful
+      description: Returns a VNFD (vnf descriptor) from the nvf_framework instance,
+        if auth was successful
       operationId: get_vnfd
       responses:
         "400":
@@ -304,6 +339,23 @@ components:
           title: address
           type: string
       title: addressRequest
+      type: object
+    tackerErrorMsg:
+      example:
+        detail: detail
+        type: type
+        message: message
+      properties:
+        type:
+          title: type
+          type: string
+        message:
+          title: message
+          type: string
+        detail:
+          title: detail
+          type: string
+      title: inline_response_200
       type: object
   securitySchemes:
     ApiKeyAuth:

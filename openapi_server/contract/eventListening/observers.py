@@ -76,9 +76,9 @@ class UnregistrationStatusObserver(AbstractObserver):
 
 
 def start_sc_event_listening(user_service, vnf_service, *args, **kwargs):
-    regOb = RegisterObserver(eventListener, user_service.service)
-    unregOb = UnregisterObserver(eventListener, user_service.service)
-    deployOb = DeployVNFObserver(eventListener, vnf_service.service)
-    delOb = DeleteVNFObserver(eventListener, vnf_service.service)
-    regStOb = RegistrationStatusObserver(eventListener)
-    unregStOb = UnregistrationStatusObserver(eventListener)
+    RegisterObserver(eventListener, user_service.service)
+    UnregisterObserver(eventListener, user_service.service)
+    DeployVNFObserver(eventListener, vnf_service.service)
+    DeleteVNFObserver(eventListener, vnf_service.service)
+    RegistrationStatusObserver(eventListener)
+    UnregistrationStatusObserver(eventListener)

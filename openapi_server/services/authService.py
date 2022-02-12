@@ -103,7 +103,7 @@ def verify_token(token_str) -> bool:
         token_data = decode_token(token_str)
         user = User.objects.get(address=token_data["address"])
         return len(user) > 0
-    except InvalidTokenError or ExpiredSignatureError or DoesNotExist:
+    except (InvalidTokenError, ExpiredSignatureError, DoesNotExist):
         return False
 
 
