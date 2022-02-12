@@ -11,7 +11,7 @@ log = logging.getLogger("vnfService")
 
 class VNFService:
     def __init__(self, tacker_client):
-        self.tackerClient = tacker_client
+        self.tacker_client = tacker_client
 
     def deploy_vnf(self, event_args_dict) -> None:
         try:
@@ -19,7 +19,7 @@ class VNFService:
                 "creator", "deploymentId", "vnfdId", "parameters"
             )(event_args_dict)
             log.info(f"{creator_address}, {deployment_id}, {vnfd_id}, {parameters}")
-            vnf, status_code = self.tackerClient.create_vnf(
+            vnf, status_code = self.tacker_client.create_vnf(
                 parameters=parameters, vnfd_id=vnfd_id
             )
             success = status_code == 201
@@ -39,7 +39,7 @@ class VNFService:
         )(event_args_dict)
         log.info(f"{creator_address}, {deployment_id}")
         try:
-            status_code = self.tackerClient.delete_vnf(vnf_id)
+            status_code = self.tacker_client.delete_vnf(vnf_id)
             success = status_code == 204
             smartContractService.service.report_vnf_deletion(
                 deployment_id, creator_address, success
@@ -82,7 +82,7 @@ class VNFService:
             )
 
         except Exception as e:
-            status = 404 if (vnf_id and len(vnf_details) >= 0) else 400
+            status = 404 if (vnf_id and vnf_details) else 400
             log.warning(e)
             return "Error", status
 
@@ -91,7 +91,7 @@ class VNFService:
         Gets vnf details and adds the contract internal's deploymentID as an attribute
         :param contract_vnf: ContractVNF
         """
-        res, status = self.tackerClient.get_vnf(contract_vnf.vnf_id)
+        res, status = self.tacker_client.get_vnf(contract_vnf.vnf_id)
         if status == 200:
             return {**res, "deploymentID": contract_vnf.deployment_id}
         return
