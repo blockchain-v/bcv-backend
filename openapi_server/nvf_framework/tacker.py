@@ -84,16 +84,29 @@ class Tacker(AbstractNFVFramework):
     """
 
     def get_vnfds(self):
+        """
+        Returns all vnfd's
+        """
         response = self._reqGET("vnfds")
         vnfds = response.json().get("vnfds")
         return vnfds, response.status_code
 
     def get_vnfd(self, vnfd_id):
+        """
+        Returns a vnfd by its id
+        :param vnfd_id: str
+        """
         response = self._reqGET(f"vnfds/{vnfd_id}")
         vnfd = response.json().get("vnfd")
         return vnfd, response.status_code
 
     def create_vnfd(self, attributes, name, description):
+        """
+        Create a vnfd in tacker
+        :param attributes: dict
+        :param name: str
+        :param description: str
+        """
         data = {
             "vnfd": {
                 "tenant_id": self._tenant_id,
@@ -112,9 +125,10 @@ class Tacker(AbstractNFVFramework):
 
     def delete_vnfd(self, vnfd_id) -> int:
         """
+        Deletes a vnfd by its id
         Returns status code upon deletion of a vnfd
         :param vnfd_id: str
-        :return:
+        :return: int
         """
         response = self._reqDELETE(f"vnfds/{vnfd_id}")
         log.info(f"res {response}")
@@ -145,6 +159,11 @@ class Tacker(AbstractNFVFramework):
         return vnf, response.status_code
 
     def create_vnf(self, parameters, vnfd_id, *args, **kwargs):
+        """
+        Create a vnf with the given parameters in tacker.
+        :param parameters: str
+        :param vnfd_id: str
+        """
         parameters = json.loads(parameters)
         data = {
             "vnf": {
@@ -160,6 +179,8 @@ class Tacker(AbstractNFVFramework):
 
         response = self._reqPOST("vnfs", data)
         log.info(f"{response}")
+        if not response.json().get("vnf"):
+            return json.loads(response.text), response.status_code
         return response.json().get("vnf"), response.status_code
 
     def delete_vnf(self, vnf_id):
