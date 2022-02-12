@@ -52,6 +52,14 @@ openapi\_server.models.tacker\_config module
    :undoc-members:
    :show-inheritance:
 
+openapi\_server.models.tacker\_error module
+-------------------------------------------
+
+.. automodule:: openapi_server.models.tacker_error
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 openapi\_server.models.token\_request module
 --------------------------------------------
 

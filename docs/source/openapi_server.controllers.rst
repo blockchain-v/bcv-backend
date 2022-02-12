@@ -4,6 +4,14 @@ openapi\_server.controllers package
 Submodules
 ----------
 
+openapi\_server.controllers.errormsg\_controller module
+-------------------------------------------------------
+
+.. automodule:: openapi_server.controllers.errormsg_controller
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 openapi\_server.controllers.security\_controller\_ module
 ---------------------------------------------------------
 

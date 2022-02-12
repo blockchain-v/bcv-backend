@@ -12,6 +12,14 @@ openapi\_server.services.authService module
    :undoc-members:
    :show-inheritance:
 
+openapi\_server.services.errormsgService module
+-----------------------------------------------
+
+.. automodule:: openapi_server.services.errormsgService
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 openapi\_server.services.smartContractService module
 ----------------------------------------------------
 
