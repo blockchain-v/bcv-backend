@@ -3,7 +3,7 @@ from uuid import uuid4
 import jwt
 from datetime import datetime, timedelta
 from mongoengine import DoesNotExist
-
+from openapi_server.contract import w3
 from openapi_server import config
 from openapi_server.services import userService, check_auth
 from openapi_server.repositories import Nonce
@@ -18,6 +18,8 @@ class TokenService:
         :param address_request: AddressRequest
         :return: Response
         """
+        if not w3.isAddress(address_request.address):
+            return "Error", 403
         nonce = TokenService.create_nonce_handler(address_request.address)
         if nonce:
             return {"nonce": nonce}, 201

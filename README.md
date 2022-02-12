@@ -28,6 +28,15 @@ assumed folder structure:
    2. the SC addresses to ones from your local ganache setup (will be used to register the backend)
 8. start the backend in parent directory: e.g. `python3 -m openapi_server`
 
+### Tests
+- `
+pip3 install -r test-requirements.txt
+`
+- run
+`
+pytest --cov=openapi_server
+`
+
 
 ### Contributing
 This project uses [Black](https://github.com/psf/black) for code formatting in a pre-commit hook.
