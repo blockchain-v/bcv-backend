@@ -160,6 +160,8 @@ class Tacker(AbstractNFVFramework):
 
         response = self._reqPOST("vnfs", data)
         log.info(f"{response}")
+        if not response.json().get("vnf"):
+            return json.loads(response.text), response.status_code
         return response.json().get("vnf"), response.status_code
 
     def delete_vnf(self, vnf_id):

@@ -13,3 +13,4 @@ from openapi_server.models.vnf import Vnf
 from openapi_server.models.vnfd import Vnfd
 from openapi_server.models.tacker_config import TackerConfig
 from openapi_server.models.contract_vnf import ContractVNF
+from openapi_server.models.tacker_error import TackerErrorModel
