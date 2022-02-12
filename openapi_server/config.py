@@ -37,4 +37,5 @@ SC_BACKEND_CONFIG = {
 
 WEB3_CONFIG = {
     "URL": os.environ.get("W3_URL"),
+    "W3_CONTRACT_ADDRESS": os.environ.get("W3_CONTRACT_ADDRESS"),
 }
