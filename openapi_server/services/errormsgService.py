@@ -1,6 +1,5 @@
 import logging
 
-from openapi_server.models import TackerErrorModel
 from openapi_server.repositories import TackerError
 from mongoengine import DoesNotExist
 
@@ -11,6 +10,7 @@ class ErrormsgService:
     @staticmethod
     def get_errormsg(user_address, vnf_id=None, deployment_id=None):
         """
+        Returns a Tacker Error message to the client
         :param user_address: str
         :param vnf_id: str
         :param deployment_id: int
@@ -33,6 +33,13 @@ class ErrormsgService:
     def store_errormsg(
         tacker_error=None, vnf_id=None, deployment_id=None, address=None
     ):
+        """
+        Stores a Tacker Error message into the db
+        :param tacker_error: TackerErrorModel
+        :param vnf_id: str
+        :param deployment_id: int
+        :param address: str
+        """
         try:
             err_msg = TackerError(
                 address=address,
@@ -44,7 +51,7 @@ class ErrormsgService:
             )
             err_msg.save()
         except Exception as e:
-            pass
+            log.info(f"storing error message failed: {e}")
 
 
 service = ErrormsgService()
