@@ -40,9 +40,9 @@
               <div class="local-toc"><ul>
 <li><a class="reference internal" href="#">openapi_server.services package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
-<li><a class="reference internal" href="#module-openapi_server.services.authService">openapi_server.services.authService module</a></li>
+<li><a class="reference internal" href="#openapi-server-services-authservice-module">openapi_server.services.authService module</a></li>
 <li><a class="reference internal" href="#module-openapi_server.services.errormsgService">openapi_server.services.errormsgService module</a></li>
-<li><a class="reference internal" href="#module-openapi_server.services.smartContractService">openapi_server.services.smartContractService module</a></li>
+<li><a class="reference internal" href="#openapi-server-services-smartcontractservice-module">openapi_server.services.smartContractService module</a></li>
 <li><a class="reference internal" href="#module-openapi_server.services.tokenService">openapi_server.services.tokenService module</a></li>
 <li><a class="reference internal" href="#module-openapi_server.services.userService">openapi_server.services.userService module</a></li>
 <li><a class="reference internal" href="#module-openapi_server.services.vnfService">openapi_server.services.vnfService module</a></li>
@@ -81,56 +81,8 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
 </section>
-<section id="module-openapi_server.services.authService">
-<span id="openapi-server-services-authservice-module"></span><h2>openapi_server.services.authService module<a class="headerlink" href="#module-openapi_server.services.authService" title="Permalink to this headline"></a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="openapi_server.services.authService.authorize">
-<span class="sig-prename descclassname"><span class="pre">openapi_server.services.authService.</span></span><span class="sig-name descname"><span class="pre">authorize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.services.authService.authorize" title="Permalink to this definition"></a></dt>
-<dd><p>Authorizes a user and returns the user address
-:param token: str
-:return: dict</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="openapi_server.services.authService.check_auth">
-<span class="sig-prename descclassname"><span class="pre">openapi_server.services.authService.</span></span><span class="sig-name descname"><span class="pre">check_auth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#openapi_server.services.authService.check_auth" title="Permalink to this definition"></a></dt>
-<dd><p>Verifies a claim (e.g. an address) by comparing it to its value that was recovered from a digitally signed string
-:return: boolean</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="openapi_server.services.authService.decode_token">
-<span class="sig-prename descclassname"><span class="pre">openapi_server.services.authService.</span></span><span class="sig-name descname"><span class="pre">decode_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token_str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.services.authService.decode_token" title="Permalink to this definition"></a></dt>
-<dd><p>Decodes JWT token
-:param token_str: string
-:return: token : dict</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="openapi_server.services.authService.get_address_from_token">
-<span class="sig-prename descclassname"><span class="pre">openapi_server.services.authService.</span></span><span class="sig-name descname"><span class="pre">get_address_from_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.services.authService.get_address_from_token" title="Permalink to this definition"></a></dt>
-<dd><p>Return address from a token
-:param token: string
-:return: address : string | bool</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="openapi_server.services.authService.verify_nonce">
-<span class="sig-prename descclassname"><span class="pre">openapi_server.services.authService.</span></span><span class="sig-name descname"><span class="pre">verify_nonce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nonce</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_address</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#openapi_server.services.authService.verify_nonce" title="Permalink to this definition"></a></dt>
-<dd><p>Verifies if a given pair of nonce and userAddress exists and is still valid
-:param nonce:
-:param user_address:
-:return: bool: is the nonce valid</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="openapi_server.services.authService.verify_token">
-<span class="sig-prename descclassname"><span class="pre">openapi_server.services.authService.</span></span><span class="sig-name descname"><span class="pre">verify_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token_str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#openapi_server.services.authService.verify_token" title="Permalink to this definition"></a></dt>
-<dd><p>Verifies if a given token exists and is still valid
-:param token_str: string
-:return: bool : is the token valid</p>
-</dd></dl>
-
+<section id="openapi-server-services-authservice-module">
+<h2>openapi_server.services.authService module<a class="headerlink" href="#openapi-server-services-authservice-module" title="Permalink to this headline"></a></h2>
 </section>
 <section id="module-openapi_server.services.errormsgService">
 <span id="openapi-server-services-errormsgservice-module"></span><h2>openapi_server.services.errormsgService module<a class="headerlink" href="#module-openapi_server.services.errormsgService" title="Permalink to this headline"></a></h2>
@@ -161,77 +113,8 @@
 </dd></dl>
 
 </section>
-<section id="module-openapi_server.services.smartContractService">
-<span id="openapi-server-services-smartcontractservice-module"></span><h2>openapi_server.services.smartContractService module<a class="headerlink" href="#module-openapi_server.services.smartContractService" title="Permalink to this headline"></a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="openapi_server.services.smartContractService.SmartContractService">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openapi_server.services.smartContractService.</span></span><span class="sig-name descname"><span class="pre">SmartContractService</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contract</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.services.smartContractService.SmartContractService" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="py property">
-<dt class="sig sig-object py" id="openapi_server.services.smartContractService.SmartContractService.contract">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">contract</span></span><a class="headerlink" href="#openapi_server.services.smartContractService.SmartContractService.contract" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="openapi_server.services.smartContractService.SmartContractService.get_vnf_details_from_contract">
-<span class="sig-name descname"><span class="pre">get_vnf_details_from_contract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_address</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.services.smartContractService.SmartContractService.get_vnf_details_from_contract" title="Permalink to this definition"></a></dt>
-<dd><p>Calls the SC function ‘getVnfs’ to get all vnf details for a specific user.
-:param user_address: str
-:return:</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="openapi_server.services.smartContractService.SmartContractService.register_backend_in_sc">
-<span class="sig-name descname"><span class="pre">register_backend_in_sc</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.services.smartContractService.SmartContractService.register_backend_in_sc" title="Permalink to this definition"></a></dt>
-<dd><p>Calls the smart contract function ‘registerBackend’
-:return:</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="openapi_server.services.smartContractService.SmartContractService.report_registration_to_sc">
-<span class="sig-name descname"><span class="pre">report_registration_to_sc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">success</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.services.smartContractService.SmartContractService.report_registration_to_sc" title="Permalink to this definition"></a></dt>
-<dd><p>Reports whether the registration process in the backend was successful or not.
-This is done by calling the SC function directly.
-:param user: str
-:param success: bool
-:return:</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="openapi_server.services.smartContractService.SmartContractService.report_unregistration_to_sc">
-<span class="sig-name descname"><span class="pre">report_unregistration_to_sc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">success</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.services.smartContractService.SmartContractService.report_unregistration_to_sc" title="Permalink to this definition"></a></dt>
-<dd><p>Reports whether the unregister process in the backend was successful or not.
-This is done by calling the SC function directly.
-:param user: str
-:param success: bool
-:return:</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="openapi_server.services.smartContractService.SmartContractService.report_vnf_deletion">
-<span class="sig-name descname"><span class="pre">report_vnf_deletion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deployment_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">creator_address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">success</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.services.smartContractService.SmartContractService.report_vnf_deletion" title="Permalink to this definition"></a></dt>
-<dd><p>Reports whether an attempt to delete a VNF has been successful.
-Calls the SC function reportDeletion.
-:param deployment_id: int : SC internal identifier for the VNF
-:param creator_address: str: address of the user whom the VNF belonged to
-:param success: bool: signs whether the VNF has been successfully deleted
-:return:</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="openapi_server.services.smartContractService.SmartContractService.report_vnf_deployment">
-<span class="sig-name descname"><span class="pre">report_vnf_deployment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deployment_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">creator_address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">success</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tacker_vnf_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.services.smartContractService.SmartContractService.report_vnf_deployment" title="Permalink to this definition"></a></dt>
-<dd><p>Reports whether an attempt to create a VNF has been successful.
-Calls the SC function reportDeployment.
-:param deployment_id: int : SC internal identifier for the VNF
-:param creator_address: str: address of the user whom the VNF belongs to
-:param success: bool: signs whether the VNF has been successfully created
-:param tacker_vnf_id: str: id of the newly created VNF, empty string if unsuccessful
-:return:</p>
-</dd></dl>
-
-</dd></dl>
-
+<section id="openapi-server-services-smartcontractservice-module">
+<h2>openapi_server.services.smartContractService module<a class="headerlink" href="#openapi-server-services-smartcontractservice-module" title="Permalink to this headline"></a></h2>
 </section>
 <section id="module-openapi_server.services.tokenService">
 <span id="openapi-server-services-tokenservice-module"></span><h2>openapi_server.services.tokenService module<a class="headerlink" href="#module-openapi_server.services.tokenService" title="Permalink to this headline"></a></h2>
@@ -239,6 +122,7 @@ Calls the SC function reportDeployment.
 <dt class="sig sig-object py" id="openapi_server.services.tokenService.TokenService">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openapi_server.services.tokenService.</span></span><span class="sig-name descname"><span class="pre">TokenService</span></span><a class="headerlink" href="#openapi_server.services.tokenService.TokenService" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Service class for the token resource</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="openapi_server.services.tokenService.TokenService.create_nonce">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_nonce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address_request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.services.tokenService.TokenService.create_nonce" title="Permalink to this definition"></a></dt>
@@ -292,6 +176,7 @@ Calls the SC function reportDeployment.
 <dt class="sig sig-object py" id="openapi_server.services.userService.UserService">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openapi_server.services.userService.</span></span><span class="sig-name descname"><span class="pre">UserService</span></span><a class="headerlink" href="#openapi_server.services.userService.UserService" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Service class for users</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="openapi_server.services.userService.UserService.is_user_registered">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_user_registered</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#openapi_server.services.userService.UserService.is_user_registered" title="Permalink to this definition"></a></dt>
@@ -325,15 +210,18 @@ Calls the SC function reportDeployment.
 <dt class="sig sig-object py" id="openapi_server.services.vnfService.VNFService">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openapi_server.services.vnfService.</span></span><span class="sig-name descname"><span class="pre">VNFService</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nfv_client</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="openapi_server.nvf_framework.html#openapi_server.nvf_framework.nfv_framework.AbstractNFVFramework" title="openapi_server.nvf_framework.nfv_framework.AbstractNFVFramework"><span class="pre">openapi_server.nvf_framework.nfv_framework.AbstractNFVFramework</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.services.vnfService.VNFService" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Service class for the vnf resource</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="openapi_server.services.vnfService.VNFService.delete_vnf">
 <span class="sig-name descname"><span class="pre">delete_vnf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event_args_dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#openapi_server.services.vnfService.VNFService.delete_vnf" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Delete a given vnf</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="openapi_server.services.vnfService.VNFService.deploy_vnf">
 <span class="sig-name descname"><span class="pre">deploy_vnf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event_args_dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#openapi_server.services.vnfService.VNFService.deploy_vnf" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Deploy a vnf</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="openapi_server.services.vnfService.VNFService.get_users_vnf">
@@ -360,25 +248,33 @@ Calls the SC function reportDeployment.
 <dt class="sig sig-object py" id="openapi_server.services.vnfdService.VNFDService">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openapi_server.services.vnfdService.</span></span><span class="sig-name descname"><span class="pre">VNFDService</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tacker_client</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.services.vnfdService.VNFDService" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Service class for the vnfd resource</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="openapi_server.services.vnfdService.VNFDService.create_vnfd">
 <span class="sig-name descname"><span class="pre">create_vnfd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_vnfd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.services.vnfdService.VNFDService.create_vnfd" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Create a new vnfd
+:param new_vnfd: NewVnfd</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="openapi_server.services.vnfdService.VNFDService.delete_vnfd">
 <span class="sig-name descname"><span class="pre">delete_vnfd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vnfd_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.services.vnfdService.VNFDService.delete_vnfd" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Delete a specific vnfd by its vnfd_id
+:param vnfd_id: str</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="openapi_server.services.vnfdService.VNFDService.get_vnfd">
 <span class="sig-name descname"><span class="pre">get_vnfd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vnfd_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.services.vnfdService.VNFDService.get_vnfd" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Return a specific vnfd by its vnfd_id
+:param vnfd_id: str</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="openapi_server.services.vnfdService.VNFDService.get_vnfds">
 <span class="sig-name descname"><span class="pre">get_vnfds</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.services.vnfdService.VNFDService.get_vnfds" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Get all vnfd’s</p>
+</dd></dl>
 
 </dd></dl>
 

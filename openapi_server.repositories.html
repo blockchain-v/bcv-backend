@@ -83,6 +83,11 @@
 <dt class="sig sig-object py" id="openapi_server.repositories.nonce.Nonce">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openapi_server.repositories.nonce.</span></span><span class="sig-name descname"><span class="pre">Nonce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.repositories.nonce.Nonce" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">flask_mongoengine.Document</span></code></p>
+<p>Used to issue tokens
+Nonces get deleted when
+- a token is issued
+- a new nonce is requested
+They are 1d valid.</p>
 <dl class="py exception">
 <dt class="sig sig-object py" id="openapi_server.repositories.nonce.Nonce.DoesNotExist">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#openapi_server.repositories.nonce.Nonce.DoesNotExist" title="Permalink to this definition"></a></dt>
@@ -151,6 +156,8 @@ add extra queryset functionality.  Any custom manager methods must accept a
 <dt class="sig sig-object py" id="openapi_server.repositories.tacker_error.TackerError">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openapi_server.repositories.tacker_error.</span></span><span class="sig-name descname"><span class="pre">TackerError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.repositories.tacker_error.TackerError" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">flask_mongoengine.Document</span></code></p>
+<p>Used to store tacker deployment errors into the db, so that clients can query for the errors.
+As such, no private informations are leaked through the smart contract</p>
 <dl class="py exception">
 <dt class="sig sig-object py" id="openapi_server.repositories.tacker_error.TackerError.DoesNotExist">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#openapi_server.repositories.tacker_error.TackerError.DoesNotExist" title="Permalink to this definition"></a></dt>
@@ -226,6 +233,7 @@ add extra queryset functionality.  Any custom manager methods must accept a
 <dt class="sig sig-object py" id="openapi_server.repositories.user.User">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openapi_server.repositories.user.</span></span><span class="sig-name descname"><span class="pre">User</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.repositories.user.User" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">flask_mongoengine.Document</span></code></p>
+<p>Registered Users, from the smart contract</p>
 <dl class="py exception">
 <dt class="sig sig-object py" id="openapi_server.repositories.user.User.DoesNotExist">
 <em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#openapi_server.repositories.user.User.DoesNotExist" title="Permalink to this definition"></a></dt>

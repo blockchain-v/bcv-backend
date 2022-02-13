@@ -91,23 +91,27 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="openapi_server.nvf_framework.nfv_framework.AbstractNFVFramework.create_vnf">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_vnf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.nvf_framework.nfv_framework.AbstractNFVFramework.create_vnf" title="Permalink to this definition"></a></dt>
-<dd><p>args and kwargs for liskov</p>
+<dd><p>Create a vnf
+args and kwargs for liskov</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="openapi_server.nvf_framework.nfv_framework.AbstractNFVFramework.delete_vnf">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">delete_vnf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vnf_id</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.nvf_framework.nfv_framework.AbstractNFVFramework.delete_vnf" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Delete a vnf by vnf_id</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="openapi_server.nvf_framework.nfv_framework.AbstractNFVFramework.get_vnf">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_vnf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vnf_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.nvf_framework.nfv_framework.AbstractNFVFramework.get_vnf" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Get a vnf by vnf_id</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="openapi_server.nvf_framework.nfv_framework.AbstractNFVFramework.get_vnfs">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_vnfs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.nvf_framework.nfv_framework.AbstractNFVFramework.get_vnfs" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Get all vnfs</p>
+</dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="openapi_server.nvf_framework.nfv_framework.AbstractNFVFramework.headers">
@@ -128,11 +132,13 @@
 <dt class="sig sig-object py" id="openapi_server.nvf_framework.tacker.Tacker">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openapi_server.nvf_framework.tacker.</span></span><span class="sig-name descname"><span class="pre">Tacker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tacker_config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.nvf_framework.tacker.Tacker" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#openapi_server.nvf_framework.nfv_framework.AbstractNFVFramework" title="openapi_server.nvf_framework.nfv_framework.AbstractNFVFramework"><code class="xref py py-class docutils literal notranslate"><span class="pre">openapi_server.nvf_framework.nfv_framework.AbstractNFVFramework</span></code></a></p>
-<p>Tacker’s responsibility is to communicate with the Tacker instance running on the VM</p>
+<p>Tacker’s responsibility is to communicate with the Tacker instance running on the VM.
+It serves as a concrete implementation of the nfv mano framework</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="openapi_server.nvf_framework.tacker.Tacker.connect">
 <span class="sig-name descname"><span class="pre">connect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.nvf_framework.tacker.Tacker.connect" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Connect to the tacker instance</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="openapi_server.nvf_framework.tacker.Tacker.create_vnf">
