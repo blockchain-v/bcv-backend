@@ -9,12 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: ammaraskar/sphinx-action@master
+    - name: sphinx
+      run: |
+        cd docs
+        pip install -r requirements.txt
+        sphinx-build -b html ./source ./build
+    - name: Push to gh-page
+      uses: actions/upload-artifact@v2
       with:
-        docs-folder: "docs/"
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        branch: gh-pages
-        directory: gh-pages
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        name: DocumentationHTML
+        path: docs/build/

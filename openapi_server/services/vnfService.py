@@ -4,14 +4,16 @@ from openapi_server.nvf_framework import tacker
 from openapi_server.models import ContractVNF, TackerErrorModel
 import logging
 from operator import itemgetter
+
+from ..nvf_framework.nfv_framework import AbstractNFVFramework
 from ..utils.util import remove_none_entries_from_list
 
 log = logging.getLogger("vnfService")
 
 
 class VNFService:
-    def __init__(self, tacker_client):
-        self.tacker_client = tacker_client
+    def __init__(self, nfv_client: AbstractNFVFramework):
+        self.nfv_client = nfv_client
 
     def deploy_vnf(self, event_args_dict) -> None:
         creator_address, deployment_id, vnfd_id, parameters = itemgetter(
@@ -20,7 +22,7 @@ class VNFService:
         log.info(f"{creator_address}, {deployment_id}, {vnfd_id}, {parameters}")
         try:
 
-            res, status_code = self.tacker_client.create_vnf(
+            res, status_code = self.nfv_client.create_vnf(
                 parameters=parameters, vnfd_id=vnfd_id
             )
             success = status_code == 201
@@ -47,7 +49,7 @@ class VNFService:
         )(event_args_dict)
         log.info(f"{creator_address}, {deployment_id}")
         try:
-            status_code = self.tacker_client.delete_vnf(vnf_id)
+            status_code = self.nfv_client.delete_vnf(vnf_id)
             success = status_code == 204
             smartContractService.service.report_vnf_deletion(
                 deployment_id, creator_address, success
@@ -79,7 +81,7 @@ class VNFService:
             vnf_details = [
                 self.get_vnf_details(vnf)
                 for vnf in contract_vnfs
-                if vnf.vnf_id and not vnf.is_deleted
+                if vnf.vnf_id and not vnf.is_deleted and vnf.is_deployed
             ]
             if not vnf_id:
                 return remove_none_entries_from_list(vnf_details)
@@ -99,10 +101,10 @@ class VNFService:
         Gets vnf details and adds the contract internal's deploymentID as an attribute
         :param contract_vnf: ContractVNF
         """
-        res, status = self.tacker_client.get_vnf(contract_vnf.vnf_id)
+        res, status = self.nfv_client.get_vnf(contract_vnf.vnf_id)
         if status == 200:
             return {**res, "deploymentID": contract_vnf.deployment_id}
         return
 
 
-service = VNFService(tacker_client=tacker)
+service = VNFService(nfv_client=tacker)

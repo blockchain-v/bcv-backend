@@ -2,6 +2,8 @@
 
 import connexion
 from flask_cors import CORS
+
+from openapi_server.nvf_framework import tacker
 from openapi_server.utils import encoder
 from openapi_server import config
 from openapi_server.contract import start_sc_event_listening
@@ -20,10 +22,14 @@ def main():
     app.app.json_encoder = encoder.JSONEncoder
     app.app.config["MONGODB_SETTINGS"] = config.MONGODB_SETTINGS
     app.add_api("openapi.yaml", arguments={"title": "BCV"}, pythonic_params=True)
-
     CORS(app.app)
+    # connect to the db
     init_db(app.app)
+    # connect to the Tacker VNF MANO Framework
+    tacker.connect()
+    # register the bcv-backend to the smart contract
     smartContractService.service.register_backend_in_sc()
+    # start the smart contract event listening
     start_sc_event_listening(vnf_service=vnfService, user_service=userService)
     app.run(port=8080, debug=True, use_reloader=False)
 
