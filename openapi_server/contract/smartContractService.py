@@ -6,6 +6,10 @@ log = logging.getLogger("smartContractService")
 
 
 class SmartContractService:
+    """
+    Service class for the smart contract
+    """
+
     def __init__(self, contract):
         self._contract = contract
 

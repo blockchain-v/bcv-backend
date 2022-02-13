@@ -7,5 +7,6 @@ db = MongoEngine()
 
 
 def init_db(app):
+    """Initializes the mongo db instance"""
     db.init_app(app)
     log.info(f"db name: {get_db().name}")

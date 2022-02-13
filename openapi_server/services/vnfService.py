@@ -1,4 +1,5 @@
-from openapi_server.services import smartContractService, errormsgService
+from openapi_server.services import errormsgService
+from ..contract import smartContractService
 
 from openapi_server.nvf_framework import tacker
 from openapi_server.models import ContractVNF, TackerErrorModel
@@ -12,10 +13,17 @@ log = logging.getLogger("vnfService")
 
 
 class VNFService:
+    """
+    Service class for the vnf resource
+    """
+
     def __init__(self, nfv_client: AbstractNFVFramework):
         self.nfv_client = nfv_client
 
     def deploy_vnf(self, event_args_dict) -> None:
+        """
+        Deploy a vnf
+        """
         creator_address, deployment_id, vnfd_id, parameters = itemgetter(
             "creator", "deploymentId", "vnfdId", "parameters"
         )(event_args_dict)
@@ -44,6 +52,9 @@ class VNFService:
             )
 
     def delete_vnf(self, event_args_dict) -> None:
+        """
+        Delete a given vnf
+        """
         creator_address, deployment_id, vnf_id = itemgetter(
             "creator", "deploymentId", "vnfId"
         )(event_args_dict)

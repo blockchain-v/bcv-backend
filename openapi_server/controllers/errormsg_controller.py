@@ -3,7 +3,7 @@ from openapi_server.services import errormsgService
 
 
 def get_errormsg(token_info, vnf_id=None, deployment_id=None):  # noqa: E501
-    """Returns errormsg for a vnf deploymentId or vnfId
+    """Returns errormsg for a vnf deployment_id or vnf_id
 
     Returns errors for a user, if auth was successful # noqa: E501
 

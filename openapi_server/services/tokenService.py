@@ -5,13 +5,18 @@ from datetime import datetime, timedelta
 from mongoengine import DoesNotExist
 from openapi_server.contract import w3
 from openapi_server import config
-from openapi_server.services import userService, check_auth
+from openapi_server.services import userService
+from openapi_server.utils import check_auth
 from openapi_server.repositories import Nonce
 
 log = logging.getLogger("TokenService")
 
 
 class TokenService:
+    """
+    Service class for the token resource
+    """
+
     @staticmethod
     def create_nonce(address_request):
         """

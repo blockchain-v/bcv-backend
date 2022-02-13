@@ -10,6 +10,10 @@ import jwt
 
 log = logging.getLogger("authService")
 
+"""
+Util methods for auth
+"""
+
 
 def check_auth(*args, **kwargs) -> bool:
     """
