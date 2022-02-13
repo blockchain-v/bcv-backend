@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>openapi_server.models package &mdash; BCV-Backend 1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> BCV-Backend
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">openapi_server.models package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-openapi_server.models.address_request">openapi_server.models.address_request module</a></li>
+<li><a class="reference internal" href="#module-openapi_server.models.base_model_">openapi_server.models.base_model_ module</a></li>
+<li><a class="reference internal" href="#module-openapi_server.models.contract_vnf">openapi_server.models.contract_vnf module</a></li>
+<li><a class="reference internal" href="#module-openapi_server.models.new_vnfd">openapi_server.models.new_vnfd module</a></li>
+<li><a class="reference internal" href="#module-openapi_server.models.nonce">openapi_server.models.nonce module</a></li>
+<li><a class="reference internal" href="#module-openapi_server.models.tacker_config">openapi_server.models.tacker_config module</a></li>
+<li><a class="reference internal" href="#module-openapi_server.models.tacker_error">openapi_server.models.tacker_error module</a></li>
+<li><a class="reference internal" href="#module-openapi_server.models.token_request">openapi_server.models.token_request module</a></li>
+<li><a class="reference internal" href="#module-openapi_server.models.token_response">openapi_server.models.token_response module</a></li>
+<li><a class="reference internal" href="#module-openapi_server.models.vnf">openapi_server.models.vnf module</a></li>
+<li><a class="reference internal" href="#module-openapi_server.models.vnfd">openapi_server.models.vnfd module</a></li>
+<li><a class="reference internal" href="#module-openapi_server.models">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">BCV-Backend</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>openapi_server.models package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/openapi_server.models.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="openapi-server-models-package">
+<h1>openapi_server.models package<a class="headerlink" href="#openapi-server-models-package" title="Permalink to this headline"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+</section>
+<section id="module-openapi_server.models.address_request">
+<span id="openapi-server-models-address-request-module"></span><h2>openapi_server.models.address_request module<a class="headerlink" href="#module-openapi_server.models.address_request" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="openapi_server.models.address_request.AddressRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openapi_server.models.address_request.</span></span><span class="sig-name descname"><span class="pre">AddressRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.models.address_request.AddressRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#openapi_server.models.base_model_.Model" title="openapi_server.models.base_model_.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">openapi_server.models.base_model_.Model</span></code></a></p>
+<p>NOTE: This class is auto generated by OpenAPI Generator (<a class="reference external" href="https://openapi-generator.tech">https://openapi-generator.tech</a>).</p>
+<p>Do not edit the class manually.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="openapi_server.models.address_request.AddressRequest.address">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">address</span></span><a class="headerlink" href="#openapi_server.models.address_request.AddressRequest.address" title="Permalink to this definition"></a></dt>
+<dd><p>Gets the address of this AddressRequest.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The address of this AddressRequest.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openapi_server.models.address_request.AddressRequest.from_dict">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dikt</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#openapi_server.models.address_request.AddressRequest" title="openapi_server.models.address_request.AddressRequest"><span class="pre">openapi_server.models.address_request.AddressRequest</span></a></span></span><a class="headerlink" href="#openapi_server.models.address_request.AddressRequest.from_dict" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the dict as a model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dikt</strong> – A dict.</p>
+</dd>
+<dt class="field-even">Type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The addressRequest of this AddressRequest.  # noqa: E501</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#openapi_server.models.address_request.AddressRequest" title="openapi_server.models.address_request.AddressRequest">AddressRequest</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-openapi_server.models.base_model_">
+<span id="openapi-server-models-base-model-module"></span><h2>openapi_server.models.base_model_ module<a class="headerlink" href="#module-openapi_server.models.base_model_" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="openapi_server.models.base_model_.Model">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openapi_server.models.base_model_.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><a class="headerlink" href="#openapi_server.models.base_model_.Model" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openapi_server.models.base_model_.Model.attribute_map">
+<span class="sig-name descname"><span class="pre">attribute_map</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#openapi_server.models.base_model_.Model.attribute_map" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openapi_server.models.base_model_.Model.from_dict">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dikt</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">openapi_server.models.base_model_.T</span></span></span><a class="headerlink" href="#openapi_server.models.base_model_.Model.from_dict" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the dict as a model</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="openapi_server.models.base_model_.Model.openapi_types">
+<span class="sig-name descname"><span class="pre">openapi_types</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#openapi_server.models.base_model_.Model.openapi_types" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openapi_server.models.base_model_.Model.to_dict">
+<span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.models.base_model_.Model.to_dict" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the model properties as a dict</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openapi_server.models.base_model_.Model.to_str">
+<span class="sig-name descname"><span class="pre">to_str</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.models.base_model_.Model.to_str" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the string representation of the model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-openapi_server.models.contract_vnf">
+<span id="openapi-server-models-contract-vnf-module"></span><h2>openapi_server.models.contract_vnf module<a class="headerlink" href="#module-openapi_server.models.contract_vnf" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="openapi_server.models.contract_vnf.ContractVNF">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openapi_server.models.contract_vnf.</span></span><span class="sig-name descname"><span class="pre">ContractVNF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deployment_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vnfd_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vnf_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">owner</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_deployed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_deleted</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.models.contract_vnf.ContractVNF" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#openapi_server.models.base_model_.Model" title="openapi_server.models.base_model_.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">openapi_server.models.base_model_.Model</span></code></a></p>
+<dl class="py property">
+<dt class="sig sig-object py" id="openapi_server.models.contract_vnf.ContractVNF.deployment_id">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">deployment_id</span></span><a class="headerlink" href="#openapi_server.models.contract_vnf.ContractVNF.deployment_id" title="Permalink to this definition"></a></dt>
+<dd><p>Gets the deployment_id of this Vnf.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The deployment_id of this Vnf.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openapi_server.models.contract_vnf.ContractVNF.from_dict">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dikt</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#openapi_server.models.vnf.Vnf" title="openapi_server.models.vnf.Vnf"><span class="pre">Vnf</span></a></span></span><a class="headerlink" href="#openapi_server.models.contract_vnf.ContractVNF.from_dict" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the dict as a model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dikt</strong> – A dict.</p>
+</dd>
+<dt class="field-even">Type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The vnf of this Vnf.  # noqa: E501</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#openapi_server.models.vnf.Vnf" title="openapi_server.models.vnf.Vnf">Vnf</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openapi_server.models.contract_vnf.ContractVNF.is_deleted">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_deleted</span></span><a class="headerlink" href="#openapi_server.models.contract_vnf.ContractVNF.is_deleted" title="Permalink to this definition"></a></dt>
+<dd><p>Gets the is_deleted of this Vnf.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The is_deleted of this Vnf.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openapi_server.models.contract_vnf.ContractVNF.is_deployed">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_deployed</span></span><a class="headerlink" href="#openapi_server.models.contract_vnf.ContractVNF.is_deployed" title="Permalink to this definition"></a></dt>
+<dd><p>Gets the is_deployed of this Vnf.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The is_deployed of this Vnf.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openapi_server.models.contract_vnf.ContractVNF.owner">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">owner</span></span><a class="headerlink" href="#openapi_server.models.contract_vnf.ContractVNF.owner" title="Permalink to this definition"></a></dt>
+<dd><p>Gets the owner of this Vnf.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The owner of this Vnf.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openapi_server.models.contract_vnf.ContractVNF.parameters">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">parameters</span></span><a class="headerlink" href="#openapi_server.models.contract_vnf.ContractVNF.parameters" title="Permalink to this definition"></a></dt>
+<dd><p>Gets the parameters of this Vnf.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The parameters of this Vnf.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openapi_server.models.contract_vnf.ContractVNF.vnf_id">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">vnf_id</span></span><a class="headerlink" href="#openapi_server.models.contract_vnf.ContractVNF.vnf_id" title="Permalink to this definition"></a></dt>
+<dd><p>Gets the vnf_id of this Vnf.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The vnf_id of this Vnf.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openapi_server.models.contract_vnf.ContractVNF.vnfd_id">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">vnfd_id</span></span><a class="headerlink" href="#openapi_server.models.contract_vnf.ContractVNF.vnfd_id" title="Permalink to this definition"></a></dt>
+<dd><p>Gets the vnfd_id of this Vnf.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The vnfd_id of this Vnf.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-openapi_server.models.new_vnfd">
+<span id="openapi-server-models-new-vnfd-module"></span><h2>openapi_server.models.new_vnfd module<a class="headerlink" href="#module-openapi_server.models.new_vnfd" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="openapi_server.models.new_vnfd.NewVnfd">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openapi_server.models.new_vnfd.</span></span><span class="sig-name descname"><span class="pre">NewVnfd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attributes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.models.new_vnfd.NewVnfd" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#openapi_server.models.base_model_.Model" title="openapi_server.models.base_model_.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">openapi_server.models.base_model_.Model</span></code></a></p>
+<p>NOTE: This class is auto generated by OpenAPI Generator (<a class="reference external" href="https://openapi-generator.tech">https://openapi-generator.tech</a>).</p>
+<p>Do not edit the class manually.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="openapi_server.models.new_vnfd.NewVnfd.attributes">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">attributes</span></span><a class="headerlink" href="#openapi_server.models.new_vnfd.NewVnfd.attributes" title="Permalink to this definition"></a></dt>
+<dd><p>Gets the attributes of this NewVnfd.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The attributes of this NewVnfd.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openapi_server.models.new_vnfd.NewVnfd.description">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">description</span></span><a class="headerlink" href="#openapi_server.models.new_vnfd.NewVnfd.description" title="Permalink to this definition"></a></dt>
+<dd><p>Gets the description of this NewVnfd.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The description of this NewVnfd.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openapi_server.models.new_vnfd.NewVnfd.from_dict">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dikt</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#openapi_server.models.new_vnfd.NewVnfd" title="openapi_server.models.new_vnfd.NewVnfd"><span class="pre">openapi_server.models.new_vnfd.NewVnfd</span></a></span></span><a class="headerlink" href="#openapi_server.models.new_vnfd.NewVnfd.from_dict" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the dict as a model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dikt</strong> – A dict.</p>
+</dd>
+<dt class="field-even">Type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The newVnfd of this NewVnfd.  # noqa: E501</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#openapi_server.models.new_vnfd.NewVnfd" title="openapi_server.models.new_vnfd.NewVnfd">NewVnfd</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openapi_server.models.new_vnfd.NewVnfd.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#openapi_server.models.new_vnfd.NewVnfd.name" title="Permalink to this definition"></a></dt>
+<dd><p>Gets the name of this NewVnfd.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The name of this NewVnfd.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-openapi_server.models.nonce">
+<span id="openapi-server-models-nonce-module"></span><h2>openapi_server.models.nonce module<a class="headerlink" href="#module-openapi_server.models.nonce" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="openapi_server.models.nonce.Nonce">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openapi_server.models.nonce.</span></span><span class="sig-name descname"><span class="pre">Nonce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nonce</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.models.nonce.Nonce" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#openapi_server.models.base_model_.Model" title="openapi_server.models.base_model_.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">openapi_server.models.base_model_.Model</span></code></a></p>
+<p>NOTE: This class is auto generated by OpenAPI Generator (<a class="reference external" href="https://openapi-generator.tech">https://openapi-generator.tech</a>).</p>
+<p>Do not edit the class manually.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="openapi_server.models.nonce.Nonce.from_dict">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dikt</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#openapi_server.models.nonce.Nonce" title="openapi_server.models.nonce.Nonce"><span class="pre">openapi_server.models.nonce.Nonce</span></a></span></span><a class="headerlink" href="#openapi_server.models.nonce.Nonce.from_dict" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the dict as a model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dikt</strong> – A dict.</p>
+</dd>
+<dt class="field-even">Type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The nonce of this Nonce.  # noqa: E501</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#openapi_server.models.nonce.Nonce" title="openapi_server.models.nonce.Nonce">Nonce</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openapi_server.models.nonce.Nonce.nonce">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">nonce</span></span><a class="headerlink" href="#openapi_server.models.nonce.Nonce.nonce" title="Permalink to this definition"></a></dt>
+<dd><p>Gets the nonce of this Nonce.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The nonce of this Nonce.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-openapi_server.models.tacker_config">
+<span id="openapi-server-models-tacker-config-module"></span><h2>openapi_server.models.tacker_config module<a class="headerlink" href="#module-openapi_server.models.tacker_config" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="openapi_server.models.tacker_config.TackerConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openapi_server.models.tacker_config.</span></span><span class="sig-name descname"><span class="pre">TackerConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auth_url</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_url</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.models.tacker_config.TackerConfig" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#openapi_server.models.base_model_.Model" title="openapi_server.models.base_model_.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">openapi_server.models.base_model_.Model</span></code></a></p>
+<p>Own model for the tackerConfig, following the OpenAPI template</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="openapi_server.models.tacker_config.TackerConfig.auth_url">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">auth_url</span></span><a class="headerlink" href="#openapi_server.models.tacker_config.TackerConfig.auth_url" title="Permalink to this definition"></a></dt>
+<dd><p>Gets the auth_url of this TackerConfig.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The auth_url of this TackerConfig.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openapi_server.models.tacker_config.TackerConfig.base_url">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">base_url</span></span><a class="headerlink" href="#openapi_server.models.tacker_config.TackerConfig.base_url" title="Permalink to this definition"></a></dt>
+<dd><p>Gets the base_url of this TackerConfig.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The base_url of this TackerConfig.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openapi_server.models.tacker_config.TackerConfig.from_dict">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dikt</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#openapi_server.models.tacker_config.TackerConfig" title="openapi_server.models.tacker_config.TackerConfig"><span class="pre">openapi_server.models.tacker_config.TackerConfig</span></a></span></span><a class="headerlink" href="#openapi_server.models.tacker_config.TackerConfig.from_dict" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the dict as a model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dikt</strong> – A dict.</p>
+</dd>
+<dt class="field-even">Type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The tackerConfig of this TackerConfig.  # noqa: E501</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#openapi_server.models.tacker_config.TackerConfig" title="openapi_server.models.tacker_config.TackerConfig">TackerConfig</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openapi_server.models.tacker_config.TackerConfig.pw">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pw</span></span><a class="headerlink" href="#openapi_server.models.tacker_config.TackerConfig.pw" title="Permalink to this definition"></a></dt>
+<dd><p>Gets the pw of this TackerConfig.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The pw of this TackerConfig.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openapi_server.models.tacker_config.TackerConfig.user_id">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">user_id</span></span><a class="headerlink" href="#openapi_server.models.tacker_config.TackerConfig.user_id" title="Permalink to this definition"></a></dt>
+<dd><p>Gets the user_id of this TackerConfig.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The user_id of this TackerConfig.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-openapi_server.models.tacker_error">
+<span id="openapi-server-models-tacker-error-module"></span><h2>openapi_server.models.tacker_error module<a class="headerlink" href="#module-openapi_server.models.tacker_error" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="openapi_server.models.tacker_error.TackerErrorModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openapi_server.models.tacker_error.</span></span><span class="sig-name descname"><span class="pre">TackerErrorModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detail</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.models.tacker_error.TackerErrorModel" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#openapi_server.models.base_model_.Model" title="openapi_server.models.base_model_.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">openapi_server.models.base_model_.Model</span></code></a></p>
+<dl class="py property">
+<dt class="sig sig-object py" id="openapi_server.models.tacker_error.TackerErrorModel.detail">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">detail</span></span><a class="headerlink" href="#openapi_server.models.tacker_error.TackerErrorModel.detail" title="Permalink to this definition"></a></dt>
+<dd><p>Gets the detail of this TackerErrorModel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The detail of this TackerErrorModel.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openapi_server.models.tacker_error.TackerErrorModel.from_dict">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dikt</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="openapi_server.repositories.html#openapi_server.repositories.tacker_error.TackerError" title="openapi_server.repositories.tacker_error.TackerError"><span class="pre">TackerError</span></a></span></span><a class="headerlink" href="#openapi_server.models.tacker_error.TackerErrorModel.from_dict" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the dict as a model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dikt</strong> – A dict.</p>
+</dd>
+<dt class="field-even">Type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The tackerError of this TackerError.  # noqa: E501</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="openapi_server.repositories.html#openapi_server.repositories.tacker_error.TackerError" title="openapi_server.repositories.tacker_error.TackerError">TackerError</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openapi_server.models.tacker_error.TackerErrorModel.message">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">message</span></span><a class="headerlink" href="#openapi_server.models.tacker_error.TackerErrorModel.message" title="Permalink to this definition"></a></dt>
+<dd><p>Gets the message of this TackerErrorModel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The message of this TackerErrorModel.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openapi_server.models.tacker_error.TackerErrorModel.type">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">type</span></span><a class="headerlink" href="#openapi_server.models.tacker_error.TackerErrorModel.type" title="Permalink to this definition"></a></dt>
+<dd><p>Gets the type of this TackerErrorModel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The type of this TackerErrorModel.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-openapi_server.models.token_request">
+<span id="openapi-server-models-token-request-module"></span><h2>openapi_server.models.token_request module<a class="headerlink" href="#module-openapi_server.models.token_request" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="openapi_server.models.token_request.TokenRequest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openapi_server.models.token_request.</span></span><span class="sig-name descname"><span class="pre">TokenRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signed_nonce</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonce</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">address</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.models.token_request.TokenRequest" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#openapi_server.models.base_model_.Model" title="openapi_server.models.base_model_.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">openapi_server.models.base_model_.Model</span></code></a></p>
+<p>NOTE: This class is auto generated by OpenAPI Generator (<a class="reference external" href="https://openapi-generator.tech">https://openapi-generator.tech</a>).</p>
+<p>Do not edit the class manually.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="openapi_server.models.token_request.TokenRequest.address">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">address</span></span><a class="headerlink" href="#openapi_server.models.token_request.TokenRequest.address" title="Permalink to this definition"></a></dt>
+<dd><p>Gets the address of this TokenRequest.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The address of this TokenRequest.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="openapi_server.models.token_request.TokenRequest.from_dict">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dikt</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#openapi_server.models.token_request.TokenRequest" title="openapi_server.models.token_request.TokenRequest"><span class="pre">openapi_server.models.token_request.TokenRequest</span></a></span></span><a class="headerlink" href="#openapi_server.models.token_request.TokenRequest.from_dict" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the dict as a model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dikt</strong> – A dict.</p>
+</dd>
+<dt class="field-even">Type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The tokenRequest of this TokenRequest.  # noqa: E501</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#openapi_server.models.token_request.TokenRequest" title="openapi_server.models.token_request.TokenRequest">TokenRequest</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openapi_server.models.token_request.TokenRequest.nonce">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">nonce</span></span><a class="headerlink" href="#openapi_server.models.token_request.TokenRequest.nonce" title="Permalink to this definition"></a></dt>
+<dd><p>Gets the nonce of this TokenRequest.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The nonce of this TokenRequest.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openapi_server.models.token_request.TokenRequest.signed_nonce">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">signed_nonce</span></span><a class="headerlink" href="#openapi_server.models.token_request.TokenRequest.signed_nonce" title="Permalink to this definition"></a></dt>
+<dd><p>Gets the signed_nonce of this TokenRequest.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The signed_nonce of this TokenRequest.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-openapi_server.models.token_response">
+<span id="openapi-server-models-token-response-module"></span><h2>openapi_server.models.token_response module<a class="headerlink" href="#module-openapi_server.models.token_response" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="openapi_server.models.token_response.TokenResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openapi_server.models.token_response.</span></span><span class="sig-name descname"><span class="pre">TokenResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_registered</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.models.token_response.TokenResponse" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#openapi_server.models.base_model_.Model" title="openapi_server.models.base_model_.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">openapi_server.models.base_model_.Model</span></code></a></p>
+<p>NOTE: This class is auto generated by OpenAPI Generator (<a class="reference external" href="https://openapi-generator.tech">https://openapi-generator.tech</a>).</p>
+<p>Do not edit the class manually.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="openapi_server.models.token_response.TokenResponse.from_dict">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dikt</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#openapi_server.models.token_response.TokenResponse" title="openapi_server.models.token_response.TokenResponse"><span class="pre">openapi_server.models.token_response.TokenResponse</span></a></span></span><a class="headerlink" href="#openapi_server.models.token_response.TokenResponse.from_dict" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the dict as a model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dikt</strong> – A dict.</p>
+</dd>
+<dt class="field-even">Type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The tokenResponse of this TokenResponse.  # noqa: E501</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#openapi_server.models.token_response.TokenResponse" title="openapi_server.models.token_response.TokenResponse">TokenResponse</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openapi_server.models.token_response.TokenResponse.is_registered">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_registered</span></span><a class="headerlink" href="#openapi_server.models.token_response.TokenResponse.is_registered" title="Permalink to this definition"></a></dt>
+<dd><p>Gets the is_registered of this TokenResponse.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The is_registered of this TokenResponse.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openapi_server.models.token_response.TokenResponse.token">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">token</span></span><a class="headerlink" href="#openapi_server.models.token_response.TokenResponse.token" title="Permalink to this definition"></a></dt>
+<dd><p>Gets the token of this TokenResponse.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The token of this TokenResponse.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-openapi_server.models.vnf">
+<span id="openapi-server-models-vnf-module"></span><h2>openapi_server.models.vnf module<a class="headerlink" href="#module-openapi_server.models.vnf" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="openapi_server.models.vnf.Vnf">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openapi_server.models.vnf.</span></span><span class="sig-name descname"><span class="pre">Vnf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.models.vnf.Vnf" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#openapi_server.models.base_model_.Model" title="openapi_server.models.base_model_.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">openapi_server.models.base_model_.Model</span></code></a></p>
+<p>NOTE: This class is auto generated by OpenAPI Generator (<a class="reference external" href="https://openapi-generator.tech">https://openapi-generator.tech</a>).</p>
+<p>Do not edit the class manually.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="openapi_server.models.vnf.Vnf.from_dict">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dikt</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#openapi_server.models.vnf.Vnf" title="openapi_server.models.vnf.Vnf"><span class="pre">openapi_server.models.vnf.Vnf</span></a></span></span><a class="headerlink" href="#openapi_server.models.vnf.Vnf.from_dict" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the dict as a model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dikt</strong> – A dict.</p>
+</dd>
+<dt class="field-even">Type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The vnf of this Vnf.  # noqa: E501</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#openapi_server.models.vnf.Vnf" title="openapi_server.models.vnf.Vnf">Vnf</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openapi_server.models.vnf.Vnf.id">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#openapi_server.models.vnf.Vnf.id" title="Permalink to this definition"></a></dt>
+<dd><p>Gets the id of this Vnf.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The id of this Vnf.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-openapi_server.models.vnfd">
+<span id="openapi-server-models-vnfd-module"></span><h2>openapi_server.models.vnfd module<a class="headerlink" href="#module-openapi_server.models.vnfd" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="openapi_server.models.vnfd.Vnfd">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">openapi_server.models.vnfd.</span></span><span class="sig-name descname"><span class="pre">Vnfd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.models.vnfd.Vnfd" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#openapi_server.models.base_model_.Model" title="openapi_server.models.base_model_.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">openapi_server.models.base_model_.Model</span></code></a></p>
+<p>NOTE: This class is auto generated by OpenAPI Generator (<a class="reference external" href="https://openapi-generator.tech">https://openapi-generator.tech</a>).</p>
+<p>Do not edit the class manually.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="openapi_server.models.vnfd.Vnfd.from_dict">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dikt</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#openapi_server.models.vnfd.Vnfd" title="openapi_server.models.vnfd.Vnfd"><span class="pre">openapi_server.models.vnfd.Vnfd</span></a></span></span><a class="headerlink" href="#openapi_server.models.vnfd.Vnfd.from_dict" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the dict as a model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dikt</strong> – A dict.</p>
+</dd>
+<dt class="field-even">Type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The vnfd of this Vnfd.  # noqa: E501</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#openapi_server.models.vnfd.Vnfd" title="openapi_server.models.vnfd.Vnfd">Vnfd</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="openapi_server.models.vnfd.Vnfd.id">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#openapi_server.models.vnfd.Vnfd.id" title="Permalink to this definition"></a></dt>
+<dd><p>Gets the id of this Vnfd.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The id of this Vnfd.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-openapi_server.models">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-openapi_server.models" title="Permalink to this headline"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, BCV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

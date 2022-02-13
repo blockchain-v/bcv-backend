@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>openapi_server.controllers package &mdash; BCV-Backend 1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> BCV-Backend
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">openapi_server.controllers package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-openapi_server.controllers.errormsg_controller">openapi_server.controllers.errormsg_controller module</a></li>
+<li><a class="reference internal" href="#module-openapi_server.controllers.security_controller_">openapi_server.controllers.security_controller_ module</a></li>
+<li><a class="reference internal" href="#module-openapi_server.controllers.token_controller">openapi_server.controllers.token_controller module</a></li>
+<li><a class="reference internal" href="#module-openapi_server.controllers.vnf_controller">openapi_server.controllers.vnf_controller module</a></li>
+<li><a class="reference internal" href="#module-openapi_server.controllers.vnfd_controller">openapi_server.controllers.vnfd_controller module</a></li>
+<li><a class="reference internal" href="#module-openapi_server.controllers">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">BCV-Backend</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>openapi_server.controllers package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/openapi_server.controllers.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="openapi-server-controllers-package">
+<h1>openapi_server.controllers package<a class="headerlink" href="#openapi-server-controllers-package" title="Permalink to this headline"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+</section>
+<section id="module-openapi_server.controllers.errormsg_controller">
+<span id="openapi-server-controllers-errormsg-controller-module"></span><h2>openapi_server.controllers.errormsg_controller module<a class="headerlink" href="#module-openapi_server.controllers.errormsg_controller" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="openapi_server.controllers.errormsg_controller.get_errormsg">
+<span class="sig-prename descclassname"><span class="pre">openapi_server.controllers.errormsg_controller.</span></span><span class="sig-name descname"><span class="pre">get_errormsg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vnf_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deployment_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.controllers.errormsg_controller.get_errormsg" title="Permalink to this definition"></a></dt>
+<dd><p>Returns errormsg for a vnf deploymentId or vnfId</p>
+<p>Returns errors for a user, if auth was successful # noqa: E501</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>token_info</strong> – dict</p></li>
+<li><p><strong>vnf_id</strong> – string</p></li>
+<li><p><strong>deployment_id</strong> – int</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-openapi_server.controllers.security_controller_">
+<span id="openapi-server-controllers-security-controller-module"></span><h2>openapi_server.controllers.security_controller_ module<a class="headerlink" href="#module-openapi_server.controllers.security_controller_" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="openapi_server.controllers.security_controller_.info_from_ApiKeyAuth">
+<span class="sig-prename descclassname"><span class="pre">openapi_server.controllers.security_controller_.</span></span><span class="sig-name descname"><span class="pre">info_from_ApiKeyAuth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">api_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">required_scopes</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.controllers.security_controller_.info_from_ApiKeyAuth" title="Permalink to this definition"></a></dt>
+<dd><p>Check and retrieve authentication information from api_key.
+Returned value will be passed in ‘token_info’ parameter of your operation function, if there is one.
+‘sub’ or ‘uid’ will be set in ‘user’ parameter of your operation function, if there is one.</p>
+<p>:param api_key API key provided by Authorization header
+:type api_key: str
+:param required_scopes Always None. Used for other authentication method
+:type required_scopes: None
+:return: Information attached to provided api_key or None if api_key is invalid or does not allow access to called API
+:rtype: dict | None</p>
+</dd></dl>
+
+</section>
+<section id="module-openapi_server.controllers.token_controller">
+<span id="openapi-server-controllers-token-controller-module"></span><h2>openapi_server.controllers.token_controller module<a class="headerlink" href="#module-openapi_server.controllers.token_controller" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="openapi_server.controllers.token_controller.create_nonce">
+<span class="sig-prename descclassname"><span class="pre">openapi_server.controllers.token_controller.</span></span><span class="sig-name descname"><span class="pre">create_nonce</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.controllers.token_controller.create_nonce" title="Permalink to this definition"></a></dt>
+<dd><p>Creates and returns a new nonce</p>
+<p>Nonces are valid for one day and are used to issue a token. # noqa: E501</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="openapi_server.models.html#openapi_server.models.nonce.Nonce" title="openapi_server.models.nonce.Nonce">Nonce</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="openapi_server.controllers.token_controller.create_token">
+<span class="sig-prename descclassname"><span class="pre">openapi_server.controllers.token_controller.</span></span><span class="sig-name descname"><span class="pre">create_token</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.controllers.token_controller.create_token" title="Permalink to this definition"></a></dt>
+<dd><p>Creates and returns a new token. Requires a nonce.</p>
+<p>Tokens are valid for one day and are used for auth. # noqa: E501</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="openapi_server.models.html#openapi_server.models.token_response.TokenResponse" title="openapi_server.models.token_response.TokenResponse">TokenResponse</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-openapi_server.controllers.vnf_controller">
+<span id="openapi-server-controllers-vnf-controller-module"></span><h2>openapi_server.controllers.vnf_controller module<a class="headerlink" href="#module-openapi_server.controllers.vnf_controller" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="openapi_server.controllers.vnf_controller.get_vnf">
+<span class="sig-prename descclassname"><span class="pre">openapi_server.controllers.vnf_controller.</span></span><span class="sig-name descname"><span class="pre">get_vnf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vnf_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">token_info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.controllers.vnf_controller.get_vnf" title="Permalink to this definition"></a></dt>
+<dd><p>Returns vnf details for a specific vnf_id</p>
+<p>Returns a VNF from the nvf_framework instance, if auth was successful # noqa: E501</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vnf_id</strong> – string</p></li>
+<li><p><strong>token_info</strong> – dict</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="openapi_server.models.html#openapi_server.models.vnf.Vnf" title="openapi_server.models.vnf.Vnf">Vnf</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="openapi_server.controllers.vnf_controller.get_vnfs">
+<span class="sig-prename descclassname"><span class="pre">openapi_server.controllers.vnf_controller.</span></span><span class="sig-name descname"><span class="pre">get_vnfs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token_info</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.controllers.vnf_controller.get_vnfs" title="Permalink to this definition"></a></dt>
+<dd><p>Returns all vnf details for a user</p>
+<p>This is done by calling the contract to get the vnfs for this user and then getting each individually, if auth was successful. The user is identified by the Authorization token. # noqa: E501</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>token_info</strong> – dict</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[<a class="reference internal" href="openapi_server.models.html#openapi_server.models.vnf.Vnf" title="openapi_server.models.vnf.Vnf">Vnf</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-openapi_server.controllers.vnfd_controller">
+<span id="openapi-server-controllers-vnfd-controller-module"></span><h2>openapi_server.controllers.vnfd_controller module<a class="headerlink" href="#module-openapi_server.controllers.vnfd_controller" title="Permalink to this headline"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="openapi_server.controllers.vnfd_controller.create_vnfd">
+<span class="sig-prename descclassname"><span class="pre">openapi_server.controllers.vnfd_controller.</span></span><span class="sig-name descname"><span class="pre">create_vnfd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_vnfd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.controllers.vnfd_controller.create_vnfd" title="Permalink to this definition"></a></dt>
+<dd><p>Creates a new vnf descriptor</p>
+<p>Creates a new vnf descriptor, if auth was successful # noqa: E501</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>new_vnfd</strong> (<em>dict</em><em> | </em><em>bytes</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="openapi_server.models.html#openapi_server.models.vnfd.Vnfd" title="openapi_server.models.vnfd.Vnfd">Vnfd</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="openapi_server.controllers.vnfd_controller.delete_vnfd">
+<span class="sig-prename descclassname"><span class="pre">openapi_server.controllers.vnfd_controller.</span></span><span class="sig-name descname"><span class="pre">delete_vnfd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vnfd_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.controllers.vnfd_controller.delete_vnfd" title="Permalink to this definition"></a></dt>
+<dd><p>Deletes a vnf descriptor with vnfd_id</p>
+<p>Deletes a VNFD (vnf descriptor) from the nvf_framework instance, if auth was successful # noqa: E501</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>vnfd_id</strong> – string</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="openapi_server.controllers.vnfd_controller.get_vnfd">
+<span class="sig-prename descclassname"><span class="pre">openapi_server.controllers.vnfd_controller.</span></span><span class="sig-name descname"><span class="pre">get_vnfd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vnfd_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.controllers.vnfd_controller.get_vnfd" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a vnf descriptor with vnfd_id</p>
+<p>Returns a VNFD (vnf descriptor) from the nvf_framework instance, if auth was successful # noqa: E501</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>vnfd_id</strong> – string</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="openapi_server.models.html#openapi_server.models.vnfd.Vnfd" title="openapi_server.models.vnfd.Vnfd">Vnfd</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="openapi_server.controllers.vnfd_controller.get_vnfds">
+<span class="sig-prename descclassname"><span class="pre">openapi_server.controllers.vnfd_controller.</span></span><span class="sig-name descname"><span class="pre">get_vnfds</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.controllers.vnfd_controller.get_vnfds" title="Permalink to this definition"></a></dt>
+<dd><p>Returns all vnf descriptors</p>
+<p>Returns all VNFD (vnf descriptors) from the nvf_framework instance, if auth was successful # noqa: E501</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="openapi_server.models.html#openapi_server.models.vnfd.Vnfd" title="openapi_server.models.vnfd.Vnfd">Vnfd</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-openapi_server.controllers">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-openapi_server.controllers" title="Permalink to this headline"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, BCV.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
