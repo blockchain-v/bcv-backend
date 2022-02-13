@@ -8,7 +8,6 @@ url = config.WEB3_CONFIG["URL"]
 w3 = Web3(Web3.HTTPProvider(url))
 
 directory_path = os.getcwd()
-print("w3 directory", directory_path)
 
 p = Path(__file__).with_name("VNFDeployment.json")
 with p.open("r") as f:

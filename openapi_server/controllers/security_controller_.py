@@ -1,7 +1,6 @@
-from typing import List
 import logging
 
-from openapi_server.services.authService import authorize
+from openapi_server.utils.auth_utils import authorize
 
 log = logging.getLogger("werkzeug")
 

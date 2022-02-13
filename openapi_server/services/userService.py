@@ -1,7 +1,6 @@
-from openapi_server.contract import contract
+from openapi_server.contract import contract, smartContractService
 from openapi_server.repositories import User, Nonce
-from .authService import check_auth
-from openapi_server.services import smartContractService
+from openapi_server.utils.auth_utils import check_auth
 
 import logging
 from mongoengine import DoesNotExist
@@ -11,6 +10,10 @@ log = logging.getLogger("userService")
 
 
 class UserService:
+    """
+    Service class for users
+    """
+
     @staticmethod
     def register(event_args_dict):
         """
