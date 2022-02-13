@@ -14,8 +14,8 @@ jobs:
         cd docs
         pip install -r requirements.txt
         sphinx-build -b html ./source ./build
-    - name: Push to gh-page
-      uses: actions/upload-artifact@v2
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
       with:
-        name: DocumentationHTML
-        path: docs/build/
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs/build
