@@ -1,7 +1,10 @@
-# backend
+[![Pull Request Docs Check](https://github.com/blockchain-v/bcv-backend/actions/workflows/main.yml/badge.svg)](https://github.com/blockchain-v/bcv-backend/actions/workflows/main.yml)
+[![pages-build-deployment](https://github.com/blockchain-v/bcv-backend/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/blockchain-v/bcv-backend/actions/workflows/pages/pages-build-deployment)
+
+# BCV-Backend
 
 - API documentation can be found at: `http://localhost:8080/api/v1/bcv/ui/`
-- Code documentation can be found at Github-page (todo)
+- Code documentation can be found at Github-page
 
 # how to run this:
 - until contract setup is decided we can't run this in docker yet. backend reads contract from the `bcv-contract` directory.
