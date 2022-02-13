@@ -15,8 +15,11 @@ class Tacker(AbstractNFVFramework):
 
     def __init__(self, tacker_config):
         self._tacker_config = tacker_config
+        # note: only after calling the function 'connect', the object is completely initialized
+
+    def connect(self):
         token, self._tenant_id = self._get_token()
-        super().__init__(token=token, base_url=tacker_config.base_url)
+        super().__init__(token=token, base_url=self._tacker_config.base_url)
 
         self._vim_id = self._get_vim_id()
 
@@ -194,4 +197,4 @@ class Tacker(AbstractNFVFramework):
         return response.status_code
 
 
-tackerClient = Tacker(TackerConfig.from_dict(TACKER_CONFIG))
+tacker_client = Tacker(TackerConfig.from_dict(TACKER_CONFIG))
