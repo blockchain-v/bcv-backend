@@ -7,7 +7,7 @@ class VNFDService:
     """
 
     def __init__(self, tacker_client):
-        self.tackerClient = tacker_client
+        self.tacker_client = tacker_client
 
     def get_vnfd(self, vnfd_id):
         """
@@ -15,7 +15,7 @@ class VNFDService:
         :param vnfd_id: str
         """
         try:
-            return self.tackerClient.get_vnfd(vnfd_id)
+            return self.tacker_client.get_vnfd(vnfd_id)
         except:
             return "Error", 400
 
@@ -25,7 +25,7 @@ class VNFDService:
         :param vnfd_id: str
         """
         try:
-            status_code = self.tackerClient.delete_vnfd(vnfd_id)
+            status_code = self.tacker_client.delete_vnfd(vnfd_id)
             return "", status_code
         except:
             return "Error", 400
@@ -35,7 +35,7 @@ class VNFDService:
         Get all vnfd's
         """
         try:
-            return self.tackerClient.get_vnfds()
+            return self.tacker_client.get_vnfds()
         except:
             return "Error", 400
 
@@ -48,7 +48,7 @@ class VNFDService:
             attributes = new_vnfd.attributes
             name = new_vnfd.name
             description = new_vnfd.description
-            res, status_code = self.tackerClient.create_vnfd(
+            res, status_code = self.tacker_client.create_vnfd(
                 attributes, name, description
             )
             return res, status_code

@@ -14,12 +14,12 @@ from openapi_server.test import BaseTestCase
 class TestVnfdController(BaseTestCase):
     """VnfdController integration test stubs"""
 
-    def test_create_vnfd(self):
+    def test_create_vnfd_returns_unauthorized_without_token(self):
         """Test case for create_vnfd
 
         Creates a new vnf descriptor
         """
-        new_vnfd = openapi_server.NewVnfd()
+        new_vnfd = NewVnfd()
         headers = {
             "Accept": "application/json",
             "Content-Type": "application/json",
@@ -32,9 +32,10 @@ class TestVnfdController(BaseTestCase):
             data=json.dumps(new_vnfd),
             content_type="application/json",
         )
-        self.assert200(response, "Response body is : " + response.data.decode("utf-8"))
+        resp = response.status_code
+        self.assertTrue(resp == 401)
 
-    def test_delete_vnfd(self):
+    def test_delete_vnfd_returns_unauthorized_without_token(self):
         """Test case for delete_vnfd
 
         Deletes a vnf descriptor with vnfdID
@@ -45,9 +46,10 @@ class TestVnfdController(BaseTestCase):
         response = self.client.open(
             "/api/v1/bcv/vnfd/<vnfdID>", method="DELETE", headers=headers
         )
-        self.assert200(response, "Response body is : " + response.data.decode("utf-8"))
+        resp = response.status_code
+        self.assertTrue(resp == 401)
 
-    def test_get_vnfd(self):
+    def test_get_vnfd_returns_unauthorized_without_token(self):
         """Test case for get_vnfd
 
         Returns a vnf descriptor with vnfdID
@@ -59,9 +61,10 @@ class TestVnfdController(BaseTestCase):
         response = self.client.open(
             "/api/v1/bcv/vnfd/<vnfdID>", method="GET", headers=headers
         )
-        self.assert200(response, "Response body is : " + response.data.decode("utf-8"))
+        resp = response.status_code
+        self.assertTrue(resp == 401)
 
-    def test_get_vnfds(self):
+    def test_get_vnfds_returns_unauthorized_without_token(self):
         """Test case for get_vnfds
 
         Returns all vnf descriptors
@@ -71,7 +74,8 @@ class TestVnfdController(BaseTestCase):
             "ApiKeyAuth": "special-key",
         }
         response = self.client.open("/api/v1/bcv/vnfd", method="GET", headers=headers)
-        self.assert200(response, "Response body is : " + response.data.decode("utf-8"))
+        resp = response.status_code
+        self.assertTrue(resp == 401)
 
 
 if __name__ == "__main__":
