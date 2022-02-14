@@ -5,13 +5,18 @@ from datetime import datetime, timedelta
 from mongoengine import DoesNotExist
 from openapi_server.contract import w3
 from openapi_server import config
-from openapi_server.services import userService, check_auth
+from openapi_server.services import userService
+from openapi_server.utils import check_auth
 from openapi_server.repositories import Nonce
 
 log = logging.getLogger("TokenService")
 
 
 class TokenService:
+    """
+    Service class for the token resource
+    """
+
     @staticmethod
     def create_nonce(address_request):
         """
@@ -41,8 +46,7 @@ class TokenService:
         if token:
             # nonce has been consumed
             try:
-                nonce_to_delete = Nonce.objects(address=token_request.address)
-                nonce_to_delete.delete()
+                Nonce.objects(address=token_request.address).delete()
             except DoesNotExist:
                 pass
             return {"token": token, "isRegistered": is_registered}, 201
@@ -50,7 +54,7 @@ class TokenService:
             return "Error", 403
 
     @staticmethod
-    def create_token_handler(nonce, signed_nonce, address):
+    def create_token_handler(nonce, signed_nonce, address, secret=config.JWT_SECRET):
         """
         Creates and returns new jwt token for a user if the passed nonce is valid
         :param nonce: string
@@ -65,7 +69,7 @@ class TokenService:
                         "address": address,
                         "exp": datetime.utcnow() + timedelta(hours=24),
                     },
-                    config.JWT_SECRET,
+                    secret,
                 )
                 return token
             else:

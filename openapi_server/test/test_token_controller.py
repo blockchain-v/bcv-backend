@@ -46,7 +46,7 @@ class TestTokenController(BaseTestCase):
             data=json.dumps(address_request),
             content_type="application/json",
         )
-        self.assert_(response.status_code == 201)
+        self.assertTrue(response.status_code == 201)
 
     def test_create_nonce_fails(self):
         """Test case for failing create_nonce
@@ -65,8 +65,7 @@ class TestTokenController(BaseTestCase):
             data=json.dumps(address_request),
             content_type="application/json",
         )
-        resp = response.status_code
-        self.assert_(resp == 403)
+        self.assertTrue(response.status_code == 403)
 
     def test_create_token(self):
         """Test case for create_token
@@ -95,8 +94,8 @@ class TestTokenController(BaseTestCase):
             data=json.dumps(token_request),
             content_type="application/json",
         )
-        self.assert_(response.json.get("isRegistered") is True)
-        self.assert_(response.status_code == 201)
+        self.assertTrue(response.json.get("isRegistered"))
+        self.assertTrue(response.status_code == 201)
 
     def test_create_token_fails_if_not_registered(self):
         """Test case for create_token
@@ -124,8 +123,8 @@ class TestTokenController(BaseTestCase):
             data=json.dumps(token_request),
             content_type="application/json",
         )
-        self.assert_(response.json.get("isRegistered") is False)
-        self.assert_(response.status_code == 200)
+        self.assertFalse(response.json.get("isRegistered"))
+        self.assertTrue(response.status_code == 200)
 
 
 if __name__ == "__main__":

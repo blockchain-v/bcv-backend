@@ -1,14 +1,20 @@
 from jwt import InvalidTokenError, ExpiredSignatureError
 from mongoengine import DoesNotExist
+from web3.exceptions import InvalidAddress
+
 from openapi_server import config
 from openapi_server.contract import w3
 from openapi_server.repositories import Nonce, User
-from datetime import datetime
+import datetime
 from flask import abort
 import logging
 import jwt
 
 log = logging.getLogger("authService")
+
+"""
+Util methods for auth
+"""
 
 
 def check_auth(*args, **kwargs) -> bool:
@@ -33,6 +39,8 @@ def check_auth(*args, **kwargs) -> bool:
 def _check_auth_for_address(claimed_address, signed_string) -> bool:
     """
     Verifies a claimed address by comparing it to its value that was recovered from a digitally signed string
+    This is used for the user registration, where claimed_address represents a user address,
+    and signed_string represents the digitally signed user address.
     :param claimed_address:
     :param signed_string:
     :return: boolean
@@ -42,7 +50,8 @@ def _check_auth_for_address(claimed_address, signed_string) -> bool:
         hashed_claim = w3.solidityKeccak(["address"], [claimed_address])
         address = _recover_address(hashed_claim, signed_string)
         return claimed_address == address
-    except:
+    except (InvalidAddress, ValueError) as e:
+        log.info(f"check auth for address failed {e}")
         return False
 
 
@@ -62,7 +71,8 @@ def _check_auth_for_nonce(nonce, signed_nonce, user_address) -> bool:
         hashed_claim = w3.solidityKeccak(["bytes32"], [nonce])
         address = _recover_address(hashed_claim, signed_nonce)
         return address == user_address
-    except:
+    except (InvalidAddress, ValueError) as e:
+        log.info(f"check auth for nonce failed {e}")
         return False
 
 
@@ -70,8 +80,8 @@ def _recover_address(hashed_claim, signed_string) -> str:
     """
     Recovers the address from the hashed_claim using the signature.
     This is done to check whether the digital signature was issued by the claimed userAddress
-    :param hashed_claim:
-    :param signed_string:
+    :param hashed_claim: str
+    :param signed_string: str
     :return: address : str
     """
     return w3.eth.account.recoverHash(hashed_claim, signature=signed_string)
@@ -88,7 +98,9 @@ def verify_nonce(nonce, user_address) -> bool:
         nonce_from_db = Nonce.objects.get(value=nonce, address=user_address)
         if nonce_from_db is not None:
             issue_date = nonce_from_db.issueDate
-            return abs((datetime.now() - issue_date).days) <= 1
+            margin = datetime.timedelta(hours=24)
+            now = datetime.datetime.now()
+            return now - margin <= issue_date <= now
     except DoesNotExist:
         return False
 
@@ -132,10 +144,10 @@ def authorize(token):
     return {"userAddress": user_address}
 
 
-def decode_token(token_str):
+def decode_token(token_str, secret=config.JWT_SECRET):
     """
     Decodes JWT token
     :param token_str: string
     :return: token : dict
     """
-    return jwt.decode(token_str, config.JWT_SECRET, algorithms=["HS256"])
+    return jwt.decode(token_str, secret, algorithms=["HS256"])

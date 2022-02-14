@@ -6,10 +6,10 @@ from flask_cors import CORS
 from openapi_server.nvf_framework import tacker
 from openapi_server.utils import encoder
 from openapi_server import config
-from openapi_server.contract import start_sc_event_listening
+from openapi_server.contract import start_sc_event_listening, smartContractService
 import logging
 
-from openapi_server.services import smartContractService, vnfService, userService
+from openapi_server.services import vnfService, userService
 from openapi_server.database import init_db
 
 logging.basicConfig(

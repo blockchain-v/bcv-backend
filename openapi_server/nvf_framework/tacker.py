@@ -10,7 +10,8 @@ log = logging.getLogger("tacker")
 
 class Tacker(AbstractNFVFramework):
     """
-    Tacker's responsibility is to communicate with the Tacker instance running on the VM
+    Tacker's responsibility is to communicate with the Tacker instance running on the VM.
+    It serves as a concrete implementation of the nfv mano framework
     """
 
     def __init__(self, tacker_config):
@@ -18,12 +19,16 @@ class Tacker(AbstractNFVFramework):
         # note: only after calling the function 'connect', the object is completely initialized
 
     def connect(self):
+        """
+        Connect to the tacker instance
+        """
         token, self._tenant_id = self._get_token()
         super().__init__(token=token, base_url=self._tacker_config.base_url)
 
         self._vim_id = self._get_vim_id()
 
     def _get_token(self):
+        """Get the tacker auth token"""
         return self._get_token_scoped()
 
     def _get_token_scoped(self):
