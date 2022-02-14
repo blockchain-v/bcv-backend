@@ -115,7 +115,6 @@ class VNFService:
         res, status = self.nfv_client.get_vnf(contract_vnf.vnf_id)
         if status == 200:
             return {**res, "deploymentID": contract_vnf.deployment_id}
-        return
 
 
 service = VNFService(nfv_client=tacker)
