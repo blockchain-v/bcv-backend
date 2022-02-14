@@ -46,8 +46,7 @@ class TokenService:
         if token:
             # nonce has been consumed
             try:
-                nonce_to_delete = Nonce.objects(address=token_request.address)
-                nonce_to_delete.delete()
+                Nonce.objects(address=token_request.address).delete()
             except DoesNotExist:
                 pass
             return {"token": token, "isRegistered": is_registered}, 201
