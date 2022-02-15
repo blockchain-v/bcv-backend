@@ -1,5 +1,5 @@
 from openapi_server.contract.w3 import w3, contract
-from openapi_server.config import SC_BACKEND_CONFIG
+from openapi_server.config import SC_BACKEND_CONFIG, WEB3_CONFIG
 import logging
 
 log = logging.getLogger("smartContractService")
@@ -27,10 +27,23 @@ class SmartContractService:
         :return:
         """
         try:
-            tx_hash = self.contract.functions.registerBackend(
+            nonce = w3.eth.get_transaction_count(
+                SC_BACKEND_CONFIG["SC_BACKEND_ADDRESS_FROM"]
+            )
+            contract = self.contract
+            txn = contract.functions.registerBackend(
                 SC_BACKEND_CONFIG["SC_BACKEND_ADDRESS"]
-            ).transact({"from": SC_BACKEND_CONFIG["SC_BACKEND_ADDRESS_FROM"]})
-            tx_receipt = w3.eth.waitForTransactionReceipt(tx_hash)
+            ).buildTransaction(
+                {
+                    "from": SC_BACKEND_CONFIG["SC_BACKEND_ADDRESS_FROM"],
+                    "nonce": nonce,
+                }
+            )
+            signed_txn = w3.eth.account.sign_transaction(
+                txn, private_key=SC_BACKEND_CONFIG["SC_BACKEND_ADDRESS_FROM_PKEY"]
+            )
+            w3.eth.send_raw_transaction(signed_txn.rawTransaction)
+            tx_receipt = w3.toHex(w3.keccak(signed_txn.rawTransaction))
             log.info(f"registerBackend receipt {tx_receipt}")
         except Exception as e:
             log.info(f"register_backend error {e}")
@@ -44,11 +57,23 @@ class SmartContractService:
         :return:
         """
         try:
-            log.info(f"user {user}, success: {success}")
-            tx_hash = self.contract.functions.reportRegistration(
+            nonce = w3.eth.get_transaction_count(
+                SC_BACKEND_CONFIG["SC_BACKEND_ADDRESS"]
+            )
+            txn = self.contract.functions.reportRegistration(
                 user, success
-            ).transact({"from": SC_BACKEND_CONFIG["SC_BACKEND_ADDRESS"]})
-            tx_receipt = w3.eth.waitForTransactionReceipt(tx_hash)
+            ).buildTransaction(
+                {
+                    "from": SC_BACKEND_CONFIG["SC_BACKEND_ADDRESS"],
+                    "nonce": nonce,
+                }
+            )
+            signed_txn = w3.eth.account.sign_transaction(
+                txn, private_key=SC_BACKEND_CONFIG["SC_BACKEND_ADDRESS_PKEY"]
+            )
+            w3.eth.send_raw_transaction(signed_txn.rawTransaction)
+            tx_receipt = w3.toHex(w3.keccak(signed_txn.rawTransaction))
+
             log.info(f" transaction receipt: {tx_receipt}")
         except Exception as e:
             log.info(f"report_registration_to_sc error {e}")
@@ -62,11 +87,30 @@ class SmartContractService:
         :return:
         """
         try:
-            log.info(f"user {user}, success: {success}")
-            tx_hash = self.contract.functions.reportUnregistration(
+
+            nonce = w3.eth.get_transaction_count(
+                SC_BACKEND_CONFIG["SC_BACKEND_ADDRESS"]
+            )
+            txn = self.contract.functions.reportUnregistration(
                 user, success
-            ).transact({"from": SC_BACKEND_CONFIG["SC_BACKEND_ADDRESS"]})
-            tx_receipt = w3.eth.waitForTransactionReceipt(tx_hash)
+            ).buildTransaction(
+                {
+                    "from": SC_BACKEND_CONFIG["SC_BACKEND_ADDRESS"],
+                    "nonce": nonce,
+                }
+            )
+            signed_txn = w3.eth.account.sign_transaction(
+                txn, private_key=SC_BACKEND_CONFIG["SC_BACKEND_ADDRESS_PKEY"]
+            )
+            w3.eth.send_raw_transaction(signed_txn.rawTransaction)
+            tx_receipt = w3.toHex(w3.keccak(signed_txn.rawTransaction))
+
+            #
+            # log.info(f"user {user}, success: {success}")
+            # tx_hash = self.contract.functions.reportUnregistration(
+            #     user, success
+            # ).transact({"from": SC_BACKEND_CONFIG["SC_BACKEND_ADDRESS"]})
+            # tx_receipt = w3.eth.waitForTransactionReceipt(tx_hash)
             log.info(f" transaction receipt: {tx_receipt}")
         except Exception as e:
             log.info(f"report_unregistration_to_sc error {e}")
