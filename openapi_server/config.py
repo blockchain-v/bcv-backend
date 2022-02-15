@@ -13,7 +13,7 @@ JWT_SECRET = os.environ.get("JWT_SECRET")
 
 MONGODB_SETTINGS = {
     "db": DB_ALIAS,
-    "host": "localhost:27017",
+    "host": os.environ.get("DB_HOST"),
     "alias": "default",
 }
 
