@@ -160,7 +160,7 @@ class SmartContractService:
             nonce = w3.eth.get_transaction_count(
                 SC_BACKEND_CONFIG["SC_BACKEND_ADDRESS"]
             )
-            txn = self.contract.functions.reportDeployment(
+            txn = self.contract.functions.reportDeletion(
                 deployment_id, creator_address, success
             ).buildTransaction(
                 {
