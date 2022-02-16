@@ -173,6 +173,7 @@ class SmartContractService:
             signed_txn = w3.eth.account.sign_transaction(
                 txn, private_key=SC_BACKEND_CONFIG["SC_BACKEND_ADDRESS_PKEY"]
             )
+            log.info(f"sending transaction")
             w3.eth.send_raw_transaction(signed_txn.rawTransaction)
             tx_receipt = w3.toHex(w3.keccak(signed_txn.rawTransaction))
 
