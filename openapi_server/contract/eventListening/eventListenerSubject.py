@@ -14,7 +14,7 @@ class SmartContractEventListener(AbstractSubject):
     Observers attach themselves to this event listener, which creates a thread each for the filtering of events.
     the update function of the affected observer is then called.
 
-    It only follows the observer pattern as a guideline, since notifyObserver is not used,
+    It follows the observer pattern as a guideline only, since notifyObserver is not used,
     as attaching an observer starts event listening immediately, and only a single event is to be updated.
 
     The Smart Contract Event Listening using threads is based on the example of
@@ -43,6 +43,9 @@ class SmartContractEventListener(AbstractSubject):
     # ---------
 
     def _evt_listen(self, observer):
+        """
+        create a contract event filter for an observer and set up a new thread to start event listening
+        """
         event = observer.event
         event_filter = self.contract.events[event].createFilter(fromBlock="latest")
         worker = Thread(
