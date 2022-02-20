@@ -210,6 +210,14 @@ Returns status code upon deletion of a vnfd
 
 </dd></dl>
 
+<dl class="py function">
+<dt class="sig sig-object py" id="openapi_server.nvf_framework.tacker.get_token_if_401">
+<span class="sig-prename descclassname"><span class="pre">openapi_server.nvf_framework.tacker.</span></span><span class="sig-name descname"><span class="pre">get_token_if_401</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#openapi_server.nvf_framework.tacker.get_token_if_401" title="Permalink to this definition"></a></dt>
+<dd><p>Decorator to get a new tacker token if auth failed.
+This is usually the case when the server runs for a longer period of time
+and the token that is stored from the constructor is no longer valid.</p>
+</dd></dl>
+
 </section>
 <section id="module-openapi_server.nvf_framework">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-openapi_server.nvf_framework" title="Permalink to this headline"></a></h2>
