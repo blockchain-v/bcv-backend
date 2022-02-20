@@ -4,8 +4,29 @@ import requests
 import logging
 from openapi_server.models import TackerConfig
 from openapi_server.nvf_framework.nfv_framework import AbstractNFVFramework
+import functools
 
 log = logging.getLogger("tacker")
+
+
+def get_token_if_401(func):
+    """
+    Decorator to get a new tacker token if auth failed.
+    This is usually the case when the server runs for a longer period of time
+    and the token that is stored from the constructor is no longer valid.
+    """
+
+    @functools.wraps(func)
+    def wrapper(self, *args, **kwargs):
+        res = func(self, *args, **kwargs)
+        if type(res) is tuple and 401 in res or res == 401:
+            log.info(" 401 - reconnect")
+            self.connect()
+            return func(self, *args, **kwargs)
+        return res
+
+    # call inner
+    return wrapper
 
 
 class Tacker(AbstractNFVFramework):
@@ -76,6 +97,7 @@ class Tacker(AbstractNFVFramework):
     ------------------------
     """
 
+    @get_token_if_401
     def get_vims(self):
         """
         Returns VIMS from tacker
@@ -91,6 +113,7 @@ class Tacker(AbstractNFVFramework):
     ------------------------
     """
 
+    @get_token_if_401
     def get_vnfds(self):
         """
         Returns all vnfd's
@@ -99,6 +122,7 @@ class Tacker(AbstractNFVFramework):
         vnfds = response.json().get("vnfds")
         return vnfds, response.status_code
 
+    @get_token_if_401
     def get_vnfd(self, vnfd_id):
         """
         Returns a vnfd by its id
@@ -108,6 +132,7 @@ class Tacker(AbstractNFVFramework):
         vnfd = response.json().get("vnfd")
         return vnfd, response.status_code
 
+    @get_token_if_401
     def create_vnfd(self, attributes, name, description):
         """
         Create a vnfd in tacker
@@ -131,6 +156,7 @@ class Tacker(AbstractNFVFramework):
             return {"Error": response.text}, response.status_code
         return response.json().get("vnfd"), response.status_code
 
+    @get_token_if_401
     def delete_vnfd(self, vnfd_id) -> int:
         """
         Deletes a vnfd by its id
@@ -148,6 +174,7 @@ class Tacker(AbstractNFVFramework):
     ------------------------
     """
 
+    @get_token_if_401
     def get_vnfs(self):
         """
         Returns VNFS from tacker
@@ -157,6 +184,7 @@ class Tacker(AbstractNFVFramework):
         vnfs = response.json().get("vnfs")
         return vnfs, response.status_code
 
+    @get_token_if_401
     def get_vnf(self, vnf_id):
         """
         Returns a VNF from tacker
@@ -166,6 +194,7 @@ class Tacker(AbstractNFVFramework):
         vnf = response.json().get("vnf")
         return vnf, response.status_code
 
+    @get_token_if_401
     def create_vnf(self, parameters, vnfd_id, *args, **kwargs):
         """
         Create a vnf with the given parameters in tacker.
@@ -191,6 +220,7 @@ class Tacker(AbstractNFVFramework):
             return json.loads(response.text), response.status_code
         return response.json().get("vnf"), response.status_code
 
+    @get_token_if_401
     def delete_vnf(self, vnf_id):
         """
         Deleted a VNF with the given vnf_id

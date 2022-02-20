@@ -1,4 +1,7 @@
 from openapi_server.nvf_framework import tacker
+import logging
+
+log = logging.getLogger("vnfdService")
 
 
 class VNFDService:
@@ -36,7 +39,8 @@ class VNFDService:
         """
         try:
             return self.tacker_client.get_vnfds()
-        except:
+        except Exception as e:
+            log.info(f" get vnfds failed {e}")
             return "Error", 400
 
     def create_vnfd(self, new_vnfd=None):

@@ -4,8 +4,6 @@ import os
 dotenv_path = os.path.join(os.path.dirname(__file__), "../.env")
 load_dotenv(dotenv_path)
 
-DB_ALIAS = "bcv-db"
-DB_HOST = os.environ.get("DB_HOST")
 
 SC_ABI_PATH = os.environ.get("SC_ABI_PATH")
 
@@ -14,8 +12,8 @@ PORT = os.environ.get("PORT")
 JWT_SECRET = os.environ.get("JWT_SECRET")
 
 MONGODB_SETTINGS = {
-    "db": DB_ALIAS,
-    "host": DB_HOST,
+    "db": "bcv-db",
+    "host": os.getenv("DB_HOST", "localhost:27017"),
     "alias": "default",
 }
 

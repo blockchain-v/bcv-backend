@@ -74,7 +74,8 @@ class TokenService:
                 return token
             else:
                 return False
-        except:
+        except Exception as e:
+            log.error(f" Creating token failed {e}")
             return False
 
     @staticmethod
@@ -90,7 +91,8 @@ class TokenService:
             new_nonce = Nonce(address=address, value=nonce_val)
             new_nonce.save()
             return nonce_val
-        except:
+        except Exception as e:
+            log.error(f" Creating nonce failed {e}")
             return False
 
 
