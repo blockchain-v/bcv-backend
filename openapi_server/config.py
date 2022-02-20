@@ -5,6 +5,8 @@ dotenv_path = os.path.join(os.path.dirname(__file__), "../.env")
 load_dotenv(dotenv_path)
 
 DB_ALIAS = "bcv-db"
+DB_HOST = os.environ.get("DB_HOST")
+
 SC_ABI_PATH = os.environ.get("SC_ABI_PATH")
 
 PORT = os.environ.get("PORT")
@@ -13,7 +15,7 @@ JWT_SECRET = os.environ.get("JWT_SECRET")
 
 MONGODB_SETTINGS = {
     "db": DB_ALIAS,
-    "host": os.environ.get("DB_HOST"),
+    "host": DB_HOST,
     "alias": "default",
 }
 
@@ -32,7 +34,9 @@ TACKER_CONFIG = {
 
 SC_BACKEND_CONFIG = {
     "SC_BACKEND_ADDRESS": os.environ.get("SC_BACKEND_ADDRESS"),
+    "SC_BACKEND_ADDRESS_PKEY": os.environ.get("SC_BACKEND_ADDRESS_PKEY"),
     "SC_BACKEND_ADDRESS_FROM": os.environ.get("SC_BACKEND_ADDRESS_FROM"),
+    "SC_BACKEND_ADDRESS_FROM_PKEY": os.environ.get("SC_BACKEND_ADDRESS_FROM_PKEY"),
 }
 
 WEB3_CONFIG = {

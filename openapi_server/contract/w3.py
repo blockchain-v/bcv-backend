@@ -6,7 +6,6 @@ from pathlib import Path
 
 url = config.WEB3_CONFIG["URL"]
 w3 = Web3(Web3.HTTPProvider(url))
-
 directory_path = os.getcwd()
 
 p = Path(__file__).with_name("VNFDeployment.json")
