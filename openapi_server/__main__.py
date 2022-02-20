@@ -31,7 +31,7 @@ def main():
     smartContractService.service.register_backend_in_sc()
     # start the smart contract event listening
     start_sc_event_listening(vnf_service=vnfService, user_service=userService)
-    app.run(port=config.PORT, debug=False, use_reloader=False)
+    app.run(port=config.PORT, debug=True, use_reloader=False)
 
 
 if __name__ == "__main__":
