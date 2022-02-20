@@ -18,14 +18,12 @@ def get_token_if_401(func):
 
     @functools.wraps(func)
     def wrapper(self, *args, **kwargs):
-        res, code = func(self, *args, **kwargs)
-        if code == 401:
+        res = func(self, *args, **kwargs)
+        if type(res) is tuple and 401 in res or res == 401:
             log.info(" 401 - reconnect")
             self.connect()
             return func(self, *args, **kwargs)
-        else:
-            # usual case
-            return res, code
+        return res
 
     # call inner
     return wrapper
