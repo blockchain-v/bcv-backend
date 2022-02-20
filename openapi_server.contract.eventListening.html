@@ -132,7 +132,7 @@ This class should be used as an interface / template for the observer pattern</p
 <p>This class is responsible for Event listening of smart contract events.</p>
 <p>Observers attach themselves to this event listener, which creates a thread each for the filtering of events.
 the update function of the affected observer is then called.</p>
-<p>It only follows the observer pattern as a guideline, since notifyObserver is not used,
+<p>It follows the observer pattern as a guideline only, since notifyObserver is not used,
 as attaching an observer starts event listening immediately, and only a single event is to be updated.</p>
 <p>The Smart Contract Event Listening using threads is based on the example of
 <a class="reference external" href="https://web3py.readthedocs.io/en/stable/filters.html#asynchronous-filter-polling">https://web3py.readthedocs.io/en/stable/filters.html#asynchronous-filter-polling</a></p>
