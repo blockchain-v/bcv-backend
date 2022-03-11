@@ -23,6 +23,7 @@ class VNFService:
     def deploy_vnf(self, event_args_dict) -> None:
         """
         Deploy a vnf
+        :param event_args_dict : dict from the event args
         """
         creator_address, deployment_id, vnfd_id, parameters = itemgetter(
             "creator", "deploymentId", "vnfdId", "parameters"

@@ -60,7 +60,6 @@ class UnregisterObserver(AbstractObserver, AbstractPolling):
 
     @log_event
     def update(self, event, *args, **kwargs):
-        # log.info(f"{self.event} event")
         self.user_service.unregister(event.args)
 
 

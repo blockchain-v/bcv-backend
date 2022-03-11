@@ -7,7 +7,6 @@
 - Code documentation can be found at Github-page
 
 # how to run this:
-- until contract setup is decided we can't run this in docker yet. backend reads contract from the `bcv-contract` directory.
 - dependencies are in requirements.txt, python 3.8 works (3.10 not supported)
 
 assumed folder structure:
@@ -22,14 +21,18 @@ assumed folder structure:
 
 1. start ganache, optionally add the `truffle-config.js` as project to read the smart contract values and see events
 2. cd into `bcv-contract/src` and run `truffle migrate --reset`
-3. start db: `docker compose up db`
-4. in frontend change in truffleService.js: `import vnfContractData from '../../../bcv-contract/src/build/contracts/VNFDeployment.json'`
-5. start frontend: `yarn serve` (we'll have to copy from the /bcv-contract at some point to run this with docker (outside of context right now))
-6. start the Tacker VM
-7. adjust your backend .env 
+3. Inside the `blockchain-v/bcv-docker` directory:
+   1. start db: `docker compose up db`
+   2. start frontend: `docker compse up bcv-frontend` (might require .env changes)
+4. start the Tacker VM
+5. adjust your backend .env 
    1. to your local tacker VM config (can be read from the tacker dashboard at API Access)
    2. the SC addresses to ones from your local ganache setup (will be used to register the backend)
-8. start the backend in parent directory: e.g. `python3 -m openapi_server`
+6. run the backend:
+   1. local development: start the backend in `blockchain-v/bcv-backend` directory:
+      1. `pip3 install -r test-requirements.txt`
+      2. `python3 -m openapi_server` 
+   2. Or inside the `blockchain-v/bcv-docker` directory: `docker compse up bcv-frontend`
 
 ### Tests
 - `
@@ -84,14 +87,48 @@ sudo pip install tox
 tox
 ```
 
-## Running with Docker
 
-To run the server on a Docker container, please execute the following from the root directory:
+## ENV File 
+The backend expects the .env file to have these attributes:
 
-```bash
-# building the image
-docker build -t openapi_server .
+Tacker settings can be read from the Tacker Dashboard
 
-# starting up a container
-docker run -p 8080:8080 openapi_server
-```
+```TACKER_USERNAME```=
+
+```TACKER_PASSWORD```=
+
+```TACKER_TENANT_NAME```=
+
+```TACKER_TENANT_ID```=
+
+```TACKER_USER_ID```=
+
+```TACKER_AUTH_URL```=http://...:8080/identity/v3/auth
+
+```TACKER_ENDPOINT_URL```=http://...:9890/
+
+```TACKER_BASEURL```=http://.../v1.0/
+
+
+The Address of the backend:
+
+```SC_BACKEND_ADDRESS```=
+
+```SC_BACKEND_ADDRESS_PKEY```=
+
+The Address of the SC creater:
+
+```SC_BACKEND_ADDRESS_FROM```=
+
+```SC_BACKEND_ADDRESS_FROM_PKEY```=
+
+
+```W3_URL```=http://127.0.0.1:7545
+
+```W3_CONTRACT_ADDRESS```=
+
+```SC_ABI_PATH```= ./openapi_server/contract/VNFDeployment.json
+
+```PORT```=8080
+
+```JWT_SECRET```=

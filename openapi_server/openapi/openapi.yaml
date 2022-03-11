@@ -8,10 +8,13 @@ servers:
 tags:
 - description: Endpoints for Token
   name: token
-- description: Endpoints for VNF Descriptors (VNFD)
+- description: Endpoints for VNF Descriptor (VNFD)
   name: vnfd
 - description: Endpoints for VNF
   name: vnf
+- description: Endpoints for Tacker Errors
+  name: errormsg
+
 paths:
   /errormsg:
     get:

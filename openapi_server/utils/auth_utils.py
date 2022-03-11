@@ -20,7 +20,7 @@ Util methods for auth
 def check_auth(*args, **kwargs) -> bool:
     """
     Verifies a claim (e.g. an address) by comparing it to its value that was recovered from a digitally signed string
-    :return: boolean
+    :return: bool
     """
     try:
         address = kwargs.get("address")
@@ -43,7 +43,7 @@ def _check_auth_for_address(claimed_address, signed_string) -> bool:
     and signed_string represents the digitally signed user address.
     :param claimed_address:
     :param signed_string:
-    :return: boolean
+    :return: bool
     """
     try:
         # use same hash function as in contract to hash the userAddress
@@ -61,7 +61,7 @@ def _check_auth_for_nonce(nonce, signed_nonce, user_address) -> bool:
     :param nonce:
     :param signed_nonce:
     :param user_address:
-    :return: boolean
+    :return: bool
     """
     try:
         # match passed nonce, userAddress pair with db entry first
@@ -108,7 +108,7 @@ def verify_nonce(nonce, user_address) -> bool:
 def verify_token(token_str) -> bool:
     """
     Verifies if a given token exists and is still valid
-    :param token_str: string
+    :param token_str: str
     :return: bool : is the token valid
     """
     try:
@@ -123,8 +123,8 @@ def verify_token(token_str) -> bool:
 def get_address_from_token(token):
     """
     Return address from a token
-    :param token: string
-    :return: address : string | bool
+    :param token: str
+    :return: address : str | bool
     """
     try:
         token_data = decode_token(token)
@@ -148,7 +148,8 @@ def authorize(token):
 def decode_token(token_str, secret=config.JWT_SECRET):
     """
     Decodes JWT token
-    :param token_str: string
+    :param token_str: str
+    :param secret: str: jwt secret that was used for encoding
     :return: token : dict
     """
     return jwt.decode(token_str, secret, algorithms=["HS256"])

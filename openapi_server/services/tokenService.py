@@ -58,8 +58,9 @@ class TokenService:
         """
         Creates and returns new jwt token for a user if the passed nonce is valid
         :param nonce: string
-        :param signedNonce: string
+        :param signed_nonce: string
         :param address: string
+        :param secret: string
         :return: token : string
         """
         try:
@@ -88,8 +89,7 @@ class TokenService:
         try:
             Nonce.objects(address=address).delete()
             nonce_val = "0x" + uuid4().hex
-            new_nonce = Nonce(address=address, value=nonce_val)
-            new_nonce.save()
+            Nonce(address=address, value=nonce_val).save()
             return nonce_val
         except Exception as e:
             log.error(f" Creating nonce failed {e}")
